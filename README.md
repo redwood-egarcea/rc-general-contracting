@@ -1,8 +1,10 @@
 # Royal City website rebuild
 
-Phase 1 is complete and awaiting review. There is no application scaffold or deployment yet.
+Phase 1 and the URL map are approved. Phase 2 design exploration is in progress. There is no application scaffold or deployment yet.
 
-Start with [the audit](docs/audit.md), [product context](PRODUCT.md), [asset inventory](docs/assets.md), and [decisions](docs/decisions.md). Approve the audit and URL map before design work. Review proposed removals individually.
+The owner has confirmed the public name RC General Contracting Inc, Kincardine as the service area, reuse of company photos, and Cloudflare Web Analytics. A Cloudflare-provided hostname replaces the proposed domain purchase. The confirmed hostname is `workers.dev`, retaining the Workers stack. The full form-delivery address is recorded locally for secret configuration.
+
+Start with [the audit](docs/audit.md), [product context](PRODUCT.md), [asset inventory](docs/assets.md), and [decisions](docs/decisions.md). Review proposed removals individually; design approval is the next gate.
 
 ## Local evidence
 
@@ -22,10 +24,10 @@ See [skill setup](docs/skills.md) for installation commands and the project Tast
 
 ## Next gates
 
-1. Audit approval and explicit keep/drop decisions.
+1. Remaining explicit keep/drop decisions from the approved audit.
 2. Two design directions for home and one interior page, then design approval.
 3. Astro implementation and protected contact flows.
 4. Copy review, followed by all quality gates.
-5. GitHub and Workers Builds setup, workers.dev review, then an explicitly approved custom-domain cutover.
+5. GitHub and Workers hosting setup, followed by review of the hosted site. Any later custom-domain cutover requires explicit approval.
 
 Local setup, editing content, adding pages, deployment, and secret-rotation instructions will be completed with the implementation. No production secrets or test keys have been configured.

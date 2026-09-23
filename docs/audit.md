@@ -4,6 +4,8 @@ Audit date: 23 September 2026. Source: [Royal City General Contracting Inc](http
 
 **Phase 1 is ready for review. Design and implementation have not started.**
 
+Owner responses received on 23 September 2026: use RC General Contracting Inc as the public name; serve Kincardine; current photos depict company work and may be reused; use Cloudflare Web Analytics. In a follow-up, the owner confirmed `workers.dev`, supplied the complete delivery inbox, and approved the audit and URL map. Remaining removal decisions are still pending. See [decisions](decisions.md).
+
 The public site has one marketing page and a catch-all not-found view. Its copy and assets are archived. The main problems are an unusable contact form, an oversized logo that dominates the first screen, mobile overflow, conflicting canonicals, and large images. No source content has been removed.
 
 ## Scope and evidence
@@ -65,7 +67,7 @@ Every file URL and where it is referenced appears in [assets.md](assets.md). The
 | `about/kitchen-3d` | Kitchen design sketch/rendering, 1448 × 1086 PNG | 3,474,546 bytes. Existing alt text calls it an open-plan kitchen/living-room 3D rendering; the visible image is a kitchen sketch. |
 | `about/construction-site` | Interior framing photograph, 960 × 720 | Fits the source description. No project identity or ownership can be established from the picture alone. |
 
-The logo, kitchen image, sketch, and framing image are the strongest material to carry into design exploration. The images could support a story about completed spaces, design, and construction. Do not present them as named Royal City projects until their provenance is confirmed. Keep the logo's identity during exploration; propose any redrawing or replacement for approval.
+The logo, kitchen image, sketch, and framing image are the strongest material to carry into design exploration. The owner has confirmed that the current photos depict company work and may be reused. They can support a story about completed spaces, design, and construction. Project names, locations, clients, and dates remain unknown; the sketch must remain identified as a rendering. Keep the logo's identity during exploration; propose any redrawing or replacement for approval. The confirmation does not establish provenance for every unused alternative in the old media manifest.
 
 Fonts are Special Elite 400 for headings and Lora 400/500 for body text, fetched from Google Fonts. Their TTF reference files and stylesheet are archived. There is no font licensing evidence in the page itself; verify licences for any production font choice before self-hosting.
 
@@ -85,7 +87,7 @@ The bundle intends to POST JSON to `/api/contact/contact`. It sends `user.email`
 
 No live submission was sent. The destination inbox, server validation, delivery provider, retention settings, and actual delivery behaviour cannot be established from the frontend. The DOM's default action is the current URL with method GET, but the JavaScript handler intends the POST described above. The rebuild needs a functional form rather than a literal reproduction of the missing fields.
 
-TODO(fact): supply the complete destination after `inbox@`. Do not assume it is the existing public contact email.
+The owner has supplied the complete destination address; it is recorded in the ignored local contact inventory for Worker secret configuration. This is separate from the existing public contact email.
 
 ## Contact details and exposure
 
@@ -106,8 +108,8 @@ The new site must omit the email and phone from JSON-LD as well as visible HTML 
 
 | Service or script | Evidence and role | Recommendation | Decision |
 | --- | --- | --- | --- |
-| GoDaddy Signals/C2, `img1.wsimg.com/signals/js/clients/scc-c2/scc-c2.min.js` | Loaded in the browser; CookieBanner calls its loader. Click tracking emits `airo.website.click`, including element text, link target, page title and section. | Drop platform-specific telemetry unless its reports are needed. Decide on future analytics separately. | Pending |
-| `/analytics.js` | Initialises `_signalsDataLayer`; comments describe consent-dependent C2 loading. | Retire with old platform code. | Pending |
+| GoDaddy Signals/C2, `img1.wsimg.com/signals/js/clients/scc-c2/scc-c2.min.js` | Loaded in the browser; CookieBanner calls its loader. Click tracking emits `airo.website.click`, including element text, link target, page title and section. | Replace with Cloudflare Web Analytics. | Owner selected Cloudflare Analytics, 23 September 2026 |
+| `/analytics.js` | Initialises `_signalsDataLayer`; comments describe consent-dependent C2 loading. | Retire with the GoDaddy integration. | Owner selected Cloudflare Analytics, 23 September 2026 |
 | `CookieBanner-BsfGEvva.js` | Stores analytics consent; contains exact consent wording and Accept/Decline controls. Source calls the C2 loader before checking saved consent, while click tracking checks `_allowCT`. | Preserve wording in archive. Choose what to carry over after the analytics decision. This audit is not a legal-compliance determination. | Pending |
 | Google Fonts CSS and `fonts.gstatic.com` files | Special Elite and Lora. | Replace remote delivery with licensed, self-hosted fonts from the approved direction. | Pending design approval |
 | Google reCAPTCHA notice and policy links | Notice is visible, but no reCAPTCHA script/widget/token flow was observed. | Replace obsolete notice when Turnstile is implemented; exact legal-copy change needs approval. | Pending |
@@ -174,7 +176,7 @@ The corresponding Phase 6 comparison is reserved in [quality.md](quality.md).
 
 ## Proposed URL map
 
-No existing content path needs to change. The new domain remains undecided.
+No existing content path needs to change. The owner now requests a Cloudflare-provided hostname rather than a new domain purchase. The owner confirmed `workers.dev`, retaining the original Workers stack. Custom-host redirects below apply only if a later domain cutover is approved.
 
 | Old URL / state | Proposed destination | Behaviour | Reason / status |
 | --- | --- | --- | --- |
@@ -183,19 +185,19 @@ No existing content path needs to change. The new domain remains undecided.
 | HTTP `www` and apex | HTTPS canonical host, same path/query | 301 | Preserve HTTPS enforcement and consolidate host. |
 | Old-domain HTTPS `www` and apex, if moving domain | New canonical host, same path/query | 301 | Requires continued control of the old domain; implement only at approved cutover. |
 | Unknown paths | Branded not-found page | 404 | Fix current soft 404; do not blanket-redirect unknown URLs home. |
-| No old equivalent | `/services/` | Proposed 200 | Interior page for existing service details; expand layout without inventing facts. Approval required. |
-| No old equivalent | `/contact/` | Proposed 200 | Dedicated form, reveal controls and approved fallback. Retain home contact content. Approval required. |
+| No old equivalent | `/services/` | 200, approved | Interior page for existing service details; expand layout without inventing facts. |
+| No old equivalent | `/contact/` | 200, approved | Dedicated form, reveal controls and approved fallback. Retain home contact content. |
 
 No path-to-path 301 is currently needed, so an eventual `public/_redirects` file may initially have no migration entries. Host redirects belong in Cloudflare rules at the appropriate host. The synthetic missing-page probe is not a real old page and must not become a route.
 
 ## Proposed removals
 
-Nothing in this table has been removed or approved. The archive preserves all of it.
+Nothing in this table has been removed from the source archive. The analytics replacement is now selected; the other decisions remain pending.
 
 | Proposal | Reason | Replacement / preservation | Approval |
 | --- | --- | --- | --- |
 | Remove the reCAPTCHA-specific notice from the new public site | Turnstile will replace the protection named in the notice. | Archive verbatim; approve accurate replacement wording separately. | Pending |
-| Remove GoDaddy C2 telemetry and its loader | Tied to the old host; analytics requirements are unspecified. | Decide whether any current reporting must be retained or replaced. | Pending |
+| Remove GoDaddy C2 telemetry and its loader | Owner selected Cloudflare Analytics. | Replace with Cloudflare Web Analytics during the build. | Selected, 23 September 2026; not implemented |
 | Remove old generic cookie-consent wording if its services no longer apply | Text refers broadly to advertising, analytics and support. | Keep verbatim if carried forward; otherwise approve replacement after the tracking decision. | Pending |
 | Remove duplicate, conflicting Organization/canonical markup | Creates competing business identities and canonical hosts. | One consistent supported entity graph; secret contact values remain server-side. | Pending |
 | Remove the empty footer link | No visible content or useful visual affordance. | Visible home link or logo remains available. | Pending |
@@ -204,14 +206,13 @@ No company paragraph, service, testimonial, social link, image used on the page,
 
 ## Decisions and missing facts
 
-For this gate, approve the audit scope and proposed URL map, and mark each proposed removal keep/drop. Approval to enter Phase 2 does not approve unspecified removals or a deployment.
+The owner approved the audit scope and URL map and requested two design directions. Approval to enter Phase 2 does not approve unspecified removals or a deployment.
+
+Confirmed: public name RC General Contracting Inc; service area Kincardine; current company photos approved for reuse; Cloudflare Web Analytics selected. No new domain purchase is requested.
 
 Before writing final copy or configuring production:
 
-1. TODO(fact): preferred public name, “RC General Contracting Inc” or “Royal City General Contracting Inc”.
-2. TODO(fact): current service area following the Kincardine relocation.
-3. TODO(fact): whether the existing photograph, sketch and framing photo depict company work and may be reused; source of the displayed reviews and rating count.
-4. TODO(fact): new domain, registration budget, and complete destination after `inbox@`; public reveal email/phone may differ from the delivery inbox.
-5. TODO(fact): analytics keep/drop decision, approved legal-text changes, and an approved JavaScript-free fallback contact option.
+1. TODO(fact): source of the displayed reviews and rating count. No review-provider attribution may be invented.
+2. TODO(decision): remaining proposed removals, approved legal-text changes, and an approved JavaScript-free fallback contact option.
 
 Phase 2 will shape the home page and one approved interior page, present two design directions, and stop for design approval.

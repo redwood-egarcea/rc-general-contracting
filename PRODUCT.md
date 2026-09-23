@@ -8,11 +8,13 @@ web
 
 ## Stack
 
-The user requires current stable Astro, TypeScript strict, static pages, and on-demand `/api/*` routes through `@astrojs/cloudflare`. Hosting is Cloudflare Workers with static assets. Use vanilla TypeScript and plain CSS with custom properties. Add an island only where client state requires it. Source control is GitHub; Workers Builds provides production and preview deployments.
+The original brief requires current stable Astro, TypeScript strict, static pages, and on-demand `/api/*` routes through `@astrojs/cloudflare`, hosted on Cloudflare Workers with static assets. Use vanilla TypeScript and plain CSS with custom properties. Add an island only where client state requires it. Source control is GitHub; the original deployment workflow uses Workers Builds for production and previews.
+
+The owner confirmed a Cloudflare-provided `workers.dev` hostname, retaining the requested Workers stack. No domain purchase or custom-domain cutover is currently requested.
 
 ## Users
 
-The current site addresses residential and commercial construction clients. The service area is not specified beyond Ontario in its metadata. The site says the business relocated to Kincardine in 2026. Confirm the current service area before writing location-specific marketing pages.
+The current site addresses residential and commercial construction clients. The owner confirmed Kincardine as the service area on 23 September 2026. Do not infer a surrounding service radius or additional towns. The source says the business relocated from Guelph to Kincardine in 2026; retain that history without implying that Guelph is still served.
 
 ## Product Purpose
 
@@ -31,16 +33,18 @@ The source names Joshua Newbigging as founder, gives 2017 as the founding year, 
 - Worker routes need request limits, no-store contact responses, and rate limits.
 - Preserve original source copy and assets locally. Archives containing contact values are excluded from Git and deployment.
 - No page, section, or content removal without an explicit decision recorded against the audit.
-- Stop for audit approval, design approval, copy review, workers.dev review, and final domain cutover approval.
-- TODO(fact): new domain, its registration budget, and complete destination address after `inbox@`.
-- TODO(fact): current service area, preferred business-name styling, and provenance of the current images and testimonials.
+- Use Cloudflare Web Analytics, selected by the owner, in place of the old GoDaddy analytics integration.
+- Stop for audit approval, design approval, copy review, and review of the hosted site. Any later custom-domain cutover requires explicit approval.
+- The owner supplied the complete form-delivery address. It is recorded only in the ignored local contact record and will become a Worker secret, separate from public contact-reveal values.
+- Phase 1 audit and URL map are approved: keep `/` and `/#contact`; add `/services/` and `/contact/`. Phase 2 is authorized.
+- TODO(fact): provenance of the source testimonials and rating count; no review-provider attribution has been supplied.
 - TODO(fact): delivery provider and authorized sending domain. Select during implementation setup, before sending mail.
 
 ## Brand Commitments
 
-The current title uses “Royal City General Contracting Inc”; the logo and body also use “RC General Contracting Inc”. Preserve both as source evidence until the owner confirms the preferred display name.
+The owner confirmed **RC General Contracting Inc** as the preferred public name on 23 September 2026. The old title's “Royal City General Contracting Inc” variant remains unchanged in the source archive.
 
-The existing roof, tree, and RC logo is available along with kitchen imagery, a design rendering, and construction imagery. The archive includes unused media alternatives. Their presence is not evidence that they depict the company's own completed projects.
+The existing roof, tree, and RC logo is available along with kitchen imagery, a design rendering, and construction imagery. The owner confirmed that the current photos depict company work and may be reused. Specific project names, locations, clients, and dates remain unknown. Describe the sketch as a rendering, not a completed space. Unused alternatives in the media archive need separate selection and provenance checks before publication.
 
 The user requires sentence-case headlines, plain prose, no invented claims, and Humanizer review of all shipped copy. Legal and privacy text stays verbatim unless the user approves a change. Design direction is intentionally undecided until Phase 2.
 
@@ -58,7 +62,7 @@ No voice sample, rates, address, opening hours, project locations, or additional
 
 1. Preserve source facts and make every rewrite traceable.
 2. Let visitors understand the work and reach the business without avoidable friction.
-3. Use actual brand assets without implying unsupported project ownership.
+3. Use the approved company photos without inventing project names, locations, or results.
 4. Keep private runtime values out of public artifacts.
 5. Require measured evidence for quality claims and explicit approval at each phase gate.
 
