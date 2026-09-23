@@ -86,3 +86,25 @@ The owner approved replacing the obsolete reCAPTCHA notice with “This form use
 ## Current stable framework
 
 The requested `npm create astro@latest` resolved Astro 7.3.4 with the strict minimal template; `astro add` resolved Cloudflare 14.3.3 and sitemap 3.7.4. The brief requests current stable and identifies v6 as the version when written, so the current stable major is used. Static prerendering uses Node with compile-time image optimization; on-demand APIs use Workers. Sessions are disabled because this site has no sessions. The adapter generates its deploy configuration under `dist/`; the root asset config retains the requested `./dist` declaration.
+
+## Contact verification and local development
+
+Use two widget configurations: Managed for the form, Non-Interactive for contact reveal. Widget mode belongs to a widget, so the second flow gets `PUBLIC_TURNSTILE_REVEAL_SITE_KEY` and `TURNSTILE_REVEAL_SECRET_KEY` alongside the requested form keys. Both routes call the same `src/lib/turnstile.ts` verifier. Production acceptance requires Cloudflare success, the exact request hostname in the configured allowlist, and the expected action. Details: [widget modes](https://developers.cloudflare.com/turnstile/concepts/widget/) and [server validation](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/).
+
+All API requests have a 20-request/minute/IP limit; submissions also have a 3-request/minute/IP limit. Cloudflare rate-limiting bindings apply per location, not as a globally precise counter. The thresholds allow normal verification retries and discourage repeated collection or submissions. Unknown IPs fail closed in production. See [Cloudflare's binding semantics](https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/).
+
+Local development is restricted to `APP_ENV=development` and an exact localhost/127.0.0.1 request hostname. `.dev.vars.example` contains public dummy keys and synthetic contact values. A real request to Cloudflare's dummy verifier on 2026-09-23 returned `hostname: example.com`, no action, and `metadata.result_with_testing_key: true`, unlike the illustrative response in the documentation. Only that exact dummy response, with the documented dummy token and secret on a local development host, has an explicit test-only acceptance branch. Production never accepts this branch. Hostname/action rejection must also be tested independently with realistic verification responses. [Documented test keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/).
+
+Astro reads an explicit allowlist of four public settings from root Wrangler vars or build environment variables. Worker secrets are never imported into the static build configuration. Non-local builds reject missing or dummy Turnstile site keys. Wrangler generates binding types with non-literal string vars because development values differ from production.
+
+## Email delivery setup
+
+Cloudflare and GitHub CLI authentication are available. Checking Cloudflare Email Sending domains returned `Unauthorized` (2036), even though the OAuth scope includes email sending. No delivery provider or sender has been activated and no email has been sent. The owner has been asked whether to enable Cloudflare Email Service, use an existing provider, or request another recommendation. A verified sender domain is separate from the approved workers.dev website host. The supplied destination is retained only in the ignored local contact record.
+
+## Static routing and response headers
+
+Astro uses `trailingSlash: ignore` so the required exact `/api/submit` and `/api/contact` URLs work without redirects that could alter POST behavior. Generated `_redirects` normalizes the two new public page paths to their slash forms. The original home path and contact anchor remain unchanged. The real missing-page document is emitted as `dist/client/404.html`.
+
+Root asset settings remain as requested; Astro's generated deployment config points the asset binding to `dist/client` and the Worker entry to `dist/server/entry.mjs`. `_headers` applies to assets, so APIs set their no-store and security headers directly. A post-build pass hashes every inline metadata script into the generated CSP. Source scripts stay external. Turnstile and the configured Cloudflare Analytics origins are explicitly allowed; no broad script unsafe-inline permission is used.
+
+The approved direction and detailed contact/404 requirements settle those surfaces' purpose and behavior. Impeccable's generic extra interview/approval rounds are not repeated during the authorized build. Surface briefs record their contracts; separate required page critiques were completed. The broader finish review and audit/harden/adapt/polish passes remain part of the owner's Phase 6 gate.
