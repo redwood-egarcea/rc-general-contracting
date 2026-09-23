@@ -1,8 +1,8 @@
 # RC General Contracting Inc website
 
-Astro 7 with strict TypeScript, plain CSS, static pages and Cloudflare Workers API routes. The owner approved the audit, URL map and **Rooms in focus** design direction. Home, services, contact and 404 pages are implemented. Copy was approved by the owner’s “Commit and deploy” instruction. Automated local checks pass; the remaining release gates and delivery dependency are recorded in docs/quality.md.
+Astro 7 with strict TypeScript, plain CSS, static pages and Cloudflare Workers API routes. The owner approved the audit, URL map and **Rooms in focus** design direction. Home, services, contact and 404 pages are implemented. Copy was approved by the owner’s “Commit and deploy” instruction. The site is live at [rc-general-contracting.egarcea.workers.dev](https://rc-general-contracting.egarcea.workers.dev). Deployment evidence and remaining work are recorded in [docs/quality.md](docs/quality.md).
 
-The approved host is a `workers.dev` address. No domain purchase or Pages deployment is planned. Email sending awaits the owner's provider selection and verified sender. Until then, valid submissions return a clear 503 failure and preserve the visitor's text. Contact reveal works locally with dummy verification and synthetic values. No real email has been sent.
+The approved host is a `workers.dev` address. No domain purchase or Pages deployment is planned. Email sending awaits the owner's provider selection and verified sender. The contact page displays this limitation and links to direct contact options. Until delivery is configured, valid submissions return a clear 503 failure and preserve the visitor's text. Both email and phone reveal were verified on the live site with production Turnstile. No real email has been sent.
 
 ## Local setup
 
@@ -19,8 +19,8 @@ The example file uses Cloudflare's documented dummy pass keys and synthetic cont
 For a stable preview of the built Worker:
 
 ```sh
-npm run build
-npx wrangler dev --port 8797 --inspector-port 9337 --local
+PUBLIC_SITE_URL=http://localhost:8797 PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA PUBLIC_TURNSTILE_REVEAL_SITE_KEY=1x00000000000000000000AA npm run build
+node scripts/preview-test.mjs
 ```
 
 Restart Wrangler after rebuilding so its static asset index reflects the new output. Stop it with Ctrl+C. Astro's background development server can be managed with `npx astro dev --background`, `npx astro dev status`, and `npx astro dev stop`. Avoid running `astro check` and builds against an active dev preview; dependency re-optimization can leave its browser session stale.
@@ -62,9 +62,8 @@ Required secret names currently declared in Wrangler:
 - `TURNSTILE_REVEAL_SECRET_KEY`: Non-Interactive reveal widget.
 - `CONTACT_EMAIL` and `CONTACT_PHONE`: original public contact details.
 - `FORM_DESTINATION`: owner-supplied recipient, kept separate from the public email.
-- `EMAIL_FROM`: verified sender, still to be selected with the delivery provider.
 
-Any provider API key will be added after that choice. Secrets must also be configured in the appropriate Workers Builds production/preview settings before deployment. Never place them in public build variables, content, source, logs or GitHub workflow text.
+The five required secrets are installed in the live Worker. `EMAIL_FROM` and any provider API key will be added after a provider and verified sender are selected. Mirror the appropriate secrets in Workers Builds production/preview settings when that integration is connected. Never place them in public build variables, content, source, logs or GitHub workflow text.
 
 To set or rotate a configured secret, use the interactive prompt:
 
@@ -74,22 +73,20 @@ npx wrangler secret put TURNSTILE_REVEAL_SECRET_KEY
 npx wrangler secret put CONTACT_EMAIL
 npx wrangler secret put CONTACT_PHONE
 npx wrangler secret put FORM_DESTINATION
-npx wrangler secret put EMAIL_FROM
 ```
 
 Rotate widget keys through Cloudflare's supported rotation flow, update Worker/Builds secrets together, then verify both actions. If a public site key changes, rebuild the static site as well. Rotate the selected delivery credential at its provider and update all active environments before revoking the previous credential. Keep staging secrets separate when previews need different recipients.
 
 The API limits are 20 requests/minute/IP overall and 3 submissions/minute/IP, per Cloudflare location. All responses use `no-store`. Form bodies are capped at 32 KiB; reveal bodies at 4 KiB. Production verification checks success, exact hostname and action. The narrow local-only dummy-key exception is documented in [docs/decisions.md](docs/decisions.md).
 
-## Release gates
+## Remaining release work
 
-1. Complete delivery-provider setup and obtain copy approval.
-2. Pass every Phase 6 gate, including real failure/retry coverage and required Lighthouse scores.
-3. Create/push the GitHub repository, add required PR CI and protect `main`.
-4. Connect Workers Builds, configure production and preview settings, and deploy to the approved `workers.dev` host.
-5. Owner reviews the hosted site. Verify a real enquiry end to end. A later custom-domain cutover would require a separate explicit instruction.
+1. Complete delivery-provider setup, implement sending, and verify a real enquiry end to end.
+2. Complete the remaining Phase 6 checks documented in [docs/quality.md](docs/quality.md), including the actual screen-reader walkthrough and successful email-submission coverage.
+3. Connect Workers Builds and configure production/preview settings and secrets. The current deployment was published with Wrangler after GitHub CI passed.
+4. Owner reviews the hosted site. A later custom-domain cutover would require a separate explicit instruction.
 
-No production resource has been created, and no site has been deployed.
+The owner explicitly requested deployment after the delivery and screen-reader limitations were disclosed. That release authorization does not mark the complete original brief as finished.
 
 ## Private source evidence
 
@@ -103,6 +100,6 @@ See [the audit](docs/audit.md), [asset inventory](docs/assets.md), [asset proven
 
 Source: https://github.com/redwood-egarcea/rc-general-contracting. The owner approved public visibility. `main` requires a pull request and a successful `quality` check; administrator bypass, force pushes and deletion are disabled.
 
-The intended host is `https://rc-general-contracting.egarcea.workers.dev`. Production Turnstile widgets and Cloudflare Web Analytics are configured for that hostname, but no Worker is deployed. Cloudflare Email Sending requires Workers Paid and a verified sender domain. The existing login cannot provision Email Sending on the current free plan. No sender address is guessed, no mail is sent, and no domain DNS is changed.
+The live host is `https://rc-general-contracting.egarcea.workers.dev`. Production Turnstile widgets, Worker secrets and Cloudflare Web Analytics are configured for that hostname. Cloudflare Email Sending setup remains unavailable on the current account plan and a verified sender domain is still needed. No sender address is guessed, no mail is sent, and no domain DNS is changed.
 
-The post-build script removes credential files copied by the adapter. Use `node scripts/preview-test.mjs` for a local preview with synthetic credentials. Keep real values in Worker secrets only. Workers Builds integration and secret mirroring are completed after delivery setup and release gates; do not connect an automatic production deployment before then.
+The post-build script removes credential files copied by the adapter. Use `node scripts/preview-test.mjs` for a local preview with synthetic credentials. Keep real values in Worker secrets only. Workers Builds integration and secret mirroring remain pending; GitHub CI currently checks changes but does not publish them to Cloudflare.
