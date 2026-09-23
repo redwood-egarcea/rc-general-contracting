@@ -1,4 +1,4 @@
-import messages from '../content/messages.json';
+import messages from '../content/messages.json' with { type: 'json' };
 
 interface WidgetOptions {
   sitekey: string;

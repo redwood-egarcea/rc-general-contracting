@@ -1,4 +1,4 @@
-import copy from '../content/site.json';
+import copy from '../content/site.json' with { type: 'json' };
 export const site = copy;
 export const siteUrl =
   import.meta.env.PUBLIC_SITE_URL || 'http://localhost:4325';

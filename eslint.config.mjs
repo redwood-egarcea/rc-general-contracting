@@ -6,6 +6,9 @@ export default ts.config(
   {
     ignores: [
       'dist/**',
+      '.wrangler/**',
+      'playwright-report/**',
+      'test-results/**',
       '.astro/**',
       '.astro-scaffold/**',
       '.agents/**',

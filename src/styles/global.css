@@ -488,6 +488,7 @@ button:disabled {
   flex-wrap: wrap;
 }
 .site-header nav a {
+  min-inline-size: 44px;
   display: inline-flex;
   align-items: center;
   min-height: 44px;

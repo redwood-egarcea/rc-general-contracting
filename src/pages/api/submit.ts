@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { env } from 'cloudflare:workers';
-import messages from '../../content/messages.json';
+import messages from '../../content/messages.json' with { type: 'json' };
 import {
   guardRequest,
   readJson,

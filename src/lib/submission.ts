@@ -1,5 +1,5 @@
 import { z } from 'astro/zod';
-import messages from '../content/messages.json';
+import messages from '../content/messages.json' with { type: 'json' };
 import { RequestError } from './http';
 
 const plainText = (value: string, multiline = false) =>

@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
 import kitchen from '../assets/kitchen.jpg';
 import logo from '../assets/logo.jpg';
-import { site, siteUrl } from '../lib/site';
+import { site, siteUrl, publicSiteReady } from '../lib/site';
 import '../styles/global.css';
 interface Props {
   title: string;
@@ -20,7 +20,8 @@ const icon = await getImage({
   height: 64,
   format: 'png',
 });
-const analytics = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
+const analytics =
+  publicSiteReady && import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 ---
 

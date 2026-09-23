@@ -1,5 +1,5 @@
 import { z } from 'astro/zod';
-import messages from '../content/messages.json';
+import messages from '../content/messages.json' with { type: 'json' };
 import { localDevelopment, RequestError } from './http';
 
 const verificationSchema = z.object({
