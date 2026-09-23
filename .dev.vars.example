@@ -1,0 +1,12 @@
+# Cloudflare's public test credentials. Copy to .dev.vars for local use only.
+APP_ENV=development
+ALLOWED_HOSTNAMES=localhost,127.0.0.1
+PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
+PUBLIC_TURNSTILE_REVEAL_SITE_KEY=1x00000000000000000000AA
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+TURNSTILE_REVEAL_SECRET_KEY=1x0000000000000000000000000000000AA
+# Synthetic development data; replace with Worker secrets for production.
+CONTACT_EMAIL=contact@example.test
+CONTACT_PHONE=+1 202 555 0100
+FORM_DESTINATION=delivery@example.test
+EMAIL_FROM=website@example.test

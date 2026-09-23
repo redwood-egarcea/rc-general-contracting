@@ -1,0 +1,21 @@
+---
+import { site } from '../lib/site';
+import ContactReveal from './ContactReveal.astro';
+import ContactScripts from './ContactScripts.astro';
+---
+
+<section
+  id="contact"
+  class="section wrap home-contact"
+  aria-labelledby="contact-heading"
+>
+  <h2 id="contact-heading">{site.home.contactHeading}</h2>
+  <p>{site.home.contactIntro}</p>
+  <a class="button" href="/contact/">
+    {site.home.contactLink}
+  </a>
+</section>
+<div class="wrap home-direct-contact">
+  <ContactReveal id="home-direct" />
+</div>
+<ContactScripts />

@@ -1,0 +1,39 @@
+name: Quality
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PUBLIC_SITE_URL: http://localhost:8797
+      PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+      PUBLIC_TURNSTILE_REVEAL_SITE_KEY: 1x00000000000000000000AA
+      WRANGLER_WRITE_LOGS: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: cp .dev.vars.example .dev.vars
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run check
+      - run: npm run build
+      - run: node scripts/check-contact-secrets.mjs
+      - run: npx impeccable@4.1.0 detect --json dist/
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-evidence
+          path: |
+            playwright-report/
+            test-results/

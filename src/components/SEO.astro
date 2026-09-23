@@ -1,0 +1,47 @@
+---
+import { site, siteUrl, publicSiteReady } from '../lib/site';
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage: string;
+  noindex?: boolean;
+}
+const { title, description, canonical, ogImage, noindex = false } = Astro.props;
+const imageUrl = new URL(ogImage, siteUrl).href;
+const structured = {
+  '@context': 'https://schema.org',
+  '@type': 'GeneralContractor',
+  name: site.name,
+  url: siteUrl,
+  areaServed: { '@type': 'City', name: site.area },
+  founder: { '@type': 'Person', name: site.founder },
+  foundingDate: site.foundingDate,
+  sameAs: site.socials.map((s) => s.href),
+  image: imageUrl,
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{(noindex || !publicSiteReady) && (
+  <meta name="robots" content="noindex, nofollow" />
+)}
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_CA" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={site.images.kitchen} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={site.images.kitchen} />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(structured).replace(/</g, '\\u003c')}
+></script>

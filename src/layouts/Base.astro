@@ -1,0 +1,77 @@
+---
+import { getImage } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SEO from '../components/SEO.astro';
+import kitchen from '../assets/kitchen.jpg';
+import logo from '../assets/logo.jpg';
+import { site, siteUrl, publicSiteReady } from '../lib/site';
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+const { title, description, noindex } = Astro.props;
+const og = await getImage({ src: kitchen, width: 1200, format: 'jpeg' });
+const icon = await getImage({
+  src: logo,
+  width: 64,
+  height: 64,
+  format: 'png',
+});
+const analytics =
+  publicSiteReady && import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={icon.src} />
+    <meta
+      name="theme-color"
+      content="#f4f6f4"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#12232c"
+      media="(prefers-color-scheme: dark)"
+    />
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={og.src}
+      noindex={noindex}
+    />
+    <link
+      rel="preload"
+      href="/fonts/barlow-condensed-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      {site.skipLink}
+    </a>
+    <Header />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    {analytics && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: analytics })}
+      ></script>
+    )}
+  </body>
+</html>

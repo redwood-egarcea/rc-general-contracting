@@ -1,0 +1,126 @@
+{
+  "regions": [
+    {
+      "id": "brand-logo",
+      "kind": "image",
+      "box": {
+        "x": 0.0425249169435216,
+        "y": 0.011483253588516746,
+        "w": 0.06312292358803986,
+        "h": 0.08708133971291866
+      },
+      "bleed": false,
+      "note": "Existing roof/tree/RC logo on a white square. Original source asset must be reused.",
+      "grid": "A0:B0"
+    },
+    {
+      "id": "brand-name",
+      "kind": "text",
+      "box": {
+        "x": 0.12225913621262459,
+        "y": 0.04019138755980861,
+        "w": 0.21926910299003322,
+        "h": 0.031578947368421054
+      },
+      "note": "RC General Contracting Inc, compact navy sans serif.",
+      "grid": "B0:D0"
+    },
+    {
+      "id": "nav-services",
+      "kind": "text",
+      "box": {
+        "x": 0.7375415282392026,
+        "y": 0.0430622009569378,
+        "w": 0.059800664451827246,
+        "h": 0.028708133971291867
+      },
+      "note": "Services text link.",
+      "grid": "H0:H0"
+    },
+    {
+      "id": "nav-about",
+      "kind": "text",
+      "box": {
+        "x": 0.8219269102990033,
+        "y": 0.0430622009569378,
+        "w": 0.0504983388704319,
+        "h": 0.028708133971291867
+      },
+      "note": "About text link.",
+      "grid": "I0:I0"
+    },
+    {
+      "id": "nav-contact",
+      "kind": "text",
+      "box": {
+        "x": 0.8976744186046511,
+        "y": 0.0430622009569378,
+        "w": 0.05847176079734219,
+        "h": 0.028708133971291867
+      },
+      "note": "Contact text link.",
+      "grid": "J0:J0"
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "box": {
+        "x": 0.03986710963455149,
+        "y": 0.12440191387559808,
+        "w": 0.47375415282392025,
+        "h": 0.20191387559808613
+      },
+      "note": "Design, renovate, build. Large condensed navy text across two lines.",
+      "grid": "A1:F3"
+    },
+    {
+      "id": "introduction",
+      "kind": "text",
+      "box": {
+        "x": 0.6757475083056479,
+        "y": 0.14832535885167464,
+        "w": 0.24584717607973422,
+        "h": 0.06698564593301436
+      },
+      "note": "Residential and commercial construction in Kincardine. Two lines, navy body text.",
+      "grid": "G1:J2"
+    },
+    {
+      "id": "enquiry-action",
+      "kind": "control",
+      "box": {
+        "x": 0.6777408637873754,
+        "y": 0.23444976076555024,
+        "w": 0.24518272425249169,
+        "h": 0.06889952153110047
+      },
+      "note": "Brick red button with white Tell us about your project text.",
+      "grid": "G2:J3"
+    },
+    {
+      "id": "kitchen",
+      "kind": "image",
+      "box": {
+        "x": 0.029900332225913623,
+        "y": 0.34545454545454546,
+        "w": 0.9395348837209302,
+        "h": 0.5406698564593302
+      },
+      "bleed": true,
+      "note": "Original company kitchen photograph, wide crop. Never generate altered construction details.",
+      "grid": "A3:J8"
+    },
+    {
+      "id": "next-section",
+      "kind": "text",
+      "box": {
+        "x": 0.04186046511627907,
+        "y": 0.9311004784688995,
+        "w": 0.5023255813953489,
+        "h": 0.05454545454545454
+      },
+      "note": "Design and construction, together. Navy condensed heading.",
+      "grid": "A9:F9"
+    }
+  ]
+}

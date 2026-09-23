@@ -1,0 +1,20 @@
+---
+import { site } from '../lib/site';
+---
+
+<footer class="site-footer wrap">
+  <div class="footer-top">
+    <a class="footer-brand" href="/">
+      {site.name}
+    </a>
+    <nav aria-label={site.footerLabel}>
+      {site.socials.map((link) => (
+        <a href={link.href} rel="external">
+          {link.label}
+        </a>
+      ))}
+      <a href="/contact/">{site.navigation[2].label}</a>
+    </nav>
+  </div>
+  <p>{site.copyright}</p>
+</footer>

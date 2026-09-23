@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+import { site } from '../lib/site';
+const reviews = (await getCollection('testimonials')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<section class="section wrap reviews" aria-labelledby="reviews-heading">
+  <div>
+    <h2 id="reviews-heading">{site.home.reviewsHeading}</h2>
+    <p>
+      {site.home.reviewCompany}
+      <br />
+      {site.home.reviewSummary}
+    </p>
+    <a class="text-link" href={site.home.reviewSourceUrl}>
+      {site.home.reviewSource}
+    </a>
+  </div>
+  <div>
+    {reviews.map(({ data }) => (
+      <figure class="review">
+        <p class="review-rating">{data.ratingLabel}</p>
+        <blockquote>
+          <p>{data.quote}</p>
+        </blockquote>
+        <figcaption>
+          <span>
+            <span class="review-initials" aria-hidden="true">
+              {data.initials}
+            </span>
+            {data.name}
+          </span>
+          <time datetime={data.date}>{data.dateLabel}</time>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</section>

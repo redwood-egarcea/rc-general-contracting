@@ -29,6 +29,12 @@ typography:
     fontWeight: 600
     lineHeight: 1.02
     letterSpacing: "-0.02em"
+  interior-heading:
+    fontFamily: "Barlow Condensed, sans-serif"
+    fontSize: "clamp(3rem, 5.5vw, 5rem)"
+    fontWeight: 600
+    lineHeight: 1.05
+    letterSpacing: "-0.02em"
   headline:
     fontFamily: "Barlow Condensed, sans-serif"
     fontSize: "clamp(2.25rem, 4vw, 3rem)"
@@ -40,6 +46,24 @@ typography:
     fontSize: "1.125rem"
     fontWeight: 400
     lineHeight: 1.6
+    letterSpacing: "normal"
+  title:
+    fontFamily: "Barlow Condensed, sans-serif"
+    fontSize: "2rem"
+    fontWeight: 600
+    lineHeight: 1.15
+    letterSpacing: "-0.02em"
+  introduction:
+    fontFamily: "Source Sans 3, sans-serif"
+    fontSize: "1.5rem"
+    fontWeight: 400
+    lineHeight: 1.3
+    letterSpacing: "normal"
+  navigation:
+    fontFamily: "Source Sans 3, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 400
+    lineHeight: 1.4
     letterSpacing: "normal"
   label:
     fontFamily: "Source Sans 3, sans-serif"
@@ -79,9 +103,11 @@ components:
 
 ## Overview
 
+**Creative North Star: "Rooms in focus"**
+
 **Rooms in focus** was selected by the owner through the Phase 2 comparison page on 23 September 2026. The home composition is a broad completed-kitchen photograph below a compact introduction, with a visible enquiry action. The supporting system uses open text layouts, real company imagery, and clear navigation.
 
-This is the approved pre-build specification, written before implementation as the user requested. The source logo and photographs take precedence over generated details in the mockup. The full proposal, mobile treatment, and services-page composition remain in `docs/design-directions.md`, direction A. Copy approval is separate.
+This system was approved before implementation as the user requested. The source logo and photographs take precedence over generated details in the mockup. The full proposal, mobile treatment, and services-page composition remain in `docs/design-directions.md`, direction A. Copy was subsequently approved with the owner's release instruction. The scoped documentation reconciliation is recorded in `docs/design-finish.md`: the visual scope is reviewed, while release acceptance and Impeccable tool gates remain incomplete. No deployment has occurred.
 
 ## Colors
 
@@ -94,6 +120,8 @@ The selected direction's normal-text, action, border, and focus pairs pass the p
 Self-host Barlow Condensed 600 for display/headings and Source Sans 3 400/600 for text and controls, with `font-display: swap` and their OFL notices. The generic fallback only covers loading failure; it is not the intended display face.
 
 Sentence case throughout new headlines. Home H1 is approximately 96–112px at wide desktop widths and 56px at 360px. The mobile title may occupy three short lines to preserve its source tagline and legibility. Body text is 18px with a maximum reading measure of 64ch. Navigation and captions are at least 16px. Long words and links wrap without widening the page.
+
+The `interior-heading` role is the implemented H1 ramp shared by services, contact, and the 404 recovery page. It sits between the home display and section headline roles, keeping these pages' introductions compact. The services and contact titles use the ramp's minimum below 768px; the 404 title retains the clamp and an 18ch maximum measure. This role records the existing implementation without changing the approved identity or page composition.
 
 ## Layout
 

@@ -1,0 +1,17 @@
+---
+import { site } from '../lib/site';
+---
+
+<section
+  class="contact-fallback"
+  id="contact-alternatives"
+  aria-labelledby="fallback-heading"
+>
+  <h2 id="fallback-heading">{site.contact.fallbackHeading}</h2>
+  <p>{site.contact.fallback}</p>
+  <nav aria-label={site.contact.fallbackHeading} class="social-links">
+    {site.socials.map(({ label, href }) => (
+      <a href={href}>{label}</a>
+    ))}
+  </nav>
+</section>

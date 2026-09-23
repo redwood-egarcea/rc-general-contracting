@@ -4,7 +4,7 @@ Audit date: 23 September 2026. Source: [Royal City General Contracting Inc](http
 
 **Phase 1 is ready for review. Design and implementation have not started.**
 
-Owner responses received on 23 September 2026: use RC General Contracting Inc as the public name; serve Kincardine; current photos depict company work and may be reused; use Cloudflare Web Analytics. In a follow-up, the owner confirmed `workers.dev`, supplied the complete delivery inbox, and approved the audit and URL map. Remaining removal decisions are still pending. See [decisions](decisions.md).
+Owner responses received on 23 September 2026: use RC General Contracting Inc as the public name; serve Kincardine; current photos depict company work and may be reused; use Cloudflare Web Analytics. In a follow-up, the owner confirmed `workers.dev`, supplied the complete delivery inbox, and approved the audit and URL map. The specific removals and social-link fallback were subsequently approved. See [decisions](decisions.md).
 
 The public site has one marketing page and a catch-all not-found view. Its copy and assets are archived. The main problems are an unusable contact form, an oversized logo that dominates the first screen, mobile overflow, conflicting canonicals, and large images. No source content has been removed.
 
@@ -102,7 +102,7 @@ Exact values are in the [local contact inventory](contact-details.local.md), wit
 
 Image files and historical logo variants may contain printed contact details; inspect candidate production assets before including them. A text grep cannot detect text embedded in pixels.
 
-The new site must omit the email and phone from JSON-LD as well as visible HTML and bundles. Reveal controls can retain the existing contact section. Existing social links are a possible JavaScript-free fallback, pending approval.
+The new site must omit the email and phone from JSON-LD as well as visible HTML and bundles. Reveal controls can retain the existing contact section. The owner approved the existing social links as the JavaScript-free fallback.
 
 ## Third-party services: keep/drop decisions
 
@@ -110,9 +110,9 @@ The new site must omit the email and phone from JSON-LD as well as visible HTML 
 | --- | --- | --- | --- |
 | GoDaddy Signals/C2, `img1.wsimg.com/signals/js/clients/scc-c2/scc-c2.min.js` | Loaded in the browser; CookieBanner calls its loader. Click tracking emits `airo.website.click`, including element text, link target, page title and section. | Replace with Cloudflare Web Analytics. | Owner selected Cloudflare Analytics, 23 September 2026 |
 | `/analytics.js` | Initialises `_signalsDataLayer`; comments describe consent-dependent C2 loading. | Retire with the GoDaddy integration. | Owner selected Cloudflare Analytics, 23 September 2026 |
-| `CookieBanner-BsfGEvva.js` | Stores analytics consent; contains exact consent wording and Accept/Decline controls. Source calls the C2 loader before checking saved consent, while click tracking checks `_allowCT`. | Preserve wording in archive. Choose what to carry over after the analytics decision. This audit is not a legal-compliance determination. | Pending |
-| Google Fonts CSS and `fonts.gstatic.com` files | Special Elite and Lora. | Replace remote delivery with licensed, self-hosted fonts from the approved direction. | Pending design approval |
-| Google reCAPTCHA notice and policy links | Notice is visible, but no reCAPTCHA script/widget/token flow was observed. | Replace obsolete notice when Turnstile is implemented; exact legal-copy change needs approval. | Pending |
+| `CookieBanner-BsfGEvva.js` | Stores analytics consent; contains exact consent wording and Accept/Decline controls. Source calls the C2 loader before checking saved consent, while click tracking checks `_allowCT`. | Preserve wording in archive. Choose what to carry over after the analytics decision. This audit is not a legal-compliance determination. | Approved by owner, 23 September 2026 |
+| Google Fonts CSS and `fonts.gstatic.com` files | Special Elite and Lora. | Replace remote delivery with licensed, self-hosted fonts from the approved direction. | Direction A approved |
+| Google reCAPTCHA notice and policy links | Notice is visible, but no reCAPTCHA script/widget/token flow was observed. | Replace obsolete notice when Turnstile is implemented; exact legal-copy change needs approval. | Approved by owner, 23 September 2026 |
 | Cloudflare email-decode script | Reversibly decodes public email; does not keep it out of schema or JavaScript. | Replace with the requested server-verified reveal flow. | Requested by brief |
 | `/airo-video-slots.js`, `/airo-logo-orientation.js`, React/router/query/Radix bundles | Old platform rendering and media helpers. No active video found. | Replace with Astro components and responsive images while preserving content. | Requested rebuild |
 | Facebook and Instagram | Outbound links only; no embedded social widgets or social pixel observed. | Keep. | Proposed |
@@ -192,15 +192,15 @@ No path-to-path 301 is currently needed, so an eventual `public/_redirects` file
 
 ## Proposed removals
 
-Nothing in this table has been removed from the source archive. The analytics replacement is now selected; the other decisions remain pending.
+Nothing in this table has been removed from the source archive. The owner approved all listed replacements during implementation; the archive stays unchanged.
 
 | Proposal | Reason | Replacement / preservation | Approval |
 | --- | --- | --- | --- |
-| Remove the reCAPTCHA-specific notice from the new public site | Turnstile will replace the protection named in the notice. | Archive verbatim; approve accurate replacement wording separately. | Pending |
+| Remove the reCAPTCHA-specific notice from the new public site | Turnstile will replace the protection named in the notice. | Archive verbatim; approve accurate replacement wording separately. | Approved by owner, 23 September 2026 |
 | Remove GoDaddy C2 telemetry and its loader | Owner selected Cloudflare Analytics. | Replace with Cloudflare Web Analytics during the build. | Selected, 23 September 2026; not implemented |
-| Remove old generic cookie-consent wording if its services no longer apply | Text refers broadly to advertising, analytics and support. | Keep verbatim if carried forward; otherwise approve replacement after the tracking decision. | Pending |
-| Remove duplicate, conflicting Organization/canonical markup | Creates competing business identities and canonical hosts. | One consistent supported entity graph; secret contact values remain server-side. | Pending |
-| Remove the empty footer link | No visible content or useful visual affordance. | Visible home link or logo remains available. | Pending |
+| Remove old generic cookie-consent wording if its services no longer apply | Text refers broadly to advertising, analytics and support. | Keep verbatim if carried forward; otherwise approve replacement after the tracking decision. | Approved by owner, 23 September 2026 |
+| Remove duplicate, conflicting Organization/canonical markup | Creates competing business identities and canonical hosts. | One consistent supported entity graph; secret contact values remain server-side. | Approved by owner, 23 September 2026 |
+| Remove the empty footer link | No visible content or useful visual affordance. | Visible home link or logo remains available. | Approved by owner, 23 September 2026 |
 
 No company paragraph, service, testimonial, social link, image used on the page, or legal text is proposed for silent deletion. Dates and names will not be modernised by guesswork. Dormant source strings stay in the source inventory for the copy review.
 
@@ -213,6 +213,6 @@ Confirmed: public name RC General Contracting Inc; service area Kincardine; curr
 Before writing final copy or configuring production:
 
 1. TODO(fact): source of the displayed reviews and rating count. No review-provider attribution may be invented.
-2. TODO(decision): remaining proposed removals, approved legal-text changes, and an approved JavaScript-free fallback contact option.
+2. Email-delivery provider and verified sender setup remain open. The specific legal-text replacements and social fallback are approved.
 
 Phase 2 will shape the home page and one approved interior page, present two design directions, and stop for design approval.

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import HomeHero from '../components/HomeHero.astro';
+import ServiceOverview from '../components/ServiceOverview.astro';
+import About from '../components/About.astro';
+import Reviews from '../components/Reviews.astro';
+import HomeContact from '../components/HomeContact.astro';
+import { site } from '../lib/site';
+---
+
+<Base title={site.home.title} description={site.home.description}>
+  <HomeHero />
+  <ServiceOverview />
+  <About />
+  <Reviews />
+  <HomeContact />
+</Base>

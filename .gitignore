@@ -2,6 +2,7 @@
 node_modules/
 dist/
 .astro/
+.astro-scaffold/
 .wrangler/
 .dev.vars
 .dev.vars.*
@@ -11,6 +12,9 @@ dist/
 !.env.example
 .DS_Store
 *.log
+.impeccable/build/
+test-results/
+playwright-report/
 
 # Raw evidence contains contact values; keep it local and outside Git history.
 old-site/

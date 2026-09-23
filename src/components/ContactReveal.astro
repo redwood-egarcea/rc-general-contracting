@@ -1,0 +1,45 @@
+---
+import { site } from '../lib/site';
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+---
+
+<section
+  class="contact-reveal"
+  data-contact-reveal
+  aria-labelledby={`${id}-heading`}
+>
+  <h2 id={`${id}-heading`}>{site.contact.directHeading}</h2>
+  <p>{site.contact.revealIntro}</p>
+  <div class="reveal-controls">
+    <button class="button secondary" type="button" data-reveal="email" disabled>
+      {site.contact.showEmail}
+    </button>
+    <button class="button secondary" type="button" data-reveal="phone" disabled>
+      {site.contact.showPhone}
+    </button>
+  </div>
+  <div
+    class="turnstile-slot"
+    data-reveal-widget
+    data-action="reveal"
+    data-sitekey={import.meta.env.PUBLIC_TURNSTILE_REVEAL_SITE_KEY}
+    hidden
+  ></div>
+  <p
+    class="flow-status"
+    data-status
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    tabindex="-1"
+  ></p>
+  <noscript>
+    <p>
+      {site.contact.noscript}{' '}
+      <a href="/contact/#contact-alternatives">{site.contact.fallbackLink}</a>
+    </p>
+  </noscript>
+</section>

@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import rendering from '../assets/rendering.png';
+import { site } from '../lib/site';
+const services = (await getCollection('services')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<section class="section wrap" aria-labelledby="services-heading">
+  <h2 id="services-heading">{site.home.servicesHeading}</h2>
+  <div class="service-overview">
+    <div class="reading">
+      <p>{site.home.servicesIntro}</p>
+      <a class="text-link" href="/services/">
+        {site.home.servicesLink}
+      </a>
+      <figure>
+        <Picture
+          src={rendering}
+          formats={['avif', 'webp']}
+          alt={site.images.rendering}
+          width={724}
+          height={543}
+          widths={[360, 720]}
+          sizes="(max-width:767px) calc(100vw - 48px), 40vw"
+          loading="lazy"
+        />
+        <figcaption>{site.images.renderingCaption}</figcaption>
+      </figure>
+    </div>
+    <div class="service-list">
+      {services.map(({ id, data }) => (
+        <article>
+          <h3>
+            <a href={`/services/#${id}`}>{data.title}</a>
+          </h3>
+          <p>{data.description}</p>
+          <ul class="service-items">
+            {data.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+      <p>{site.services.scopeNote}</p>
+    </div>
+  </div>
+</section>

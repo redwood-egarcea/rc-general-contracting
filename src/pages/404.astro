@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import NotFound from '../components/NotFound.astro';
+import { site } from '../lib/site';
+---
+
+<Base
+  title={site.notFound.title}
+  description={site.notFound.description}
+  noindex
+>
+  <NotFound />
+</Base>

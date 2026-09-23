@@ -1,0 +1,8 @@
+[
+  { "old": "/", "new": "/", "status": 200, "reason": "Retain original home path" },
+  { "old": "/#contact", "new": "/#contact", "status": 200, "reason": "Retain original contact anchor" },
+  { "old": null, "new": "/services/", "status": 200, "reason": "Approved service detail route" },
+  { "old": null, "new": "/contact/", "status": 200, "reason": "Approved dedicated contact route" },
+  { "old": "/services", "new": "/services/", "status": 301, "reason": "Normalize the new page to its canonical trailing slash" },
+  { "old": "/contact", "new": "/contact/", "status": 301, "reason": "Normalize the new page to its canonical trailing slash" }
+]

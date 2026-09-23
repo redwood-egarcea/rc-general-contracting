@@ -1,0 +1,10 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "src/**/*",
+    "astro.config.mjs",
+    "./worker-configuration.d.ts"
+  ],
+  "exclude": ["dist", "old-site", ".agents", ".impeccable", ".astro-scaffold"]
+}

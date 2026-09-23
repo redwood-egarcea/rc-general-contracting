@@ -1,0 +1,48 @@
+---
+import { Picture } from 'astro:assets';
+import framing from '../assets/framing.jpg';
+import kitchen from '../assets/kitchen.jpg';
+import { site } from '../lib/site';
+---
+
+<section id="about" class="section wrap about" aria-labelledby="about-heading">
+  <h2 id="about-heading">{site.home.aboutHeading}</h2>
+  <div class="about-columns">
+    {site.home.about.map((text) => (
+      <p>{text}</p>
+    ))}
+  </div>
+</section>
+<section class="section wrap practice" aria-labelledby="practice-heading">
+  <figure>
+    <Picture
+      src={framing}
+      formats={['avif', 'webp']}
+      alt={site.images.framing}
+      width={960}
+      height={720}
+      widths={[360, 720, 960]}
+      sizes="(max-width:767px) calc(100vw - 48px), 50vw"
+      loading="lazy"
+    />
+    <figcaption>{site.images.framingCaption}</figcaption>
+  </figure>
+  <div class="reading">
+    <h2 id="practice-heading">{site.home.practiceHeading}</h2>
+    {site.home.practice.map((text) => (
+      <p>{text}</p>
+    ))}
+  </div>
+</section>
+<div class="wrap complete-work">
+  <Picture
+    src={kitchen}
+    formats={['avif', 'webp']}
+    alt={site.images.kitchen}
+    width={1688}
+    height={1126}
+    widths={[360, 720, 1080, 1688]}
+    sizes="(max-width:767px) calc(100vw - 48px), min(1440px, calc(100vw - 96px))"
+    loading="lazy"
+  />
+</div>

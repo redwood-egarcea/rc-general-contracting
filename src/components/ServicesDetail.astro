@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import { Picture, getImage } from 'astro:assets';
+import framing from '../assets/framing.jpg';
+import rendering from '../assets/rendering.png';
+import { site } from '../lib/site';
+const services = (await getCollection('services')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const fullFraming = await getImage({
+  src: framing,
+  width: 960,
+  format: 'webp',
+});
+---
+
+<figure class="wrap service-banner">
+  <Picture
+    src={framing}
+    formats={['avif', 'webp']}
+    alt={site.images.framing}
+    width={960}
+    height={720}
+    widths={[360, 720, 960]}
+    sizes="(max-width:767px) calc(100vw - 48px), min(960px, calc(100vw - 96px))"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <figcaption>
+    {site.images.framingCaption}
+    <a class="full-photo" href={fullFraming.src}>
+      {site.services.fullPhoto}
+    </a>
+  </figcaption>
+</figure>
+<section class="section wrap" aria-labelledby="scope-heading">
+  <h2 id="scope-heading">{site.services.sectionHeading}</h2>
+  <div class="services-detail">
+    <nav aria-label={site.services.indexLabel}>
+      {services.map(({ id, data }) => (
+        <a href={`#${id}`}>{data.title}</a>
+      ))}
+    </nav>
+    <div class="service-list">
+      {services.map(({ id, data }) => (
+        <article id={id}>
+          <h3>{data.title}</h3>
+          <p>{data.description}</p>
+          <ul class="service-items">
+            {(data.groupedItems ?? data.items).map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+          {id === 'design-planning' && (
+            <figure>
+              <Picture
+                src={rendering}
+                formats={['avif', 'webp']}
+                fallbackFormat="jpeg"
+                alt={site.images.rendering}
+                width={724}
+                height={543}
+                widths={[360, 720]}
+                sizes="(max-width:767px) calc(100vw - 48px), 60vw"
+                loading="lazy"
+              />
+              <figcaption>{site.images.renderingCaption}</figcaption>
+            </figure>
+          )}
+        </article>
+      ))}
+      <p>{site.services.scopeNote}</p>
+      <a class="button" href="/contact/">
+        {site.enquiry}
+      </a>
+    </div>
+  </div>
+</section>

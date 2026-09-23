@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServicesDetail from '../../components/ServicesDetail.astro';
+import { site } from '../../lib/site';
+---
+
+<Base title={site.services.title} description={site.services.description}>
+  <PageHero heading={site.services.heading} intro={site.services.intro} />
+  <ServicesDetail />
+</Base>
