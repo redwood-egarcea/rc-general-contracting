@@ -27,9 +27,9 @@ The source form is missing its visible inputs and submit button. Chrome and Ligh
 
 The old homepage was captured at 360×800, 768×1024, 1024×900, 1440×1000, and 1920×1080 in `docs/screenshots/old/`. These are full-page captures after reloading at each width. Screenshots contain current public contact details and are therefore gitignored. Viewport measurements are in `old-site/viewport-measurements.json`.
 
-## Pending Phase 6 gates
+## Original Phase 6 acceptance requirements
 
-The final new-site quality gate has not run. Routine build/type/lint checks and bounded page reviews were performed during implementation. After copy approval, record the full build, type, lint/format, Impeccable detector, audit/harden/adapt/polish, per-page Taste pre-flight, Lighthouse, Playwright, keyboard, and screen-reader results here. Every requested Lighthouse category must reach at least 95 on home, an interior page, and contact before deployment.
+The original brief requires build, type, lint/format, Impeccable detector, audit/harden/adapt/polish, per-page Taste pre-flight, Lighthouse, Playwright, keyboard, and screen-reader checks. Every requested Lighthouse category must reach at least 95 on home, an interior page, and contact. Dated results and outstanding checks follow below; the owner later authorized a review deployment with disclosed limitations.
 
 Tests must cover pass/fail Turnstile tokens, expiry and reuse errors, honeypot rejection, body/content-type validation, contact reveal, secret absence from build output, URL status codes, real 404 behaviour, and browser console errors. Live email delivery is verified only in the authorized delivery test, after the destination and provider are configured.
 
@@ -46,9 +46,9 @@ Home, services, contact and 404 have independent Impeccable A/B page reviews, re
 Routine build, Astro check and lint passed during implementation. The built Worker has a real 404, synthetic contact reveal with dummy Turnstile verification, and retained form input through the explicit delivery-unavailable response. Retry verification restores useful focus. A scan of repository candidates and build files found none of the privately recorded contact values. Production email success, complete pass/fail/expiry/reuse coverage, the final secret-absence scan, Lighthouse, both-theme/five-width captures and full keyboard/screen-reader testing remain required. Email sending is intentionally incomplete while provider setup is pending.
 
 
-## Current release verification, 2026-09-23
+## Pre-deployment verification, 2026-09-23
 
-Copy approved by the owner's “Commit and deploy” instruction. **Release gate remains open; no deployment has occurred.**
+Copy approved by the owner's “Commit and deploy” instruction. At the time of these local checks, the release gate remained open and deployment had not occurred. See the live deployment record below for the subsequent release.
 
 | Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS |
 | --- | ---: | ---: | ---: | ---: | --- | ---: |
@@ -71,3 +71,27 @@ Still required: configured and verified email sending, a real end-to-end submiss
 GitHub Actions `quality` passed on commit `76e8ffb` in 1m27s: https://github.com/redwood-egarcea/rc-general-contracting/actions/runs/35914210102 . The current review is PR #1. VoiceOver startup was attempted through the Computer Use skill, but the Mac was locked and could not be automatically unlocked. No screen-reader pass is claimed; the owner was asked to unlock it.
 
 The production configuration was built separately after local tests: build passed, all three marketing pages use the final canonical hostname and omit noindex, public Turnstile sitekeys are real, and the complete contact-value scan passed. This static inspection confirms the production indexing configuration; it does not substitute for the pending production Lighthouse/console run or actual delivery. CI also passed on the documentation/evidence commit `36f0da5` in 1m19s (run 35916423165).
+
+## Live deployment, 2026-09-23
+
+Live URL: https://rc-general-contracting.egarcea.workers.dev . The owner repeated “Please deploy it” after the email-delivery and screen-reader limitations were disclosed, authorizing this review release. The original brief is still incomplete where noted below.
+
+- Deployed main commit: `d975a947f74dfd31e120f9c913753c6909f7e71d` (PR #1 merged).
+- Cloudflare Worker version: `ebddd4f9-80cf-4037-8a5d-f9b34081c64a`.
+- GitHub Actions `quality` passed on the release branch and on merged main: https://github.com/redwood-egarcea/rc-general-contracting/actions/runs/35917627172 . CI includes the Impeccable detector and 26 functional tests.
+- Production build, Astro check, lint/format, contact-value scan and Wrangler deployment passed. All five required secrets are installed in the Worker; only their names were inspected after deployment.
+- HTTPS checks passed for `/`, `/#contact`, `/services/`, `/contact/`, robots and sitemap. Unsuffixed services/contact URLs return their expected 301; an unknown path returns 404. CSP is present on all checked HTML responses. Protected values are absent from those responses and referenced same-host JS/CSS bundles.
+- Live negative API checks passed: missing/dummy tokens return 400, an unsupported content type returns 415, and the honeypot returns 400. API responses include `Cache-Control: no-store`. Production rejects the dummy token.
+- Both email and phone reveal succeeded through real production Turnstile in the browser. Each result became the expected mailto/tel link and received focus. No contact values were saved in public evidence.
+
+| Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| Home | 97 | 100 | 100 | 100 | 2.3 s | 0 |
+| Services | 100 | 100 | 100 | 100 | 1.7 s | 0 |
+| Contact | 100 | 100 | 100 | 100 | 1.5 s | 0.004 |
+
+Lighthouse 13.5.0, mobile defaults, live HTTPS host and production configuration. Reports are local in `docs/evidence/lighthouse-live/`. The initial contact run lost its Chrome protocol session; the separate completed contact run produced the recorded results. All requested categories meet 95. These measurements are a snapshot, not a guarantee of every visitor's performance.
+
+The interactive contact check was initially free of console messages; a later Managed Turnstile iframe emitted two opaque errors and two warnings (`%c%d ... NaN`) from `challenges.cloudflare.com`. Both contact reveals completed. The separate contact Lighthouse run recorded no console errors. A universal zero-console-error gate is therefore not claimed.
+
+Remaining work: configure a sending provider and verified sender, implement and test successful delivery with a real end-to-end enquiry, complete the actual screen-reader walkthrough, investigate the intermittent third-party console output, and connect Workers Builds with production/preview secrets. The current form visibly states that sending is unavailable and offers direct contact alternatives; it cannot deliver an enquiry. GitHub CI is connected, but Cloudflare deployment was performed through Wrangler and is not automatic.
