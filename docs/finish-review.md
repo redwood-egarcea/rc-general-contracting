@@ -60,3 +60,20 @@ Taste preflight at the requested 6/3/3 scope holds visually across all four surf
 ## keep
 
 Preserve the original company photos and logo, exact protected source quotations/legal copy, restrained cool palette, compressed sentence-case display type, open service descriptions, visible mobile navigation and direct enquiry order.
+
+## verdict
+
+Bounded documentation verdict, 2026-09-23. Scored only the original four fixes against `DESIGN.md`, `.impeccable/design.json`, `docs/design-finish.md` and the updated `docs/quality.md`; no source, browser, screenshot or detector pass was repeated.
+
+1. **Unresolved — Contact STORY / product completion:** email setup and a verified successful submission remain pending; the recorded tests do not send mail or establish successful delivery.
+2. **Partial — Acceptance evidence:** the quality record now contains local mobile Lighthouse scores of 100/100/100/69 for home, services and contact, with local noindex as the sole scored SEO failure, 26 passing tests and GitHub Actions success on `76e8ffb`. Production acceptance remains pending. VoiceOver could not start while the Mac was locked; asking the owner to unlock it does not establish a screen-reader pass.
+3. **Resolved — Persistence documentation:** the finish record and design sidecar explicitly preserve the original-asset exception, reviewed visual scope and incomplete release/tool state. Open plates and pending hero/later phases are disclosed, with no forced closure or overall completion claim. This resolves the documentation finding, not the tool gates themselves.
+4. **Resolved — Heading-ramp documentation:** `DESIGN.md` now records the implemented `interior-heading` role as Barlow Condensed 600, `clamp(3rem, 5.5vw, 5rem)`, line-height 1.05 and tracking -0.02em; the sidecar and finish record agree. No new detector result is claimed.
+
+No regressions introduced by this documentation batch were identified within the bounded scope.
+
+## remaining
+
+Original fixes 1 and 2 remain open: real email delivery and successful-form evidence, an actual screen-reader walkthrough after unlock, and final production Lighthouse/console acceptance. Impeccable's recorded tool phases also remain open/pending as disclosed. The documentation fixes do not confer an overall ship verdict.
+
+disposition: fix
