@@ -41,6 +41,24 @@ typography:
     fontWeight: 400
     lineHeight: 1.6
     letterSpacing: "normal"
+  title:
+    fontFamily: "Barlow Condensed, sans-serif"
+    fontSize: "2rem"
+    fontWeight: 600
+    lineHeight: 1.15
+    letterSpacing: "-0.02em"
+  introduction:
+    fontFamily: "Source Sans 3, sans-serif"
+    fontSize: "1.5rem"
+    fontWeight: 400
+    lineHeight: 1.3
+    letterSpacing: "normal"
+  navigation:
+    fontFamily: "Source Sans 3, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: "normal"
   label:
     fontFamily: "Source Sans 3, sans-serif"
     fontSize: "1rem"

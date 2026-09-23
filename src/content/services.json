@@ -1,0 +1,42 @@
+[
+  {
+    "id": "design-planning",
+    "order": 1,
+    "title": "Design and planning",
+    "description": "We work with you on drawings, designs and 3D renderings to develop your vision. Our design services include engineering and permits.",
+    "items": [
+      "Drawings and designs",
+      "3D renderings",
+      "Engineering and permits"
+    ]
+  },
+  {
+    "id": "renovations-new-builds",
+    "order": 2,
+    "title": "Renovations and new builds",
+    "description": "We provide turnkey renovations, large or small, and new builds for residential and commercial clients.",
+    "items": [
+      "Residential construction",
+      "Commercial construction",
+      "Turnkey renovations",
+      "New builds"
+    ]
+  },
+  {
+    "id": "construction-finishing",
+    "order": 3,
+    "title": "Construction and finishing",
+    "description": "Our work includes the structure, surfaces and details that bring a space together.",
+    "items": [
+      "Framing",
+      "Drywall",
+      "Flooring",
+      "Decks and fences",
+      "Tiling",
+      "Waterproofing",
+      "Painting",
+      "Trim",
+      "Cabinetry"
+    ]
+  }
+]

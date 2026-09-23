@@ -1,0 +1,105 @@
+{
+  "name": "RC General Contracting Inc",
+  "area": "Kincardine",
+  "navigation": [
+    {
+      "label": "Services",
+      "href": "/services/"
+    },
+    {
+      "label": "About",
+      "href": "/#about"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact/"
+    }
+  ],
+  "enquiry": "Tell us about your project",
+  "home": {
+    "title": "RC General Contracting Inc | Kincardine",
+    "description": "Residential and commercial construction in Kincardine. Explore our design, renovation and new-build services, and tell us about your project.",
+    "heading": "Design, renovate, build.",
+    "intro": "Residential and commercial construction in Kincardine.",
+    "servicesHeading": "Design and construction, together",
+    "servicesIntro": "We offer complete construction services for residential and commercial projects, from drawings and permits to renovations, new builds and finishing work.",
+    "servicesLink": "Explore our services",
+    "aboutHeading": "About RC General Contracting Inc",
+    "about": [
+      "Joshua Newbigging founded the company in Guelph, Ontario, as Royal City General Contracting INC in 2017. The company relocated to Kincardine, Ontario, in 2026.",
+      "Joshua has almost two decades of construction experience. He is a fully certified Red Seal carpenter, licensed to work across Canada. RC General Contracting Inc is fully licensed, insured and incorporated.",
+      "We hire experienced professionals who are fully trained in the latest and best techniques to complete your projects."
+    ],
+    "practiceHeading": "How we work",
+    "practice": [
+      "We work with you throughout the project so you stay informed and involved. We aim to make remodelling as painless as possible, with clean work sites, floor protection and barriers to contain dust and mess.",
+      "We perform most tasks in-house. For work we cannot legally complete ourselves, such as plumbing and electrical, we bring in trusted, fully licensed professionals. This helps us avoid most trade delays, maintain quality control and keep the work running smoothly, done properly and looking good."
+    ],
+    "reviewsHeading": "What our clients say",
+    "reviewSummary": "5.0 stars · 13 reviews",
+    "reviewCompany": "RC General Contracting INC.",
+    "contactHeading": "Tell us about your project",
+    "contactIntro": "Planning a renovation or a new build? Get in touch to discuss the work.",
+    "contactLink": "Open the contact form",
+    "reviewSource": "Rating displayed on our previous website",
+    "reviewSourceUrl": "https://www.royalcitygeneralcontractinginc.ca/"
+  },
+  "services": {
+    "title": "Construction services | RC General Contracting Inc",
+    "description": "Design, permits, renovations and new builds in Kincardine. See the residential and commercial construction services offered by RC General Contracting Inc.",
+    "heading": "Renovations, new builds and the work in between",
+    "intro": "We provide residential and commercial construction services, including design, engineering and permits.",
+    "sectionHeading": "From drawings to finishing work",
+    "scopeNote": "Our services are not limited to this list. Tell us what you have in mind."
+  },
+  "contact": {
+    "title": "Contact | RC General Contracting Inc",
+    "description": "Tell RC General Contracting Inc about your construction project in Kincardine. Send an enquiry or reveal our email address and phone number.",
+    "heading": "Tell us about your project",
+    "intro": "Let us know what you have in mind and where the work will take place.",
+    "directHeading": "Contact us directly",
+    "revealIntro": "A quick verification protects our contact details from automated collection.",
+    "showEmail": "Show email",
+    "showPhone": "Show phone",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email address",
+    "messageLabel": "About your project",
+    "messageHint": "Include the type of work and the project location. Please leave out sensitive personal information.",
+    "submit": "Send enquiry",
+    "honeypotLabel": "Leave this field empty",
+    "notice": "This form uses Cloudflare Turnstile to help prevent spam. JavaScript is required.",
+    "fallbackHeading": "Another way to get in touch",
+    "fallback": "You can also contact us through our existing social pages.",
+    "noscript": "The protected form and contact details need JavaScript. Use the social links below to get in touch without it."
+  },
+  "notFound": {
+    "title": "Page not found | RC General Contracting Inc",
+    "description": "That page could not be found. Visit RC General Contracting Inc's home page or browse our construction services.",
+    "heading": "We couldn't find that page",
+    "body": "The address may have changed or been typed incorrectly. You can return home or find our services below.",
+    "home": "Back to home",
+    "services": "View our services"
+  },
+  "images": {
+    "logo": "RC General Contracting Inc",
+    "kitchen": "White kitchen with an island, stools and a wood dining table.",
+    "rendering": "Design rendering of a kitchen with an island and cabinetry.",
+    "framing": "Exposed interior framing beside a brick chimney during construction.",
+    "renderingCaption": "Design rendering",
+    "framingCaption": "During construction"
+  },
+  "socials": [
+    {
+      "label": "Facebook",
+      "href": "https://www.facebook.com/Royalcitygeneralcontracting/"
+    },
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/rcgcinc/"
+    }
+  ],
+  "copyright": "Copyright © 2025 Royal City General Contracting Inc - All Rights Reserved.",
+  "skipLink": "Skip to content",
+  "navigationLabel": "Main navigation",
+  "footerLabel": "Footer navigation"
+}

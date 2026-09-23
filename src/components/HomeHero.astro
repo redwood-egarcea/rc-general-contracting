@@ -1,0 +1,30 @@
+---
+import { Picture } from 'astro:assets';
+import kitchen from '../assets/kitchen.jpg';
+import { site } from '../lib/site';
+---
+
+<section class="home-hero wrap" aria-labelledby="home-heading">
+  <div class="hero-intro">
+    <h1 id="home-heading">{site.home.heading}</h1>
+    <div class="hero-action">
+      <p>{site.home.intro}</p>
+      <a class="button" href="/contact/">
+        {site.enquiry}
+      </a>
+    </div>
+  </div>
+  <Picture
+    src={kitchen}
+    formats={['avif', 'webp']}
+    fallbackFormat="jpeg"
+    alt={site.images.kitchen}
+    widths={[360, 720, 1080, 1440, 1688]}
+    sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(100vw - 64px), min(1440px, calc(100vw - 96px))"
+    width={1688}
+    height={1126}
+    loading="eager"
+    fetchpriority="high"
+    class="hero-photo"
+  />
+</section>

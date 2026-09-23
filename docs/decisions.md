@@ -78,3 +78,11 @@ The old reCAPTCHA notice cannot truthfully describe a Turnstile deployment. It i
 The owner selected A, Rooms in focus, through the design comparison page, without a correction request. The approval was collected with Impeccable serve-question key `6122fc83`. Record the approved system before building, as the brief requires. Do not add another composition-selection round: the two requested directions and explicit choice satisfy this gate.
 
 The source logo and approved company images must ship as originals, processed only for delivery. Impeccable instructions to regenerate image plates or substitute a pixel-matched font cannot override the brief's factual preservation and selected open-font pairing. Generated mockup artifacts are visual proposals, not evidence of additional work. The split introduction and three-line mobile source tagline are deliberate Impeccable structural decisions; Taste checks the rendered execution for generic output and readability rather than replacing that approved composition with its default header rules.
+
+## Approved copy and fallback replacements
+
+The owner approved replacing the obsolete reCAPTCHA notice with “This form uses Cloudflare Turnstile to help prevent spam. JavaScript is required.”, removing the old generic cookie banner when GoDaddy tracking is removed, consolidating duplicate metadata, and replacing the empty footer link with a visible home link. The owner approved existing Facebook and Instagram destinations as the JavaScript-free fallback. The original text remains archived. This does not approve the rest of the Phase 5 copy yet.
+
+## Current stable framework
+
+The requested `npm create astro@latest` resolved Astro 7.3.4 with the strict minimal template; `astro add` resolved Cloudflare 14.3.3 and sitemap 3.7.4. The brief requests current stable and identifies v6 as the version when written, so the current stable major is used. Static prerendering uses Node with compile-time image optimization; on-demand APIs use Workers. Sessions are disabled because this site has no sessions. The adapter generates its deploy configuration under `dist/`; the root asset config retains the requested `./dist` declaration.

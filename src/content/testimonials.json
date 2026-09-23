@@ -1,0 +1,35 @@
+[
+  {
+    "id": "review-1",
+    "order": 1,
+    "name": "Don Shrives",
+    "quote": "“I wanted to give a thanks to Josh for helping us with our project. He was professional, on time, and delivered excellent results. Highly recommend!”",
+    "initials": "DS",
+    "date": "2026-06-17",
+    "dateLabel": "June 17, 2026",
+    "rating": 5,
+    "ratingLabel": "5 out of 5 stars"
+  },
+  {
+    "id": "review-2",
+    "order": 2,
+    "name": "Derek Gooding",
+    "quote": "“Josh did a new bathroom and laundry in our basement. The work was done to a very high standard and the space looks amazing. Very happy with the results.”",
+    "initials": "DG",
+    "date": "2026-04-16",
+    "dateLabel": "April 16, 2026",
+    "rating": 5,
+    "ratingLabel": "5 out of 5 stars"
+  },
+  {
+    "id": "review-3",
+    "order": 3,
+    "name": "martina freitag",
+    "quote": "“I'm so happy with my main floor reno! Josh and team were great to work with — clean, professional, and the quality is outstanding.”",
+    "initials": "MF",
+    "date": "2024-05-24",
+    "dateLabel": "May 24, 2024",
+    "rating": 5,
+    "ratingLabel": "5 out of 5 stars"
+  }
+]
