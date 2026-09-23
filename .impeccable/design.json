@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-23T17:57:45.847176+00:00",
+  "title": "Design System: RC General Contracting Inc",
+  "extensions": {
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(.2,0,.2,1)",
+        "purpose": "Control state transitions only; disabled with reduced motion."
+      },
+      {
+        "name": "duration-control",
+        "value": "140ms",
+        "purpose": "Colour and underline changes."
+      },
+      {
+        "name": "duration-disclosure",
+        "value": "180ms",
+        "purpose": "Optional disclosure transition."
+      }
+    ],
+    "shadows": [],
+    "breakpoints": [
+      {
+        "name": "columns",
+        "value": "768px"
+      },
+      {
+        "name": "wide",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [],
+  "narrative": {
+    "northStar": "Rooms in focus",
+    "status": "Owner-selected pre-build specification; implementation review pending.",
+    "rules": [
+      "Use original source imagery.",
+      "Protect contact values.",
+      "Keep full source content coverage.",
+      "Respect the separate copy and deployment gates."
+    ]
+  }
+}

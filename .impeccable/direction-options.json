@@ -1,0 +1,33 @@
+{
+  "title": "RC General Contracting Inc",
+  "question": "Choose a direction for the home and services pages. Full systems and 360px layouts are in docs/design-directions.md. Choosing approves the design direction; copy gets its later review.",
+  "options": [
+    {
+      "id": "rooms-in-focus",
+      "label": "A. Rooms in focus",
+      "kicker": "PHOTOGRAPHY FIRST",
+      "lineage": "Residential architecture magazines",
+      "thesis": "A large completed-space photograph follows a bold, compact introduction.",
+      "palette": ["#F4F6F4", "#172D39", "#A43120", "#DCE5E7"],
+      "materials": ["Company photography", "Barlow Condensed + Source Sans 3", "Open editorial columns"],
+      "viewport": "A compact logo and clear navigation, a wide title, a visible enquiry action, then the kitchen photograph across the page.",
+      "risk": "The kitchen leads strongly; service copy must make the commercial and construction scope equally clear.",
+      "comp": ".impeccable/mocks/decision/rooms-in-focus.png"
+    },
+    {
+      "id": "plans-into-places",
+      "label": "B. Plans into places",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Architectural presentation boards",
+      "thesis": "A clear service introduction sits beside separate design and construction images.",
+      "palette": ["#EFF3EC", "#173E33", "#D8EC82", "#DCE6D7"],
+      "materials": ["Company rendering and framing photo", "Archivo + Public Sans", "Straight, measured alignment"],
+      "viewport": "A deep green introduction with pale text and a lime enquiry button, beside a rendering and a construction photograph on a pale board.",
+      "risk": "Architecture-board layouts are familiar; strong image scale and plain language must keep this useful rather than decorative.",
+      "comp": ".impeccable/mocks/decision/plans-into-places.png"
+    }
+  ],
+  "steer": true,
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "comp", "toggle": true}
+}

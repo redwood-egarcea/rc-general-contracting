@@ -1,0 +1,41 @@
+{
+  "direction": "plans-into-places",
+  "surface": "home",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "status": "unapproved decision comp",
+  "approved": false,
+  "tool": "built-in image_gen",
+  "prompt": "Use case: ui-mockup.\nEdit the supplied desktop homepage proposal image with ONE correction: make the entire image fully opaque. Fill every currently transparent or black-as-transparent canvas/background area with the flat opaque pale board color #EFF3EC. This includes all header background, margins, open space between images, image captions' background, and next-section background. The finished PNG must have solid 100% opaque pixels across the full rectangular 1505 by 1045 canvas, no transparency or cutout edges anywhere.\nKeep the existing composition, positions, typography, text, green panel, lime button, images, captions and logo exactly as shown. Preserve the image's green text on the newly visible pale background, and retain a pure white opaque logo rectangle. Preserve the rendering and construction photo as separate images with captions \"Design rendering\" and \"During construction\"; do not connect them. Do not modify text, scale, or placement.\nThis is a flat finished screenshot of a desktop website on pale #EFF3EC, not a transparent UI sticker. No browser chrome. Do not add shadows, visual effects or any new elements. Full opaque background is essential.",
+  "reference_images": [
+    "old-site/assets/21687d531dd1-horizontal",
+    "old-site/assets/bcc6fbac245a-kitchen-3d",
+    "old-site/assets/58ba8f894227-construction-site"
+  ],
+  "caveats": [
+    "Generated UI text, typography, and images are illustrative; implementation uses original source images and real text.",
+    "No same-project relationship between design rendering and construction photo is claimed.",
+    "Generated fonts and source logo are approximations; original logo and source photos must be used directly in implementation. No generated picture pixels are approved for publication."
+  ],
+  "initial_prompt": "Use case: ui-mockup.\nAsset type: unapproved design-direction B decision comp for a real general-contracting home page, desktop landscape.\nCreate a polished, high-fidelity flat website screenshot, approximately 1440 by 1000 pixels. No browser or device chrome, no perspective. This is a website with navigation, readable text, a real enquiry button, and the next section visibly starting at the bottom.\n\nInput images:\nImage 1 is the existing RC logo. Place this exact full logo without redrawing it in a small pure-white rectangular container in the compact header. Preserve its roof, tree, letters, waves and wordmark. It is a source identity asset, not a style reference.\nImage 2 is the company's actual kitchen design rendering. Use this image as the large upper image on the right, preserving the supplied drawing and scene.\nImage 3 is the company's actual exposed framing construction photo. Use it as the separate lower image on the right, preserving the supplied photo.\nUse only these image assets. The rendering and construction photo are not known to show the same project. Their captions must be \"Design rendering\" and \"During construction\", respectively. Do not add arrows or any before/after relationship.\n\nLayout, in order:\n1. Compact 92-pixel header on pale board ground. At left, a 68-pixel white logo container and compact text \"RC General Contracting Inc\". Right-aligned calm navigation \"Services\" and \"Contact\". No phone or email.\n2. A generous 12-column desktop grid with 48-pixel outer margins and roughly 40-pixel gap. Hero extends from about y=124 to y=824. The left five columns form one solid deep fir-green rectangular introduction panel; the right seven columns are an open pale board, never enclosed in another card.\n3. Green introduction panel: generous 40-pixel internal padding. At top a small pale sentence-case eyebrow \"Kincardine\". Below it the compact stacked headline \"General contracting, from plans to construction.\" in Archivo 600, approximately 64 pixels, tight line-height, pale ink. Use a readable stack, roughly five lines. Then body \"Residential and commercial renovations and new builds.\" in Public Sans 400, approximately 20 pixels and comfortable line-height. Below, a large rectangular lime action button with fir-green text \"Tell us about your project\", about 56 pixels tall. Strong alignment, generous breathing room, no other hero copy.\n4. Right open image board: large rectangular kitchen rendering at upper right, about 720 pixels wide. Caption \"Design rendering\" below it outside the image in readable Public Sans, 16 pixels. Lower down, a distinct rectangular exposed-framing photo about 440 pixels wide, aligned toward the right. Caption \"During construction\" beneath it, outside the photograph. Images have no shadow, no tape, no frame ornament, no rounded corners. Layout asymmetry comes from different image scales and open space. Do not overlay text on imagery.\n5. The beginning of the next section is visible near the bottom: heading \"What we can help with\" and a quiet unboxed service row \"Design and planning\", separated only by a simple fine rule. Show enough to establish the continuation of the real site.\n\nFixed design system: pale board background #EFF3EC; solid fir green #173E33; lime CTA #D8EC82 with green ink; quiet pale complementary surface #DCE6D7. Archivo 600 headings, Public Sans 400 body and navigation. Sentence-case headlines. Architectural presentation-board lineage expressed through image scale, the measured grid, and ample space. The sole dominant gesture is the green introduction panel beside the two real, separate images.\nConstraints: preserve real product name and exact copy; source images must remain visibly recognizable and unchanged in subject. No invented projects, claims, stats, rating, testimonials, city coverage, certifications, stock photos, icons, phone or email. No poster design, fake blueprints, gridlines, tape, arrows, decorative labels, gradients, excessive rules, nested cards, photographic text overlays, or tiny unreadable text.",
+  "prompt_history": [
+    {
+      "stage": "initial generation",
+      "prompt_file": "plans-into-places.prompt.txt"
+    },
+    {
+      "stage": "final correction",
+      "prompt_file": "plans-into-places-correction.prompt.txt"
+    }
+  ],
+  "generated_source": "/Users/elliottgarcea/.codex/generated_images/01a0cf61-8c94-74d1-ad91-fb95a8064e52/exec-027e89c0-b3fb-487a-8810-79f2f357a3d5.png",
+  "correction_reference": "/Users/elliottgarcea/.codex/generated_images/01a0cf61-8c94-74d1-ad91-fb95a8064e52/exec-e46ddbd8-1fff-4a13-9ebf-0cc83abad76c.png",
+  "actual_dimensions": {
+    "width": 1505,
+    "height": 1045
+  },
+  "opaque": true,
+  "inspected": true
+}

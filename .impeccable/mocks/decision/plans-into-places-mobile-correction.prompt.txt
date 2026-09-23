@@ -1,0 +1,16 @@
+Use case: ui-mockup.
+Create a NARROW PHONE-WIDTH, flat opaque MOBILE website screenshot. Exact target shape 720 pixels wide by 1600 pixels tall (2x rendering of 360 by 800 CSS pixels). A very narrow tall portrait screen, aspect ratio 0.45. No phone frame or browser chrome. Do not use a tablet-width layout or shrink text to fit all page content. The screenshot is ONLY the first 800 CSS pixels of a longer scrolling page. The second photo belongs below the fold and must be clipped, not squeezed into the screenshot.
+
+Reference image 1 is the previous wider attempt; correct its mobile reflow while preserving its palette and overall green-intro/image sequence. Reference image 2 is the actual existing RC logo. Reference image 3 is the actual kitchen design rendering. Reference image 4 is the actual construction photo. Preserve these original image subjects. Use the exact logo in a WHITE container; do not redraw its design. No invented imagery.
+
+Compose this mobile home page literally at 360 CSS-pixel width:
+- 72 CSS-pixel high pale #EFF3EC header. Tiny but complete square source logo at left about48px, compact brand "RC General Contracting Inc" beside it in16px type. Navigation "Services" and "Contact" may be on a compact second line at14px if needed. 24px page gutters. This header must not force a wider viewport.
+- Full-width flat fir-green #173E33 hero beginning aroundy72. Internal24px side gutters. Eyebrow "Kincardine" in sentence case at16px.
+- Display headline in Archivo600,40 CSS pixels,43px line-height, solid pale ink, exactly FOUR lines: "General" / "contracting," / "from plans to" / "construction.". All four lines span most of the narrow content width; this is large mobile type.
+- Body in Public Sans400,18 CSS pixels,26px line-height: "Residential and commercial renovations and new builds." It may wrap into three lines.
+- Lime #D8EC82 rectangular button, full312px content width,48px tall, green18px text "Tell us about your project". No rounded corners or shadows.
+- Green block finishes aroundy505.
+- At abouty529, place the original kitchen design rendering in a 312px-wide,234px-high,4:3 image, aligned to24px side gutters. Caption "Design rendering" at15px follows it below, outside the image.
+- The construction photo comes NEXT in document flow at the same312px width and4:3 ratio, with its separate caption "During construction" following. Since this is an800px viewport screenshot, only its top edge may appear near the bottom or it may sit just below the screenshot. This is correct. Do NOT shrink the first image, lower text sizes, widen the viewport, or compress vertical gaps just to make the second photo visible.
+
+Keep all open area opaque #EFF3EC. Fixed system: Archivo600 headline, Public Sans400 body; fir green #173E33, pale ground #EFF3EC, lime #D8EC82. No faux gradient or transparency. No tiny typography. The earlier render had the right concept but looked like a tablet; make this clearly a360px smartphone site with large40px headline,18px body and48px button. No added claims, stats, places, phone, email, arrows, diagrams, before/after implication, cards, shadows or decorative extras. Images do not represent a proven same-project sequence. Render the website alone, cropped at the viewport bottom.

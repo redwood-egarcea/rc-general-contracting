@@ -1,6 +1,6 @@
 # Royal City website rebuild
 
-Phase 1 and the URL map are approved. Phase 2 design exploration is in progress. There is no application scaffold or deployment yet.
+Phase 1 and the URL map are approved. The owner selected **Rooms in focus** in the Phase 2 [design comparison](docs/design-directions.md). The approved system is in [DESIGN.md](DESIGN.md). There is no application scaffold or deployment yet.
 
 The owner has confirmed the public name RC General Contracting Inc, Kincardine as the service area, reuse of company photos, and Cloudflare Web Analytics. A Cloudflare-provided hostname replaces the proposed domain purchase. The confirmed hostname is `workers.dev`, retaining the Workers stack. The full form-delivery address is recorded locally for secret configuration.
 
@@ -20,7 +20,7 @@ It fetches linked pages, the sitemap, source assets, and redirect probes. Before
 
 ## Skills
 
-See [skill setup](docs/skills.md) for installation commands and the project Taste dials. The project keeps Impeccable's recommended ignore rules and tracks `PRODUCT.md`. `DESIGN.md` will be written only after a direction is selected.
+See [skill setup](docs/skills.md) for installation commands and the project Taste dials. The project keeps Impeccable's recommended ignore rules and tracks `PRODUCT.md`. `DESIGN.md` records the selected direction.
 
 ## Next gates
 

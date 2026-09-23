@@ -72,3 +72,9 @@ The new JSON-LD must omit secret email and phone values. Preserve the remaining 
 Turnstile requires JavaScript. A fallback cannot expose secret email or phone in static markup. The existing Facebook and Instagram links are potential fallback contact options, subject to the user's approval. No new physical address, hours, or alternative number may be invented.
 
 The old reCAPTCHA notice cannot truthfully describe a Turnstile deployment. It is preserved verbatim in the archive and listed under Proposed removals for an explicit replacement decision. No replacement legal policy has been drafted.
+
+## Phase 2 selection
+
+The owner selected A, Rooms in focus, through the design comparison page, without a correction request. The approval was collected with Impeccable serve-question key `6122fc83`. Record the approved system before building, as the brief requires. Do not add another composition-selection round: the two requested directions and explicit choice satisfy this gate.
+
+The source logo and approved company images must ship as originals, processed only for delivery. Impeccable instructions to regenerate image plates or substitute a pixel-matched font cannot override the brief's factual preservation and selected open-font pairing. Generated mockup artifacts are visual proposals, not evidence of additional work. The split introduction and three-line mobile source tagline are deliberate Impeccable structural decisions; Taste checks the rendered execution for generic output and readability rather than replacing that approved composition with its default header rules.
