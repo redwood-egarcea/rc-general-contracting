@@ -27,7 +27,6 @@
       "CONTACT_EMAIL",
       "CONTACT_PHONE",
       "FORM_DESTINATION",
-      "EMAIL_FROM",
     ],
   },
   "ratelimits": [

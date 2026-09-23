@@ -35,3 +35,7 @@ The owner already approved the Turnstile notice, removal of the GoDaddy-related 
 - Select and enable the delivery provider; verify a sender. No live delivery has occurred.
 - Provision the real Turnstile widgets, hostname and Cloudflare Analytics token before production build/deploy.
 - Copy approved by “Commit and deploy” on 2026-09-23. Phase 6 evidence is recorded in docs/quality.md; release remains gated by unresolved delivery and final checks.
+
+## Authorized deployment with email sending pending
+
+After being told that email delivery and final acceptance remained incomplete, the owner explicitly instructed “Please deploy it.” The contact form now says “This form cannot send messages yet.” before the fields and links to the existing direct contact options. Humanizer file-mode review of these two added strings in `src/content/site.json` retained their plain factual wording. This operational notice adds no business claim and removes no archived content.

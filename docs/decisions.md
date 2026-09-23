@@ -120,3 +120,9 @@ The approved direction and detailed contact/404 requirements settle those surfac
 - Astro's adapter copies `.dev.vars` into `dist/server` for preview. The secure-build script removes all copied credential files. A separate ignored preview configuration supplies synthetic fixtures outside `dist`; production secrets belong in Cloudflare's secret store.
 - Native ESM JSON import attributes let Playwright exercise the same strict server helpers under modern Node without a second validation implementation.
 - The published Impeccable npm CLI is 4.1.0 while the installed skill is 4.3.1 with engine 0.1.5. CI pins the available CLI 4.1.0; the requested detector command successfully ran and exited 0.
+
+## Explicit deployment instruction after blocker disclosure
+
+The owner repeated “Please deploy it” after the email-sending and screen-reader blockers were explained. This authorizes publishing the current workers.dev review site while those previously requested release gates remain incomplete; it does not establish that the complete original brief is finished. A visible notice directs visitors away from the unavailable form to protected email/phone and social alternatives.
+
+`EMAIL_FROM` is no longer a required deployment secret because no sender has been selected and the current handler never uses it. Do not invent a sender. The initial Worker receives the five known secrets atomically via Wrangler’s supported `deploy --secrets-file` option: current Wrangler rejects setting required secrets separately before a new Worker exists. Future rotation uses `wrangler secret put`. The file is private, local and ignored.
