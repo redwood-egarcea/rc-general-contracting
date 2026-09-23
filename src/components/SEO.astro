@@ -15,8 +15,8 @@ const structured = {
   name: site.name,
   url: siteUrl,
   areaServed: { '@type': 'City', name: site.area },
-  founder: { '@type': 'Person', name: 'Joshua Newbigging' },
-  foundingDate: '2017',
+  founder: { '@type': 'Person', name: site.founder },
+  foundingDate: site.foundingDate,
   sameAs: site.socials.map((s) => s.href),
   image: imageUrl,
 };
@@ -29,6 +29,7 @@ const structured = {
   <meta name="robots" content="noindex, nofollow" />
 )}
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="en_CA" />
 <meta property="og:site_name" content={site.name} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -39,6 +40,7 @@ const structured = {
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={site.images.kitchen} />
 <script
   type="application/ld+json"
   set:html={JSON.stringify(structured).replace(/</g, '\\u003c')}

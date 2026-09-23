@@ -17,3 +17,5 @@ Taste preflight uses the approved 6/3/3 dials. The native CSS system, automatic 
 The first preview developed a Vite error overlay; inspection resumed on the replacement server at port 4325. Mutable browser injection is unavailable in the supported read-only evaluate API, so no Impeccable overlay is claimed. Agents used native screenshots and DOM/computed-style evidence, restored viewport overrides and closed their review tabs. Neither started an overlay server. No ignore file was present; no detector findings were suppressed.
 
 Questions skipped: this review is part of the authorized implementation; copy approval remains the next user gate.
+
+The follow-up reviewer confirmed Kincardine. The complete-photo link was present but opening it timed out; the grouped bullets were present in source while the concurrent dev server retained stale content. The subsequent production build contains the confirmed area, complete-photo link and all four grouped bullets. Image delivery and the refreshed browser state remain part of the final URL/asset checks, rather than being claimed as reviewer-verified.

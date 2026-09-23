@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
 import kitchen from '../assets/kitchen.jpg';
+import logo from '../assets/logo.jpg';
 import { site, siteUrl } from '../lib/site';
 import '../styles/global.css';
 interface Props {
@@ -13,6 +14,13 @@ interface Props {
 }
 const { title, description, noindex } = Astro.props;
 const og = await getImage({ src: kitchen, width: 1200, format: 'jpeg' });
+const icon = await getImage({
+  src: logo,
+  width: 64,
+  height: 64,
+  format: 'png',
+});
+const analytics = import.meta.env.PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 ---
 
@@ -21,6 +29,7 @@ const canonical = new URL(Astro.url.pathname, siteUrl).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={icon.src} />
     <meta
       name="theme-color"
       content="#f4f6f4"
@@ -55,5 +64,13 @@ const canonical = new URL(Astro.url.pathname, siteUrl).href;
       <slot />
     </main>
     <Footer />
+    {analytics && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: analytics })}
+      ></script>
+    )}
   </body>
 </html>

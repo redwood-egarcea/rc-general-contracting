@@ -1,0 +1,92 @@
+---
+import { site } from '../lib/site';
+import messages from '../content/messages.json';
+---
+
+<section aria-labelledby="form-heading">
+  <h2 id="form-heading">{site.contact.formHeading}</h2>
+  <p id="required-hint" class="form-hint">
+    {site.contact.requiredHint}
+  </p>
+  <form
+    data-contact-form
+    action="/api/submit"
+    method="post"
+    aria-describedby="required-hint"
+  >
+    <fieldset data-form-fields disabled>
+      <div class="field">
+        <label for="name">{site.contact.nameLabel}</label>
+        <input
+          id="name"
+          name="name"
+          autocomplete="name"
+          maxlength="120"
+          required
+          aria-describedby="name-error"
+        />
+        <p class="field-error" id="name-error"></p>
+      </div>
+      <div class="field">
+        <label for="email">{site.contact.emailLabel}</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          inputmode="email"
+          maxlength="254"
+          required
+          aria-describedby="email-error"
+        />
+        <p class="field-error" id="email-error"></p>
+      </div>
+      <div class="field">
+        <label for="message">{site.contact.messageLabel}</label>
+        <p id="message-hint" class="field-hint">
+          {site.contact.messageHint}
+        </p>
+        <textarea
+          id="message"
+          name="message"
+          rows="6"
+          maxlength="5000"
+          required
+          aria-describedby="message-hint message-error"
+        ></textarea>
+        <p class="field-error" id="message-error"></p>
+      </div>
+      <div class="honeypot" aria-hidden="true">
+        <label for="website">{site.contact.honeypotLabel}</label>
+        <input id="website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <div
+        class="turnstile-slot"
+        data-form-widget
+        data-action="contact"
+        data-sitekey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY}
+      ></div>
+      <p class="verification-notice">{site.contact.notice}</p>
+      <button class="button" type="submit">
+        {site.contact.submit}
+      </button>
+      <button class="text-button" type="button" data-retry hidden>
+        {messages.retry}
+      </button>
+    </fieldset>
+    <p
+      class="flow-status"
+      data-status
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      tabindex="-1"
+    ></p>
+    <noscript>
+      <p>
+        {site.contact.noscript}{' '}
+        <a href="#contact-alternatives">{site.contact.fallbackLink}</a>
+      </p>
+    </noscript>
+  </form>
+</section>

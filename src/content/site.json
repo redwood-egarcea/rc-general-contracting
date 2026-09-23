@@ -1,6 +1,8 @@
 {
   "name": "RC General Contracting Inc",
   "area": "Kincardine",
+  "founder": "Joshua Newbigging",
+  "foundingDate": "2017",
   "navigation": [
     {
       "label": "Services",
@@ -28,12 +30,12 @@
     "about": [
       "Joshua Newbigging founded the company in Guelph, Ontario, as Royal City General Contracting INC in 2017. The company relocated to Kincardine, Ontario, in 2026.",
       "Joshua has almost two decades of construction experience. He is a fully certified Red Seal carpenter, licensed to work across Canada. RC General Contracting Inc is fully licensed, insured and incorporated.",
-      "We hire experienced professionals who are fully trained in the latest and best techniques to complete your projects."
+      "We only hire experienced professionals who are fully trained in the latest and best techniques to complete your projects."
     ],
     "practiceHeading": "How we work",
     "practice": [
       "We work with you throughout the project so you stay informed and involved. We aim to make remodelling as painless as possible, with clean work sites, floor protection and barriers to contain dust and mess.",
-      "We perform most tasks in-house. For work we cannot legally complete ourselves, such as plumbing and electrical, we bring in trusted, fully licensed professionals. This helps us avoid most trade delays, maintain quality control and keep the work running smoothly, done properly and looking good."
+      "We perform most tasks in-house. For work we cannot legally complete ourselves, such as plumbing and electrical, we bring in trusted, fully licensed professionals. We are almost never held up by a trade and can maintain quality control so your project runs smoothly, is done properly and looks good."
     ],
     "reviewsHeading": "What our clients say",
     "reviewSummary": "5.0 stars · 13 reviews",
@@ -60,18 +62,21 @@
     "heading": "Tell us about your project",
     "intro": "Let us know what you have in mind and where the work will take place.",
     "directHeading": "Contact us directly",
-    "revealIntro": "A quick verification protects our contact details from automated collection.",
+    "formHeading": "Send an enquiry",
+    "requiredHint": "All three fields are required.",
+    "fallbackLink": "Use our social contact links",
+    "revealIntro": "A verification step helps protect our contact details from automated collection.",
     "showEmail": "Show email",
     "showPhone": "Show phone",
     "nameLabel": "Your name",
     "emailLabel": "Your email address",
     "messageLabel": "About your project",
-    "messageHint": "Include the type of work and the project location. Please leave out sensitive personal information.",
+    "messageHint": "Include the type of work and the project location.",
     "submit": "Send enquiry",
     "honeypotLabel": "Leave this field empty",
     "notice": "This form uses Cloudflare Turnstile to help prevent spam. JavaScript is required.",
     "fallbackHeading": "Another way to get in touch",
-    "fallback": "You can also contact us through our existing social pages.",
+    "fallback": "You can also contact us on Facebook or Instagram.",
     "noscript": "The protected form and contact details need JavaScript. Use the social links below to get in touch without it."
   },
   "notFound": {

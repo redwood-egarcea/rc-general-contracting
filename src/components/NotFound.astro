@@ -1,0 +1,16 @@
+---
+import { site } from '../lib/site';
+---
+
+<section class="not-found wrap">
+  <h1>{site.notFound.heading}</h1>
+  <p>{site.notFound.body}</p>
+  <div class="recovery-links">
+    <a class="button" href="/">
+      {site.notFound.home}
+    </a>
+    <a class="hero-alternative" href="/services/">
+      {site.notFound.services}
+    </a>
+  </div>
+</section>

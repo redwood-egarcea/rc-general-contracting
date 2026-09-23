@@ -4,8 +4,9 @@ interface Props {
   heading: string;
   intro: string;
   enquiry?: boolean;
+  alternative?: { href: string; label: string };
 }
-const { heading, intro, enquiry = true } = Astro.props;
+const { heading, intro, enquiry = true, alternative } = Astro.props;
 ---
 
 <section class="page-hero wrap">
@@ -15,6 +16,11 @@ const { heading, intro, enquiry = true } = Astro.props;
     {enquiry && (
       <a class="button" href="/contact/">
         {site.enquiry}
+      </a>
+    )}
+    {alternative && (
+      <a class="hero-alternative" href={alternative.href}>
+        {alternative.label}
       </a>
     )}
   </div>

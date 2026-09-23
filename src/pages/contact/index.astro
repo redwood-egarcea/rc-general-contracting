@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import ContactReveal from '../../components/ContactReveal.astro';
+import ContactFallback from '../../components/ContactFallback.astro';
+import ContactScripts from '../../components/ContactScripts.astro';
+import { site } from '../../lib/site';
+---
+
+<Base title={site.contact.title} description={site.contact.description}>
+  <PageHero
+    heading={site.contact.heading}
+    intro={site.contact.intro}
+    enquiry={false}
+    alternative={{ href: '#direct-heading', label: site.contact.directHeading }}
+  />
+  <div class="contact-layout wrap">
+    <ContactForm />
+    <aside class="contact-options">
+      <ContactReveal id="direct" />
+      <ContactFallback />
+    </aside>
+  </div>
+  <ContactScripts />
+</Base>

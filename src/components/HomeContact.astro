@@ -1,5 +1,7 @@
 ---
 import { site } from '../lib/site';
+import ContactReveal from './ContactReveal.astro';
+import ContactScripts from './ContactScripts.astro';
 ---
 
 <section
@@ -13,3 +15,7 @@ import { site } from '../lib/site';
     {site.home.contactLink}
   </a>
 </section>
+<div class="wrap home-direct-contact">
+  <ContactReveal id="home-direct" />
+</div>
+<ContactScripts />
