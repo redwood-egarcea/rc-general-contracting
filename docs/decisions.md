@@ -108,3 +108,15 @@ Astro uses `trailingSlash: ignore` so the required exact `/api/submit` and `/api
 Root asset settings remain as requested; Astro's generated deployment config points the asset binding to `dist/client` and the Worker entry to `dist/server/entry.mjs`. `_headers` applies to assets, so APIs set their no-store and security headers directly. A post-build pass hashes every inline metadata script into the generated CSP. Source scripts stay external. Turnstile and the configured Cloudflare Analytics origins are explicitly allowed; no broad script unsafe-inline permission is used.
 
 The approved direction and detailed contact/404 requirements settle those surfaces' purpose and behavior. Impeccable's generic extra interview/approval rounds are not repeated during the authorized build. Surface briefs record their contracts; separate required page critiques were completed. The broader finish review and audit/harden/adapt/polish passes remain part of the owner's Phase 6 gate.
+
+
+## Release preparation
+
+- The owner's “Commit and deploy” instruction approves the complete copy draft and authorizes a workers.dev release. Mandatory functional/quality gates still apply; an unconfigured contact form is not a deployable result.
+- The owner explicitly approved making the new GitHub repository public after GitHub rejected private branch protection on the current plan. Main now requires PRs and the `quality` CI job, including for administrators.
+- Production hostname: `rc-general-contracting.egarcea.workers.dev`, based on the existing account subdomain. Both Turnstile widgets allow this exact hostname only. Secrets are held locally in ignored release storage pending Worker installation; no secret values are documented here.
+- Cloudflare Web Analytics was created through the signed-in dashboard because the Wrangler OAuth token lacks RUM/Builds scopes. Local builds omit analytics so test traffic does not contaminate production data or trigger hostname CORS errors. The public beacon token is committed intentionally.
+- Cloudflare dashboard confirms Email Sending requires Workers Paid. The business sender domain is not present in this account. A provider/sender decision remains necessary; no subscription, DNS change, or sender identity is invented.
+- Astro's adapter copies `.dev.vars` into `dist/server` for preview. The secure-build script removes all copied credential files. A separate ignored preview configuration supplies synthetic fixtures outside `dist`; production secrets belong in Cloudflare's secret store.
+- Native ESM JSON import attributes let Playwright exercise the same strict server helpers under modern Node without a second validation implementation.
+- The published Impeccable npm CLI is 4.1.0 while the installed skill is 4.3.1 with engine 0.1.5. CI pins the available CLI 4.1.0; the requested detector command successfully ran and exited 0.

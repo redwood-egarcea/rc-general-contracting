@@ -1,6 +1,6 @@
 # RC General Contracting Inc website
 
-Astro 7 with strict TypeScript, plain CSS, static pages and Cloudflare Workers API routes. The owner approved the audit, URL map and **Rooms in focus** design direction. Home, services, contact and 404 pages are implemented. Copy is awaiting approval; the final quality gates and deployment have not run.
+Astro 7 with strict TypeScript, plain CSS, static pages and Cloudflare Workers API routes. The owner approved the audit, URL map and **Rooms in focus** design direction. Home, services, contact and 404 pages are implemented. Copy was approved by the owner’s “Commit and deploy” instruction. Automated local checks pass; the remaining release gates and delivery dependency are recorded in docs/quality.md.
 
 The approved host is a `workers.dev` address. No domain purchase or Pages deployment is planned. Email sending awaits the owner's provider selection and verified sender. Until then, valid submissions return a clear 503 failure and preserve the visitor's text. Contact reveal works locally with dummy verification and synthetic values. No real email has been sent.
 
@@ -35,7 +35,7 @@ npm run format:check
 npm run build
 ```
 
-`npm run test:e2e` is reserved for the Playwright suite to be added at the approved quality phase. These routine checks do not replace the complete Phase 6 gates in [docs/quality.md](docs/quality.md).
+`npm run test:e2e` runs the Playwright security and browser suite using the built Worker. First build with `PUBLIC_SITE_URL=http://localhost:8797`, `PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA`, and `PUBLIC_TURNSTILE_REVEAL_SITE_KEY=1x00000000000000000000AA`. Tests use synthetic secrets from `.dev.vars.example` in an ignored configuration outside `dist`. Set `CAPTURE_SCREENSHOTS=1` to refresh the five-width light/dark evidence. `node scripts/check-contact-secrets.mjs` scans tracked files and the entire build. These checks do not replace the open Phase 6 gates in [docs/quality.md](docs/quality.md).
 
 ## Editing content
 
@@ -98,3 +98,11 @@ No production resource has been created, and no site has been deployed.
 The reproducible crawl is `python3 scripts/audit-site.py`. A later crawl replaces exported evidence, so back up the dated archive first. Browser-rendered and conditional content supplements the crawler.
 
 See [the audit](docs/audit.md), [asset inventory](docs/assets.md), [asset provenance](docs/asset-provenance.md), [skill setup](docs/skills.md), [decisions](docs/decisions.md) and [copy review](docs/copy-review.md).
+
+## Repository and release status
+
+Source: https://github.com/redwood-egarcea/rc-general-contracting. The owner approved public visibility. `main` requires a pull request and a successful `quality` check; administrator bypass, force pushes and deletion are disabled.
+
+The intended host is `https://rc-general-contracting.egarcea.workers.dev`. Production Turnstile widgets and Cloudflare Web Analytics are configured for that hostname, but no Worker is deployed. Cloudflare Email Sending requires Workers Paid and a verified sender domain. The existing login cannot provision Email Sending on the current free plan. No sender address is guessed, no mail is sent, and no domain DNS is changed.
+
+The post-build script removes credential files copied by the adapter. Use `node scripts/preview-test.mjs` for a local preview with synthetic credentials. Keep real values in Worker secrets only. Workers Builds integration and secret mirroring are completed after delivery setup and release gates; do not connect an automatic production deployment before then.

@@ -16,7 +16,7 @@ Read the site in the local built Worker preview, or review [all proposed public 
 | Contact | Three labelled fields, input guidance, verification messages, direct contact and approved social fallback. | Existing name/email/message form intent; supplied delivery destination stored privately; existing Facebook/Instagram. | Sender/provider setup is `TODO(setup)`, not a public business claim. |
 | Contact errors and success | Replaced vague dormant source strings with specific errors and retries. Inputs stay visible on failure. Success wording requires actual delivery acceptance before it can appear. | Technical behavior required by the brief. No promised response time, quote or availability. | None. Success path implementation is blocked on provider setup. |
 | 404 | Plain missing-page explanation and useful home/services links. | The old missing-page behavior becomes a real HTTP 404; no company facts added. | None. |
-| Metadata | One consistent title/description/canonical set per page. Company schema excludes protected contact values. | Supported name, area, founder, founding year and social URLs. Meta description lengths: home 141, services 154, contact 140, 404 111. | Production hostname is pending provisioning; local builds are noindex. |
+| Metadata | One consistent title/description/canonical set per page. Company schema excludes protected contact values. | Supported name, area, founder, founding year and social URLs. Meta description lengths: home 141, services 154, contact 140, 404 111. | Production hostname is configured; local builds are noindex. |
 | Image alternatives | Literal descriptions replace inaccurate legacy descriptions, including the “company van” asset that is actually a kitchen. Rendering is explicitly labelled as such. | Inspected original images. Linked logo is decorative within its labelled company-home link; other images have descriptive alt text. | None. |
 | Legal / consent | The obsolete reCAPTCHA notice and generic cookie banner have approved replacements/removal. | New Turnstile notice is exactly owner-approved; copyright remains verbatim, including 2025 and the original company name. | None. No new privacy policy has been invented. |
 
@@ -28,10 +28,10 @@ The revised prose removes hype, vague closers, unnecessary technical detail and 
 
 ## Explicit replacements for this copy approval
 
-The owner already approved the Turnstile notice, removal of the GoDaddy-related generic cookie banner, duplicate metadata consolidation, replacement of the empty footer link, and the social fallback. This review also asks approval for the ordinary copy restructuring shown above: new section headings, grouped service text, descriptive image alternatives, and replacing the dormant generic form messages with the complete messages in the review file. The source archive remains unchanged. No business fact, service, testimonial or social destination is proposed for removal.
+The owner already approved the Turnstile notice, removal of the GoDaddy-related generic cookie banner, duplicate metadata consolidation, replacement of the empty footer link, and the social fallback. The owner’s “Commit and deploy” instruction approved the ordinary copy restructuring shown above: new section headings, grouped service text, descriptive image alternatives, and replacing the dormant generic form messages with the complete messages in the review file. The source archive remains unchanged. No business fact, service, testimonial or social destination is proposed for removal.
 
 ## Outstanding setup and validation
 
 - Select and enable the delivery provider; verify a sender. No live delivery has occurred.
 - Provision the real Turnstile widgets, hostname and Cloudflare Analytics token before production build/deploy.
-- Obtain owner copy approval before Phase 6. The full Lighthouse, Playwright, keyboard/screen-reader, security and five-width screenshot gates remain pending.
+- Copy approved by “Commit and deploy” on 2026-09-23. Phase 6 evidence is recorded in docs/quality.md; release remains gated by unresolved delivery and final checks.

@@ -1,26 +1,363 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-23T17:57:45.847176+00:00",
+  "generatedAt": "2026-09-23T20:13:35.939Z",
   "title": "Design System: RC General Contracting Inc",
   "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Blue-tinted ink",
+        "canonical": "#172d39",
+        "tonalRamp": [
+          "oklch(15.00% 0.03565 233.81)",
+          "oklch(26.43% 0.03565 233.81)",
+          "oklch(37.86% 0.03565 233.81)",
+          "oklch(49.29% 0.03565 233.81)",
+          "oklch(60.71% 0.03565 233.81)",
+          "oklch(72.14% 0.03565 233.81)",
+          "oklch(83.57% 0.03565 233.81)",
+          "oklch(95.00% 0.03565 233.81)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Cool pale ground",
+        "canonical": "#f4f6f4",
+        "tonalRamp": [
+          "oklch(15.00% 0.00338 145.55)",
+          "oklch(26.43% 0.00338 145.55)",
+          "oklch(37.86% 0.00338 145.55)",
+          "oklch(49.29% 0.00338 145.55)",
+          "oklch(60.71% 0.00338 145.55)",
+          "oklch(72.14% 0.00338 145.55)",
+          "oklch(83.57% 0.00338 145.55)",
+          "oklch(95.00% 0.00338 145.55)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "White surface",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "soft": {
+        "role": "neutral",
+        "displayName": "Soft blue surface",
+        "canonical": "#dce5e7",
+        "tonalRamp": [
+          "oklch(15.00% 0.01006 212.52)",
+          "oklch(26.43% 0.01006 212.52)",
+          "oklch(37.86% 0.01006 212.52)",
+          "oklch(49.29% 0.01006 212.52)",
+          "oklch(60.71% 0.01006 212.52)",
+          "oklch(72.14% 0.01006 212.52)",
+          "oklch(83.57% 0.01006 212.52)",
+          "oklch(95.00% 0.01006 212.52)"
+        ]
+      },
+      "action": {
+        "role": "primary",
+        "displayName": "Brick-red action",
+        "canonical": "#a43120",
+        "tonalRamp": [
+          "oklch(15.00% 0.15388 31.36)",
+          "oklch(26.43% 0.15388 31.36)",
+          "oklch(37.86% 0.15388 31.36)",
+          "oklch(49.29% 0.15388 31.36)",
+          "oklch(60.71% 0.15388 31.36)",
+          "oklch(72.14% 0.15388 31.36)",
+          "oklch(83.57% 0.15388 31.36)",
+          "oklch(95.00% 0.15388 31.36)"
+        ]
+      },
+      "on-action": {
+        "role": "neutral",
+        "displayName": "White action text",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "control-border": {
+        "role": "neutral",
+        "displayName": "Slate control border",
+        "canonical": "#687b82",
+        "tonalRamp": [
+          "oklch(15.00% 0.02481 222.08)",
+          "oklch(26.43% 0.02481 222.08)",
+          "oklch(37.86% 0.02481 222.08)",
+          "oklch(49.29% 0.02481 222.08)",
+          "oklch(60.71% 0.02481 222.08)",
+          "oklch(72.14% 0.02481 222.08)",
+          "oklch(83.57% 0.02481 222.08)",
+          "oklch(95.00% 0.02481 222.08)"
+        ]
+      },
+      "divider": {
+        "role": "neutral",
+        "displayName": "Pale blue divider",
+        "canonical": "#c2ced1",
+        "tonalRamp": [
+          "oklch(15.00% 0.01377 214.37)",
+          "oklch(26.43% 0.01377 214.37)",
+          "oklch(37.86% 0.01377 214.37)",
+          "oklch(49.29% 0.01377 214.37)",
+          "oklch(60.71% 0.01377 214.37)",
+          "oklch(72.14% 0.01377 214.37)",
+          "oklch(83.57% 0.01377 214.37)",
+          "oklch(95.00% 0.01377 214.37)"
+        ]
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "Brick-red error",
+        "canonical": "#a43120",
+        "tonalRamp": [
+          "oklch(15.00% 0.15388 31.36)",
+          "oklch(26.43% 0.15388 31.36)",
+          "oklch(37.86% 0.15388 31.36)",
+          "oklch(49.29% 0.15388 31.36)",
+          "oklch(60.71% 0.15388 31.36)",
+          "oklch(72.14% 0.15388 31.36)",
+          "oklch(83.57% 0.15388 31.36)",
+          "oklch(95.00% 0.15388 31.36)"
+        ]
+      },
+      "success": {
+        "role": "neutral",
+        "displayName": "Deep green success",
+        "canonical": "#24533f",
+        "tonalRamp": [
+          "oklch(15.00% 0.06222 163.47)",
+          "oklch(26.43% 0.06222 163.47)",
+          "oklch(37.86% 0.06222 163.47)",
+          "oklch(49.29% 0.06222 163.47)",
+          "oklch(60.71% 0.06222 163.47)",
+          "oklch(72.14% 0.06222 163.47)",
+          "oklch(83.57% 0.06222 163.47)",
+          "oklch(95.00% 0.06222 163.47)"
+        ]
+      },
+      "dark-background": {
+        "role": "neutral",
+        "displayName": "Navy ground",
+        "canonical": "#12232c",
+        "tonalRamp": [
+          "oklch(15.00% 0.02849 232.71)",
+          "oklch(26.43% 0.02849 232.71)",
+          "oklch(37.86% 0.02849 232.71)",
+          "oklch(49.29% 0.02849 232.71)",
+          "oklch(60.71% 0.02849 232.71)",
+          "oklch(72.14% 0.02849 232.71)",
+          "oklch(83.57% 0.02849 232.71)",
+          "oklch(95.00% 0.02849 232.71)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Navy surface",
+        "canonical": "#1c3541",
+        "tonalRamp": [
+          "oklch(15.00% 0.03771 230.39)",
+          "oklch(26.43% 0.03771 230.39)",
+          "oklch(37.86% 0.03771 230.39)",
+          "oklch(49.29% 0.03771 230.39)",
+          "oklch(60.71% 0.03771 230.39)",
+          "oklch(72.14% 0.03771 230.39)",
+          "oklch(83.57% 0.03771 230.39)",
+          "oklch(95.00% 0.03771 230.39)"
+        ]
+      },
+      "dark-soft": {
+        "role": "neutral",
+        "displayName": "Soft navy surface",
+        "canonical": "#244653",
+        "tonalRamp": [
+          "oklch(15.00% 0.04539 224.97)",
+          "oklch(26.43% 0.04539 224.97)",
+          "oklch(37.86% 0.04539 224.97)",
+          "oklch(49.29% 0.04539 224.97)",
+          "oklch(60.71% 0.04539 224.97)",
+          "oklch(72.14% 0.04539 224.97)",
+          "oklch(83.57% 0.04539 224.97)",
+          "oklch(95.00% 0.04539 224.97)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Pale ink",
+        "canonical": "#f4f6f4",
+        "tonalRamp": [
+          "oklch(15.00% 0.00338 145.55)",
+          "oklch(26.43% 0.00338 145.55)",
+          "oklch(37.86% 0.00338 145.55)",
+          "oklch(49.29% 0.00338 145.55)",
+          "oklch(60.71% 0.00338 145.55)",
+          "oklch(72.14% 0.00338 145.55)",
+          "oklch(83.57% 0.00338 145.55)",
+          "oklch(95.00% 0.00338 145.55)"
+        ]
+      },
+      "dark-action": {
+        "role": "primary",
+        "displayName": "Coral action",
+        "canonical": "#ff9b7d",
+        "tonalRamp": [
+          "oklch(15.00% 0.12749 37.48)",
+          "oklch(26.43% 0.12749 37.48)",
+          "oklch(37.86% 0.12749 37.48)",
+          "oklch(49.29% 0.12749 37.48)",
+          "oklch(60.71% 0.12749 37.48)",
+          "oklch(72.14% 0.12749 37.48)",
+          "oklch(83.57% 0.12749 37.48)",
+          "oklch(95.00% 0.12749 37.48)"
+        ]
+      },
+      "dark-on-action": {
+        "role": "neutral",
+        "displayName": "Navy action text",
+        "canonical": "#12232c",
+        "tonalRamp": [
+          "oklch(15.00% 0.02849 232.71)",
+          "oklch(26.43% 0.02849 232.71)",
+          "oklch(37.86% 0.02849 232.71)",
+          "oklch(49.29% 0.02849 232.71)",
+          "oklch(60.71% 0.02849 232.71)",
+          "oklch(72.14% 0.02849 232.71)",
+          "oklch(83.57% 0.02849 232.71)",
+          "oklch(95.00% 0.02849 232.71)"
+        ]
+      },
+      "dark-control-border": {
+        "role": "neutral",
+        "displayName": "Pale slate control border",
+        "canonical": "#95aab2",
+        "tonalRamp": [
+          "oklch(15.00% 0.02616 222.72)",
+          "oklch(26.43% 0.02616 222.72)",
+          "oklch(37.86% 0.02616 222.72)",
+          "oklch(49.29% 0.02616 222.72)",
+          "oklch(60.71% 0.02616 222.72)",
+          "oklch(72.14% 0.02616 222.72)",
+          "oklch(83.57% 0.02616 222.72)",
+          "oklch(95.00% 0.02616 222.72)"
+        ]
+      },
+      "dark-divider": {
+        "role": "neutral",
+        "displayName": "Slate divider",
+        "canonical": "#46616c",
+        "tonalRamp": [
+          "oklch(15.00% 0.03658 225.04)",
+          "oklch(26.43% 0.03658 225.04)",
+          "oklch(37.86% 0.03658 225.04)",
+          "oklch(49.29% 0.03658 225.04)",
+          "oklch(60.71% 0.03658 225.04)",
+          "oklch(72.14% 0.03658 225.04)",
+          "oklch(83.57% 0.03658 225.04)",
+          "oklch(95.00% 0.03658 225.04)"
+        ]
+      },
+      "dark-error": {
+        "role": "neutral",
+        "displayName": "Pale coral error",
+        "canonical": "#ffb4a2",
+        "tonalRamp": [
+          "oklch(15.00% 0.09176 34.00)",
+          "oklch(26.43% 0.09176 34.00)",
+          "oklch(37.86% 0.09176 34.00)",
+          "oklch(49.29% 0.09176 34.00)",
+          "oklch(60.71% 0.09176 34.00)",
+          "oklch(72.14% 0.09176 34.00)",
+          "oklch(83.57% 0.09176 34.00)",
+          "oklch(95.00% 0.09176 34.00)"
+        ]
+      },
+      "dark-success": {
+        "role": "neutral",
+        "displayName": "Pale green success",
+        "canonical": "#b9dfc6",
+        "tonalRamp": [
+          "oklch(15.00% 0.05263 156.32)",
+          "oklch(26.43% 0.05263 156.32)",
+          "oklch(37.86% 0.05263 156.32)",
+          "oklch(49.29% 0.05263 156.32)",
+          "oklch(60.71% 0.05263 156.32)",
+          "oklch(72.14% 0.05263 156.32)",
+          "oklch(83.57% 0.05263 156.32)",
+          "oklch(95.00% 0.05263 156.32)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Home display",
+        "purpose": "Large home H1; the recorded 1.02 line-height is implemented on mobile. See docs/design-finish.md for the existing desktop difference."
+      },
+      "interior-heading": {
+        "displayName": "Interior heading",
+        "purpose": "Shared compact H1 on services, contact, and 404; directly reconciled with the implemented heading ramp."
+      },
+      "headline": {
+        "displayName": "Section headline",
+        "purpose": "Main section H2. Existing line-height and tracking differences are recorded in docs/design-finish.md."
+      },
+      "body": {
+        "displayName": "Reading text",
+        "purpose": "Body text and inherited control text, with a 64ch reading measure."
+      },
+      "title": {
+        "displayName": "Section title",
+        "purpose": "Service titles and compact contact section headings."
+      },
+      "introduction": {
+        "displayName": "Home introduction",
+        "purpose": "Desktop home introduction; reduces at the tablet and mobile breakpoints."
+      },
+      "navigation": {
+        "displayName": "Navigation",
+        "purpose": "Desktop header links; mobile uses 1rem. The inherited line-height difference is recorded in docs/design-finish.md."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Approved compact label role; current form labels inherit body size and line-height as recorded in docs/design-finish.md."
+      }
+    },
+    "shadows": [
+      {
+        "name": "focus-contrast-ring",
+        "value": "0 0 0 2px var(--color-bg)",
+        "purpose": "Contrast ring beneath the focus outline; not decorative elevation."
+      }
+    ],
     "motion": [
       {
         "name": "ease-standard",
-        "value": "cubic-bezier(.2,0,.2,1)",
-        "purpose": "Control state transitions only; disabled with reduced motion."
+        "value": "cubic-bezier(0.2, 0, 0.2, 1)",
+        "purpose": "Implemented button state transitions; disabled with reduced motion."
       },
       {
         "name": "duration-control",
         "value": "140ms",
-        "purpose": "Colour and underline changes."
-      },
-      {
-        "name": "duration-disclosure",
-        "value": "180ms",
-        "purpose": "Optional disclosure transition."
+        "purpose": "Implemented button background and text-decoration colour transitions."
       }
     ],
-    "shadows": [],
     "breakpoints": [
       {
         "name": "columns",
@@ -32,15 +369,69 @@
       }
     ]
   },
-  "components": [],
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The shared enquiry and submit action, with underline hover and visible focus.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Send enquiry</button>",
+      "css": ".ds-button-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; border: 1px solid transparent; border-radius: var(--radius-control, 4px); padding: 12px 24px; background: var(--color-action, #a43120); color: var(--color-on-action, #fff); font: 600 1.125rem/1.6 var(--font-body, 'Source Sans 3', sans-serif); text-decoration: none; text-align: center; cursor: pointer; transition: background-color 140ms var(--ease, cubic-bezier(0.2, 0, 0.2, 1)), text-decoration-color 140ms var(--ease, cubic-bezier(0.2, 0, 0.2, 1)); } .ds-button-primary:hover { text-decoration: underline; text-underline-offset: 0.18em; } .ds-button-primary:disabled { cursor: wait; opacity: 0.7; } .ds-button-primary:focus-visible { outline: 3px solid var(--color-focus, #a43120); outline-offset: 5px; box-shadow: 0 0 0 2px var(--color-bg, #f4f6f4); } @media (prefers-reduced-motion: reduce) { .ds-button-primary { transition: none; } }"
+    },
+    {
+      "name": "Secondary reveal button",
+      "kind": "button",
+      "description": "The bordered contact-reveal control; this example shows its enabled state.",
+      "html": "<button class=\"ds-button-secondary\" type=\"button\">Show email</button>",
+      "css": ".ds-button-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; border: 1px solid transparent; border-radius: var(--radius-control, 4px); padding: 12px 24px; background: var(--color-action, #a43120); color: var(--color-on-action, #fff); font: 600 1.125rem/1.6 var(--font-body, 'Source Sans 3', sans-serif); text-decoration: none; text-align: center; cursor: pointer; transition: background-color 140ms var(--ease, cubic-bezier(0.2, 0, 0.2, 1)), text-decoration-color 140ms var(--ease, cubic-bezier(0.2, 0, 0.2, 1)); } .ds-button-secondary:hover { text-decoration: underline; text-underline-offset: 0.18em; } .ds-button-secondary:disabled { cursor: wait; opacity: 0.7; } .ds-button-secondary:focus-visible { outline: 3px solid var(--color-focus, #a43120); outline-offset: 5px; box-shadow: 0 0 0 2px var(--color-bg, #f4f6f4); } @media (prefers-reduced-motion: reduce) { .ds-button-secondary { transition: none; } } .ds-button-secondary { background: transparent; color: var(--color-ink, #172d39); border: 1px solid var(--color-control-border, #687b82); } .ds-button-secondary:hover { background: var(--color-soft, #dce5e7); }"
+    },
+    {
+      "name": "Retry action",
+      "kind": "button",
+      "description": "The underlined retry control shown when verification needs recovery.",
+      "html": "<button class=\"ds-retry\" type=\"button\">Try again</button>",
+      "css": ".ds-retry { border: 0; background: transparent; color: var(--color-ink, #172d39); font: 400 1.125rem/1.6 var(--font-body, 'Source Sans 3', sans-serif); text-decoration: underline; text-underline-offset: 0.22em; min-height: 44px; padding: 8px 0; margin-left: 24px; cursor: pointer; } .ds-retry:disabled { cursor: default; opacity: 0.65; } .ds-retry:focus-visible { outline: 3px solid var(--color-focus, #a43120); outline-offset: 5px; box-shadow: 0 0 0 2px var(--color-bg, #f4f6f4); } @media (max-width: 767px) { .ds-retry { margin: 12px 0 0; } }"
+    },
+    {
+      "name": "Labelled input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Persistent label, visible themed border, and associated error text. Labels inherit the implemented body size.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-name\">Name</label><input id=\"ds-name\" name=\"name\" autocomplete=\"name\" maxlength=\"120\" required aria-describedby=\"ds-name-error\"><p class=\"ds-field-error\" id=\"ds-name-error\"></p></div>",
+      "css": ".ds-field { margin-bottom: 24px; color: var(--color-ink, #172d39); font: 400 1.125rem/1.6 var(--font-body, 'Source Sans 3', sans-serif); } .ds-field label { display: block; font-weight: 600; margin-bottom: 8px; } .ds-field input { display: block; width: 100%; border: 1px solid var(--color-control-border, #687b82); border-radius: var(--radius-control, 4px); background: var(--color-surface, #fff); color: var(--color-ink, #172d39); caret-color: var(--color-action, #a43120); padding: 12px 16px; min-height: 48px; font: inherit; } .ds-field input[aria-invalid='true'] { border-color: var(--color-error, #a43120); } .ds-field-error { color: var(--color-error, #a43120); font-size: 1rem; margin-top: 8px; } .ds-field-error:empty { display: none; } .ds-field input:focus-visible { outline: 3px solid var(--color-focus, #a43120); outline-offset: 5px; box-shadow: 0 0 0 2px var(--color-bg, #f4f6f4); }"
+    },
+    {
+      "name": "Header navigation",
+      "kind": "nav",
+      "description": "Visible wrapping destinations, with underlined current and hover states. Mobile retains all three links.",
+      "html": "<nav class=\"ds-navigation\" aria-label=\"Main navigation\"><a href=\"/services/\" aria-current=\"page\">Services</a><a href=\"/#about\">About</a><a href=\"/contact/\">Contact</a></nav>",
+      "css": ".ds-navigation { display: flex; gap: 40px; flex-wrap: wrap; color: var(--color-ink, #172d39); font: 400 1.125rem/1.6 var(--font-body, 'Source Sans 3', sans-serif); } .ds-navigation a { min-inline-size: 44px; display: inline-flex; align-items: center; min-height: 44px; color: inherit; text-decoration: none; text-decoration-thickness: 1px; text-underline-offset: 0.22em; font-size: 1.25rem; } .ds-navigation a:hover { text-decoration: underline; text-decoration-thickness: 2px; } .ds-navigation a[aria-current] { text-decoration: underline; } .ds-navigation a:focus-visible { outline: 3px solid var(--color-focus, #a43120); outline-offset: 5px; box-shadow: 0 0 0 2px var(--color-bg, #f4f6f4); } @media (max-width: 1023px) { .ds-navigation { gap: 24px; } } @media (max-width: 767px) { .ds-navigation { gap: 28px; width: 100%; justify-content: space-between; } .ds-navigation a { font-size: 1rem; } }"
+    },
+    {
+      "name": "Interior heading",
+      "kind": "custom",
+      "description": "The implemented compact H1 used on services, contact, and the 404 page.",
+      "html": "<h1 class=\"ds-interior-heading\">Construction services</h1>",
+      "css": ".ds-interior-heading { margin: 0; color: var(--color-ink, #172d39); font-family: var(--font-display, 'Barlow Condensed', sans-serif); font-size: clamp(3rem, 5.5vw, 5rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; text-wrap: balance; } @media (max-width: 767px) { .ds-interior-heading { font-size: 3rem; } }"
+    }
+  ],
   "narrative": {
     "northStar": "Rooms in focus",
-    "status": "Owner-selected pre-build specification; implementation review pending.",
-    "rules": [
-      "Use original source imagery.",
-      "Protect contact values.",
-      "Keep full source content coverage.",
-      "Respect the separate copy and deployment gates."
+    "status": "Visual scope reviewed; scoped heading documentation reconciled. Release acceptance and Impeccable tool gates incomplete. No deployment.",
+    "overview": "**Rooms in focus** was selected by the owner through the Phase 2 comparison page on 23 September 2026. The home composition is a broad completed-kitchen photograph below a compact introduction, with a visible enquiry action. The supporting system uses open text layouts, real company imagery, and clear navigation.\n\nThis system was approved before implementation as the user requested. The source logo and photographs take precedence over generated details in the mockup. The full proposal, mobile treatment, and services-page composition remain in `docs/design-directions.md`, direction A. Copy was subsequently approved with the owner's release instruction. The scoped documentation reconciliation is recorded in `docs/design-finish.md`: the visual scope is reviewed, while release acceptance and Impeccable tool gates remain incomplete. No deployment has occurred.",
+    "keyCharacteristics": [],
+    "rules": [],
+    "dos": [
+      "Do preserve all existing facts, testimonials, service scope, and the `#contact` anchor.",
+      "Do use original company assets and identify the rendering accurately.",
+      "Do keep the headline, purpose, and enquiry action visible early at 360px.",
+      "Do keep motion restrained and check real keyboard, screen-reader, and browser behaviour."
+    ],
+    "donts": [
+      "Don't invent testimonials, project relationships, locations, guarantees, or timelines.",
+      "Don't ship a generated comp, generated room detail, or rasterized interface as page content.",
+      "Don't use Inter/system display faces, pure black/gray UI colours, purple-to-blue gradients, card nesting, gray text on coloured backgrounds, bounce, or elastic easing.",
+      "Don't claim quality gates have passed from design tokens or mockups alone."
     ]
   }
 }

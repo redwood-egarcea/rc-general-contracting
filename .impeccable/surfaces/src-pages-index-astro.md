@@ -7,7 +7,7 @@ related_targets: []
 
 # Home
 
-Target: `src/pages/index.astro`. Mode: Persuade. Help Kincardine residential and commercial clients identify the scope, inspect real work, and enquire. Preserve all source content and `#contact`. Copy review remains pending.
+Target: `src/pages/index.astro`. Mode: Persuade. Help Kincardine residential and commercial clients identify the scope, inspect real work, and enquire. Preserve all source content and `#contact`. Copy was approved by the owner’s release instruction; final release gates remain open.
 
 ## Direction contract
 
