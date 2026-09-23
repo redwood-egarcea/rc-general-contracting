@@ -1,0 +1,21 @@
+---
+import { site } from '../lib/site';
+interface Props {
+  heading: string;
+  intro: string;
+  enquiry?: boolean;
+}
+const { heading, intro, enquiry = true } = Astro.props;
+---
+
+<section class="page-hero wrap">
+  <h1>{heading}</h1>
+  <div>
+    <p>{intro}</p>
+    {enquiry && (
+      <a class="button" href="/contact/">
+        {site.enquiry}
+      </a>
+    )}
+  </div>
+</section>

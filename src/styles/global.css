@@ -172,6 +172,56 @@ ul {
 .reading {
   max-width: 64ch;
 }
+.page-hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 64px;
+  align-items: end;
+  padding-block: 48px;
+}
+.page-hero h1 {
+  font-size: clamp(3rem, 5.5vw, 5rem);
+}
+.page-hero p {
+  margin-bottom: 24px;
+}
+.service-banner {
+  max-width: 960px;
+}
+.full-photo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-left: 16px;
+}
+.service-banner img {
+  width: 100%;
+  height: clamp(240px, 25vw, 360px);
+  object-fit: cover;
+}
+.services-detail {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 64px;
+  margin-top: 32px;
+}
+.services-detail nav {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+}
+.services-detail nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.services-detail figure {
+  margin-top: 32px;
+}
+.services-detail .button {
+  margin-top: 24px;
+}
 .reading h2 {
   margin-bottom: 24px;
 }
@@ -455,6 +505,24 @@ ul {
   }
 }
 @media (max-width: 767px) {
+  .service-banner img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .page-hero,
+  .services-detail {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .page-hero {
+    padding-block: 16px 32px;
+  }
+  .page-hero h1 {
+    font-size: 3rem;
+  }
+  .page-hero .button {
+    width: 100%;
+  }
   :root {
     --gutter: 24px;
   }

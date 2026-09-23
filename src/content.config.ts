@@ -9,6 +9,7 @@ const services = defineCollection({
     title: z.string(),
     description: z.string(),
     items: z.array(z.string()),
+    groupedItems: z.array(z.string()).optional(),
   }),
 });
 const testimonials = defineCollection({

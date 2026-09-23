@@ -27,6 +27,12 @@
     "order": 3,
     "title": "Construction and finishing",
     "description": "Our work includes the structure, surfaces and details that bring a space together.",
+    "groupedItems": [
+      "Framing and drywall",
+      "Flooring, tiling and waterproofing",
+      "Painting, trim and cabinetry",
+      "Decks and fences"
+    ],
     "items": [
       "Framing",
       "Drywall",
