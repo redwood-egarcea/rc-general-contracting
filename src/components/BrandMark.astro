@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/rc-monogram.png';
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<Image
+  src={logo}
+  alt=""
+  width={128}
+  height={90}
+  fit="cover"
+  position="center"
+  widths={[128, 256]}
+  sizes={compact ? '64px' : '88px'}
+  format="webp"
+  loading={compact ? 'lazy' : 'eager'}
+  class:list={['brand-mark', { 'brand-mark-compact': compact }]}
+/>

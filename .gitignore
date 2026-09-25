@@ -54,3 +54,6 @@ __pycache__/
 .impeccable/live/deferred-svelte-component-accepts.json
 .impeccable/live/*.png
 # impeccable-ignore-end
+
+# Logo concept downloads; the approved master and prompt are tracked in src/docs.
+output/branding/

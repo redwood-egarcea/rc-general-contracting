@@ -1,10 +1,12 @@
 ---
 import { site } from '../lib/site';
+import BrandMark from './BrandMark.astro';
 ---
 
 <footer class="site-footer wrap">
   <div class="footer-top">
     <a class="footer-brand" href="/">
+      <BrandMark compact />
       {site.name}
     </a>
     <nav aria-label={site.footerLabel}>
