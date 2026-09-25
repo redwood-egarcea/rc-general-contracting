@@ -113,3 +113,19 @@ Build, Astro check, lint, formatting, secret-absence scan, deployment dry run an
 Live URL statuses, path redirects, apex HTTP/www canonical redirects with query preservation, canonical metadata, robots, sitemap, 404 and CSP passed. The www DNS result had reached authoritative/public resolvers and the normal browser; a local Node negative cache required the authoritative address for its separate HTTP check. Certificate validation was retained. Production APIs rejected missing/dummy tokens, unsupported content types and honeypot data; no-store headers were present. Contact values were absent from fetched HTML/JS/CSS and all build files. The new account's analytics beacon loaded once in the real browser.
 
 Both email and phone reveal succeeded through the new production Turnstile widgets and moved focus to their links. No browser warnings/errors were recorded during that contact check. Email sending, its success-path/end-to-end tests, an actual screen-reader walkthrough and Workers Builds integration remain incomplete. The account/domain deployment does not mark those remaining features as finished.
+
+## Approved logo and review update, 2026-09-25
+
+The new RC mark is used in header/footer, favicon, touch icon and organization metadata. Direct contact options now precede the unavailable form. See `docs/ui-ux-seo-review.md` for independent UI/UX and technical findings, SEO follow-ups and scope limits.
+
+Astro check (32 files), lint, formatting, production build, contact-value scan and Wrangler dry run passed. All 27 local Playwright checks passed, including screenshot capture. The screenshot matrix now reflects the approved mark at all five requested widths and both themes. Additional independent browser checks found no horizontal overflow at 320px on any route. Impeccable detector exited 0 with zero findings.
+
+Lighthouse 13.5.0 mobile defaults, production build served locally before release:
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+| --- | ---: | ---: | ---: | ---: |
+| Home | 100 | 100 | 100 | 100 |
+| Services | 100 | 100 | 100 | 100 |
+| Contact | 100 | 100 | 100 | 100 |
+
+These are lab measurements. Delivery and the full screen-reader gate remain open; the original and earlier-preview domains still need SEO migration treatment. No full-brief completion or ranking improvement is claimed.

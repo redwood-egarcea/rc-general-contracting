@@ -134,3 +134,11 @@ The authorized release was deployed successfully from protected main after CI pa
 The owner later requested deployment to the business Cloudflare account and `rcgcinc.ca`, superseding the earlier workers.dev-only hosting decision. The new production configuration pins the account ID and uses apex/www Worker Custom Domains. A zone redirect makes HTTPS apex canonical, preserving paths and query strings. A dedicated local OAuth profile uses only the website's required permissions; the broad default grant was rejected and replaced with a smaller grant.
 
 New Turnstile widgets and secrets are owned by the target account. Cloudflare Web Analytics uses automatic zone installation, verified in the live browser; leaving the source beacon token empty prevents duplicate tracking. Existing mail DNS and the old preview deployment are preserved. Local test configuration discards production account/routes so request-origin validation remains meaningful on localhost. Details and live evidence are in `docs/domain-migration.md`.
+
+## Approved logo and review fixes, 2026-09-25
+
+The owner requested a minimalist RC logo, then explicitly asked to apply it and review UI/UX and SEO. The accepted generated mark replaces the old artwork in the shared branding and icons; the old source remains archived. Astro performs normal delivery-size/format optimization, and the original approved PNG is preserved. A white CSS inverse maintains dark-theme contrast without a boxed logo tile.
+
+Working direct-contact options now precede the unavailable form in both DOM and visual order. Metadata describes those working paths rather than promising form delivery. The full review, independent assessments, measured checks and external-account follow-ups are recorded in `docs/ui-ux-seo-review.md`. No old-domain DNS or earlier-account deployment was changed during this patch.
+
+The owner's specific requirements for original photography, intact testimonials, legal text and the approved hero take precedence over conflicting generic Taste suggestions. The new logo is an explicitly authorized exception to retaining the original logo. No new business facts were added.

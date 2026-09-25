@@ -113,7 +113,7 @@ This system was approved before implementation as the user requested. The source
 
 The light theme uses cool pale surfaces, blue-tinted ink, and a brick-red action colour. Dark mode uses the `dark-` tokens above and the same semantic roles. `action` also supplies the focus colour in each theme. Keep all body text at the full `ink` colour, including captions on coloured surfaces.
 
-The selected direction's normal-text, action, border, and focus pairs pass the planned thresholds in `docs/design-contrast.json`. Never infer that an arbitrary pairing or a photo overlay passes. Semantic success/error messages include text and an indicator, not colour alone. Keep photography unfiltered and the original logo on white.
+The selected direction's normal-text, action, border, and focus pairs pass the planned thresholds in `docs/design-contrast.json`. Never infer that an arbitrary pairing or a photo overlay passes. Semantic success/error messages include text and an indicator, not colour alone. Keep photography unfiltered. The owner approved the minimalist RC roofline mark on 25 September 2026: deep blue on light surfaces and a white inverse in dark mode, without a boxed background. The header and footer keep the readable business name beside it; square browser icons use a pale background for contrast.
 
 ## Typography
 
@@ -128,6 +128,8 @@ The `interior-heading` role is the implemented H1 ramp shared by services, conta
 Use a 1440px maximum container, 48px desktop gutters, 32px tablet gutters, and 24px mobile gutters. The home introduction holds a large heading at left and its description/action at right, both above the wide photograph. The photograph carries no overlay text. The services page uses an open, linked service index with visible descriptions.
 
 Below 768px, layouts become a single reading sequence. Keep enquiry actions before hero imagery. The header may wrap brand and visible links; it stays in document flow and grows with content. Major section gaps are 96–128px on desktop and 56px on mobile. Related text blocks use 24px gaps.
+
+The shared desktop header is 80px high with the new mark, while the mobile header retains a second row of visible navigation. Until form delivery is configured, direct contact and social options precede the form in both document and visual order. The form retains its unavailable-delivery notice, also associated with its accessible description.
 
 Use the original image at an appropriate responsive size without artificial detail generation. A wide desktop crop may become 3:2 on mobile. Preserve the complete source image elsewhere when a crop omits material.
 

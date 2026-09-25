@@ -39,3 +39,15 @@ The owner already approved the Turnstile notice, removal of the GoDaddy-related 
 ## Authorized deployment with email sending pending
 
 After being told that email delivery and final acceptance remained incomplete, the owner explicitly instructed “Please deploy it.” The contact form now says “This form cannot send messages yet.” before the fields and links to the existing direct contact options. Humanizer file-mode review of these two added strings in `src/content/site.json` retained their plain factual wording. This operational notice adds no business claim and removes no archived content.
+
+## Logo and SEO review, 2026-09-25
+
+Humanizer file-mode review of the changed strings in `src/content/site.json` retained their plain wording. The changes add no business facts or service areas. All descriptions remain under 155 characters.
+
+| Page | Change and reason | Unresolved facts |
+| --- | --- | --- |
+| Home | Title names the general-contractor service and confirmed Kincardine location. The bottom contact link now says “Contact us”, which covers the currently working contact options. | None introduced. |
+| Services | Title includes the confirmed Kincardine location. | None introduced. |
+| Contact | Description points to the protected email/phone links and removes the invitation to send through the unavailable form. | Email delivery still needs provider setup; no promise of delivery added. |
+
+Page headings, service descriptions, testimonials, image alternatives, error messages, and legal/copyright wording remain as previously approved.
