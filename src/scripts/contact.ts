@@ -249,6 +249,7 @@ function initializeForm(form: HTMLFormElement) {
 }
 
 function initializeReveal(root: HTMLElement) {
+  const intro = root.querySelector<HTMLElement>('[data-reveal-intro]')!;
   const retry = root.querySelector<HTMLButtonElement>('[data-reveal-retry]')!;
   const details = root.querySelector<HTMLElement>('[data-contact-details]')!;
   const container = root.querySelector<HTMLElement>('[data-reveal-widget]')!;
@@ -317,6 +318,8 @@ function initializeReveal(root: HTMLElement) {
         phone.href = `tel:${result.phone.replace(/[^+\d]/g, '')}`;
         details.replaceChildren(email, phone);
         details.hidden = false;
+        intro.hidden = true;
+        status.classList.add('visually-hidden');
         release();
         announce(status, messages.revealed);
         if (returnFocus && document.activeElement === status) email.focus();

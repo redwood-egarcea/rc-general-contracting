@@ -55,3 +55,5 @@ Page headings, service descriptions, testimonials, image alternatives, error mes
 ## Automatic contact reveal, 2026-09-25
 
 The owner requested verification on initial load and a retry button only after failure. Humanizer file-mode review covered the changed direct-contact introduction and retry label in `src/content/site.json`, plus the success and connection-error strings in `src/content/messages.json`. The final copy describes the automatic check, names the retry action, and confirms that both details are available. The separate “Show email” and “Show phone” labels are replaced as requested. No business facts, legal text or source archive changed; no unresolved `TODO(fact):` was introduced.
+
+The owner subsequently requested that the introduction disappear after the details load and that the success sentence no longer be shown. Successful verification now leaves only the email and phone links visible beneath the heading. The existing success announcement remains available to screen readers; verification errors and retry guidance remain visible when needed. This changes display behavior without rewriting any copy or business facts.

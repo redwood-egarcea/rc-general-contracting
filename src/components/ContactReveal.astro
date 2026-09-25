@@ -12,7 +12,7 @@ const { id } = Astro.props;
   aria-labelledby={`${id}-heading`}
 >
   <h2 id={`${id}-heading`}>{site.contact.directHeading}</h2>
-  <p>{site.contact.revealIntro}</p>
+  <p data-reveal-intro>{site.contact.revealIntro}</p>
   <div class="reveal-content">
     <div class="reveal-controls" data-contact-details hidden></div>
     <button class="button secondary" type="button" data-reveal-retry hidden>
