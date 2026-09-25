@@ -46,6 +46,8 @@ The owner confirmed **RC General Contracting Inc** as the preferred public name 
 
 The existing roof, tree, and RC logo is available along with kitchen imagery, a design rendering, and construction imagery. The owner confirmed that the current photos depict company work and may be reused. Specific project names, locations, clients, and dates remain unknown. Describe the sketch as a rendering, not a completed space. Unused alternatives in the media archive need separate selection and provenance checks before publication.
 
+On 25 September 2026, the owner approved replacing the website logo with the generated minimalist RC roofline mark. The approved master is `src/assets/rc-monogram.png`; its prompt and provenance are in `docs/logo-provenance.md`. The previous logo remains archived. This approval changes the logo only; company photography remains unchanged.
+
 The user requires sentence-case headlines, plain prose, no invented claims, and Humanizer review of all shipped copy. Legal and privacy text stays verbatim unless the user approves a change. The owner selected “Rooms in focus” in Phase 2. `DESIGN.md` records the approved visual system; copy still needs its separate review.
 
 ## Evidence on Hand

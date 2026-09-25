@@ -5,13 +5,22 @@ interface Props {
   description: string;
   canonical: string;
   ogImage: string;
+  logoImage: string;
   noindex?: boolean;
 }
-const { title, description, canonical, ogImage, noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  logoImage,
+  noindex = false,
+} = Astro.props;
 const imageUrl = new URL(ogImage, siteUrl).href;
 const structured = {
   '@context': 'https://schema.org',
   '@type': 'GeneralContractor',
+  '@id': new URL('/#organization', siteUrl).href,
   name: site.name,
   url: siteUrl,
   areaServed: { '@type': 'City', name: site.area },
@@ -19,6 +28,7 @@ const structured = {
   foundingDate: site.foundingDate,
   sameAs: site.socials.map((s) => s.href),
   image: imageUrl,
+  logo: new URL(logoImage, siteUrl).href,
 };
 ---
 

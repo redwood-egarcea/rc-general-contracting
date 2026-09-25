@@ -1,20 +1,11 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.jpg';
+import BrandMark from './BrandMark.astro';
 import { site } from '../lib/site';
 ---
 
 <header class="site-header wrap">
   <a class="brand" href="/" aria-label={`${site.name}, home`}>
-    <Image
-      src={logo}
-      alt=""
-      width={96}
-      height={96}
-      format="webp"
-      loading="eager"
-      class="brand-logo"
-    />
+    <BrandMark />
     <span>{site.name}</span>
   </a>
   <nav aria-label={site.navigationLabel}>
