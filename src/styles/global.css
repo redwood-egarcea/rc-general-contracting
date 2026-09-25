@@ -362,11 +362,17 @@ button:disabled {
   cursor: default;
   opacity: 0.65;
 }
-.reveal-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+.reveal-content {
+  min-height: 168px;
   margin-top: 24px;
+}
+.reveal-controls {
+  display: grid;
+  justify-items: start;
+}
+[data-reveal-widget][data-passive='true'] {
+  min-height: 0;
+  margin-top: 0;
 }
 .revealed-contact {
   display: flex;

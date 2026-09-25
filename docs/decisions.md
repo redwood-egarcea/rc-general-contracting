@@ -142,3 +142,11 @@ The owner requested a minimalist RC logo, then explicitly asked to apply it and 
 Working direct-contact options now precede the unavailable form in both DOM and visual order. Metadata describes those working paths rather than promising form delivery. The full review, independent assessments, measured checks and external-account follow-ups are recorded in `docs/ui-ux-seo-review.md`. No old-domain DNS or earlier-account deployment was changed during this patch.
 
 The owner's specific requirements for original photography, intact testimonials, legal text and the approved hero take precedence over conflicting generic Taste suggestions. The new logo is an explicitly authorized exception to retaining the original logo. No new business facts were added.
+
+## Automatic contact reveal, 2026-09-25
+
+The owner requested an automatic check on page load, followed by both contact details on success and a manual Turnstile button only after failure. The existing Non-Interactive widget uses `execution: execute` with `appearance: interaction-only` for the first attempt. A retry creates a new widget with `appearance: always`. Existing production widget settings and credentials are retained. Cloudflare documents these appearance modes for both Managed and Non-Interactive widgets: https://developers.cloudflare.com/turnstile/get-started/client-side-rendering/widget-configurations/.
+
+One successful server-side verification returns both contacts. The old optional `kind` request remains supported for cached clients. No token is reused to fetch a second detail; duplicate and stale callbacks are ignored. Existing hostname/action checks, request guards, no-store responses and production rate limits remain intact. A 30-second widget deadline exposes the manual retry if no callback arrives; script and API requests also have bounded timeouts.
+
+Automatic completion leaves focus alone. A keyboard-triggered retry moves focus through its status to the email link only if the visitor has not moved elsewhere. The result area reserves space to reduce layout movement. The local browser test configuration raises only its synthetic API traffic limit to accommodate the viewport matrix; production stays at 20 requests per minute per IP, and limiter enforcement remains covered by server tests.

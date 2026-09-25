@@ -79,6 +79,8 @@ Rotate widget keys through Cloudflare's supported rotation flow, update Worker/B
 
 The API limits are 20 requests/minute/IP overall and 3 submissions/minute/IP, per Cloudflare location. All responses use `no-store`. Form bodies are capped at 32 KiB; reveal bodies at 4 KiB. Production verification checks success, exact hostname and action. The narrow local-only dummy-key exception is documented in [docs/decisions.md](docs/decisions.md).
 
+Direct contact details are checked automatically when the home or contact page loads. The Non-Interactive reveal widget stays out of view during this attempt. One verified request returns both email and phone; neither value is embedded in the page or bundle. A failed or stalled attempt shows “Verify with Cloudflare Turnstile” for a fresh, visible retry. Automatic completion never moves keyboard focus. Visitors without JavaScript retain the social contact links.
+
 ## Remaining release work
 
 1. Complete delivery-provider setup, implement sending, and verify a real enquiry end to end.

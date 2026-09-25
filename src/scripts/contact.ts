@@ -6,6 +6,7 @@ interface WidgetOptions {
   theme: 'auto';
   size: 'flexible' | 'compact';
   execution: 'render' | 'execute';
+  appearance?: 'always' | 'interaction-only';
   retry: 'never';
   'refresh-expired': 'manual';
   'response-field': false;
@@ -13,6 +14,7 @@ interface WidgetOptions {
   'error-callback': () => void;
   'expired-callback': () => void;
   'timeout-callback': () => void;
+  'unsupported-callback'?: () => void;
 }
 interface Turnstile {
   render: (
@@ -72,8 +74,8 @@ interface ApiResult {
   ok: boolean;
   message?: string;
   fields?: Partial<Record<'name' | 'email' | 'message', string>>;
-  kind?: 'email' | 'phone';
-  value?: string;
+  email?: string;
+  phone?: string;
 }
 async function post(
   path: string,
@@ -247,97 +249,112 @@ function initializeForm(form: HTMLFormElement) {
 }
 
 function initializeReveal(root: HTMLElement) {
-  const buttons = Array.from(
-    root.querySelectorAll<HTMLButtonElement>('[data-reveal]'),
-  );
+  const retry = root.querySelector<HTMLButtonElement>('[data-reveal-retry]')!;
+  const details = root.querySelector<HTMLElement>('[data-contact-details]')!;
   const container = root.querySelector<HTMLElement>('[data-reveal-widget]')!;
   const status = root.querySelector<HTMLElement>('[data-status]')!;
   let pending = false;
-  let api: Turnstile | undefined;
-  let widget: string | undefined;
-  const release = () => {
-    pending = false;
-    buttons.forEach((button) => {
-      button.disabled = false;
-    });
-    root.removeAttribute('aria-busy');
-    if (widget && api) {
-      api.remove(widget);
-      widget = undefined;
-    }
-    container.hidden = true;
-  };
-  buttons.forEach((button) => {
-    button.disabled = false;
-    button.addEventListener('click', () => {
-      if (pending) return;
-      const kind = button.dataset.reveal;
-      if (kind !== 'email' && kind !== 'phone') return;
-      pending = true;
-      buttons.forEach((control) => {
-        control.disabled = true;
-      });
-      root.setAttribute('aria-busy', 'true');
-      announce(status, messages.verifying);
-      container.hidden = false;
-      const fail = (message: string) => {
+  const start = async (passive: boolean) => {
+    if (pending || !details.hidden) return;
+    pending = true;
+    let phase: 'checking' | 'sending' | 'done' = 'checking';
+    let api: Turnstile | undefined;
+    let widget: string | undefined;
+    const returnFocus = !passive && document.activeElement === retry;
+    retry.hidden = true;
+    root.setAttribute('aria-busy', 'true');
+    container.dataset.passive = String(passive);
+    container.hidden = false;
+    announce(status, messages.verifying, false, returnFocus);
+
+    const release = () => {
+      phase = 'done';
+      pending = false;
+      clearTimeout(timeout);
+      root.removeAttribute('aria-busy');
+      if (widget && api) api.remove(widget);
+      container.hidden = true;
+    };
+    const fail = (message: string) => {
+      if (phase === 'done') return;
+      release();
+      retry.hidden = false;
+      announce(status, message, true);
+      if (returnFocus && document.activeElement === status) retry.focus();
+    };
+    const widgetFailed = (message: string) => {
+      if (phase === 'checking') fail(message);
+    };
+    // A stalled widget must not leave visitors waiting indefinitely.
+    const timeout = window.setTimeout(
+      () => widgetFailed(messages.tokenUnavailable),
+      30_000,
+    );
+    const reveal = async (token: string) => {
+      // One token is consumed once to return both details. Ignore late callbacks.
+      if (phase !== 'checking') return;
+      phase = 'sending';
+      clearTimeout(timeout);
+      try {
+        const result = await post('/api/contact', { token });
+        if (
+          !result.ok ||
+          typeof result.email !== 'string' ||
+          !result.email ||
+          typeof result.phone !== 'string' ||
+          !result.phone
+        ) {
+          fail(result.message || messages.unavailable);
+          return;
+        }
+        const email = document.createElement('a');
+        email.className = 'revealed-contact';
+        email.textContent = result.email;
+        email.href = `mailto:${encodeURIComponent(result.email).replace('%40', '@')}`;
+        const phone = document.createElement('a');
+        phone.className = 'revealed-contact';
+        phone.textContent = result.phone;
+        phone.href = `tel:${result.phone.replace(/[^+\d]/g, '')}`;
+        details.replaceChildren(email, phone);
+        details.hidden = false;
         release();
-        announce(status, message, true);
-      };
-      const reveal = async (token: string) => {
-        try {
-          const result = await post('/api/contact', { token, kind });
-          if (
-            !result.ok ||
-            result.kind !== kind ||
-            typeof result.value !== 'string'
-          ) {
-            fail(result.message || messages.unavailable);
-            return;
-          }
-          const link = document.createElement('a');
-          link.className = 'revealed-contact';
-          link.textContent = result.value;
-          link.href =
-            kind === 'email'
-              ? `mailto:${encodeURIComponent(result.value).replace('%40', '@')}`
-              : `tel:${result.value.replace(/[^+\d]/g, '')}`;
-          button.replaceWith(link);
-          release();
-          announce(status, messages.revealed);
-          link.focus();
-        } catch {
-          fail(messages.revealNetwork);
-        }
-      };
-      const execute = async () => {
-        try {
-          api = await loadTurnstile();
-          widget = api.render(container, {
-            sitekey: container.dataset.sitekey || '',
-            action: 'reveal',
-            theme: 'auto',
-            size: container.clientWidth < 300 ? 'compact' : 'flexible',
-            execution: 'execute',
-            retry: 'never',
-            'refresh-expired': 'manual',
-            'response-field': false,
-            callback: (token) => {
-              void reveal(token);
-            },
-            'error-callback': () => fail(messages.tokenInvalid),
-            'expired-callback': () => fail(messages.tokenExpired),
-            'timeout-callback': () => fail(messages.tokenExpired),
-          });
-          if (!widget) throw new Error('No widget');
-          api.execute(widget);
-        } catch {
-          fail(messages.tokenUnavailable);
-        }
-      };
-      void execute();
-    });
+        announce(status, messages.revealed);
+        if (returnFocus && document.activeElement === status) email.focus();
+      } catch {
+        fail(messages.revealNetwork);
+      }
+    };
+    try {
+      api = await loadTurnstile();
+      if (phase !== 'checking') return;
+      widget = api.render(container, {
+        sitekey: container.dataset.sitekey || '',
+        action: 'reveal',
+        theme: 'auto',
+        size: container.clientWidth < 300 ? 'compact' : 'flexible',
+        execution: 'execute',
+        appearance: passive ? 'interaction-only' : 'always',
+        retry: 'never',
+        'refresh-expired': 'manual',
+        'response-field': false,
+        callback: (token) => {
+          void reveal(token);
+        },
+        'error-callback': () => widgetFailed(messages.tokenInvalid),
+        'expired-callback': () => widgetFailed(messages.tokenExpired),
+        'timeout-callback': () => widgetFailed(messages.tokenExpired),
+        'unsupported-callback': () => widgetFailed(messages.tokenUnavailable),
+      });
+      if (!widget) throw new Error('No widget');
+      api.execute(widget);
+    } catch {
+      widgetFailed(messages.tokenUnavailable);
+    }
+  };
+  retry.addEventListener('click', () => {
+    void start(false);
   });
+  void start(true);
 }
 
 export function initContactFlows() {
