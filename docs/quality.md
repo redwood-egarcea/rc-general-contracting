@@ -144,3 +144,12 @@ Validation before release:
 - Impeccable detector: exit 0, no findings. The scoped visual/Taste check retained the existing typography and colour system, stacked contact links, 48px link targets, visible focus and plain error recovery. Humanizer copy review is recorded in `docs/copy-review.md`.
 
 Local evidence: `docs/evidence/passive-contact/` (ignored). This change does not configure email delivery or close the outstanding manual screen-reader review.
+
+Lighthouse 13.5.0 mobile defaults, local built Worker with dummy pass credentials and automatic verification active:
+
+| Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| Home | 100 | 100 | 100 | 69 | 1.2 s | 0 |
+| Contact | 95 | 100 | 100 | 69 | 2.7 s | 0 |
+
+The local SEO score reflects the deliberately non-indexable test build (`noindex` and disallowed robots). Production was rebuilt afterward with the canonical HTTPS host and production keys; its indexing metadata is preserved. These local figures do not substitute for a live SEO check.
