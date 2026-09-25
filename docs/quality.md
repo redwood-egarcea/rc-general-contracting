@@ -153,3 +153,9 @@ Lighthouse 13.5.0 mobile defaults, local built Worker with dummy pass credential
 | Contact | 95 | 100 | 100 | 69 | 2.7 s | 0 |
 
 The local SEO score reflects the deliberately non-indexable test build (`noindex` and disallowed robots). Production was rebuilt afterward with the canonical HTTPS host and production keys; its indexing metadata is preserved. These local figures do not substitute for a live SEO check.
+
+## Email Routing form integration, 2026-09-25
+
+Local validation: Astro check covered 33 files with no errors, warnings or hints. Lint, formatting and build passed. Playwright passed 41 checks; one optional screenshot-only case was skipped. New cases cover the fixed recipient, safe Reply-To, HTML escaping, waiting for delivery acceptance, provider failure, invalid configuration, successful API delivery through Cloudflare's local simulator, and successful inline browser confirmation with cleared fields. Existing token, honeypot, rate-limit, request validation, contact reveal, keyboard and layout checks still pass.
+
+The existing `rcgcinc.ca` Email Routing domain is ready. The owner approved the narrower additional Routing permission and a verification email was sent to the requested destination. At preparation time that destination remains pending verification. No real enquiry has been delivered yet; the simulator does not establish inbox delivery. Release requires destination verification and a real form submission. Local evidence is kept in ignored `docs/evidence/email-routing/`.

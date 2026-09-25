@@ -2,7 +2,7 @@
 
 Astro 7 with strict TypeScript, plain CSS, static pages and Cloudflare Workers API routes. The owner approved the audit, URL map and **Rooms in focus** design direction. Home, services, contact and 404 pages are implemented. Copy was approved by the owner’s “Commit and deploy” instruction. The site is live at [rcgcinc.ca](https://rcgcinc.ca). Deployment evidence and remaining work are recorded in [docs/quality.md](docs/quality.md).
 
-The production site runs in the business Cloudflare account on Worker Custom Domains. HTTP and `www.rcgcinc.ca` redirect to `https://rcgcinc.ca`, preserving paths and query strings. The earlier workers.dev preview remains in its original account. Email sending awaits the owner's provider selection and verified sender. The contact page displays this limitation and links to direct contact options. Until delivery is configured, valid submissions return a clear 503 failure and preserve the visitor's text. Both email and phone reveal were verified on the new live domain with production Turnstile. No real email has been sent.
+The production site runs in the business Cloudflare account on Worker Custom Domains. HTTP and `www.rcgcinc.ca` redirect to `https://rcgcinc.ca`, preserving paths and query strings. The earlier workers.dev preview remains in its original account. The contact form uses Cloudflare's native email binding to send to the owner's verified Email Routing destination. It confirms success only after Cloudflare accepts the message; failures preserve the visitor's text. Destination verification and a real form-delivery check are required before releasing this integration.
 
 ## Local setup
 
@@ -37,6 +37,8 @@ npm run build
 
 `npm run test:e2e` runs the Playwright security and browser suite using the built Worker. First build with `PUBLIC_SITE_URL=http://localhost:8797`, `PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA`, and `PUBLIC_TURNSTILE_REVEAL_SITE_KEY=1x00000000000000000000AA`. Tests use synthetic secrets from `.dev.vars.example` in an ignored configuration outside `dist`. Set `CAPTURE_SCREENSHOTS=1` to refresh the five-width light/dark evidence. `node scripts/check-contact-secrets.mjs` scans tracked files and the entire build. These checks do not replace the open Phase 6 gates in [docs/quality.md](docs/quality.md).
 
+The test preview forces the email binding to local simulation. No real emails are sent during automated tests. Wrangler logs synthetic messages and stores their text/HTML locally for inspection. Do not enable a remote email binding in tests.
+
 ## Editing content
 
 - `src/content/site.json`: shared labels, page copy, metadata, image descriptions and supported company facts.
@@ -62,8 +64,9 @@ Required secret names currently declared in Wrangler:
 - `TURNSTILE_REVEAL_SECRET_KEY`: Non-Interactive reveal widget.
 - `CONTACT_EMAIL` and `CONTACT_PHONE`: original public contact details.
 - `FORM_DESTINATION`: owner-supplied recipient, kept separate from the public email.
+- `EMAIL_FROM`: notification sender on the site's Email Routing domain.
 
-The five required secrets are installed in the live Worker. `EMAIL_FROM` and any provider API key will be added after a provider and verified sender are selected. Mirror the appropriate secrets in Workers Builds production/preview settings when that integration is connected. Never place them in public build variables, content, source, logs or GitHub workflow text.
+All six values belong in Worker secrets. The native `EMAIL` binding needs no API key. Mirror the appropriate secrets in Workers Builds production/preview settings when that integration is connected. Never place them in public build variables, content, source, logs or GitHub workflow text.
 
 To set or rotate a configured secret, use the interactive prompt:
 
@@ -73,9 +76,12 @@ npx wrangler secret put TURNSTILE_REVEAL_SECRET_KEY
 npx wrangler secret put CONTACT_EMAIL
 npx wrangler secret put CONTACT_PHONE
 npx wrangler secret put FORM_DESTINATION
+npx wrangler secret put EMAIL_FROM
 ```
 
-Rotate widget keys through Cloudflare's supported rotation flow, update Worker/Builds secrets together, then verify both actions. If a public site key changes, rebuild the static site as well. Rotate the selected delivery credential at its provider and update all active environments before revoking the previous credential. Keep staging secrets separate when previews need different recipients.
+Rotate widget keys through Cloudflare's supported rotation flow, update Worker/Builds secrets together, then verify both actions. If a public site key changes, rebuild the static site as well. When changing the form recipient, add and verify the new destination in the business account's Email Routing settings before updating `FORM_DESTINATION`. The sender domain must also be onboarded to Email Routing. Keep staging secrets separate when previews need different recipients.
+
+Sending to verified Email Routing destinations is free on all plans; sending to arbitrary recipients is a separate paid feature. The form always uses the fixed secret destination and puts the visitor's address in Reply-To. It sends escaped HTML and a plain-text alternative. Production logs never include email contents or provider error messages. See [Cloudflare pricing](https://developers.cloudflare.com/email-service/platform/pricing/) and [send bindings](https://developers.cloudflare.com/email-service/configuration/send-bindings/).
 
 The API limits are 20 requests/minute/IP overall and 3 submissions/minute/IP, per Cloudflare location. All responses use `no-store`. Form bodies are capped at 32 KiB; reveal bodies at 4 KiB. Production verification checks success, exact hostname and action. The narrow local-only dummy-key exception is documented in [docs/decisions.md](docs/decisions.md).
 
@@ -83,8 +89,8 @@ Direct contact details are checked automatically when the home or contact page l
 
 ## Remaining release work
 
-1. Complete delivery-provider setup, implement sending, and verify a real enquiry end to end.
-2. Complete the remaining Phase 6 checks documented in [docs/quality.md](docs/quality.md), including the actual screen-reader walkthrough and successful email-submission coverage.
+1. Verify the selected Email Routing destination and test a real enquiry end to end.
+2. Complete the remaining Phase 6 checks documented in [docs/quality.md](docs/quality.md), including the actual screen-reader walkthrough.
 3. Connect Workers Builds and configure production/preview settings and secrets. The current deployment was published with Wrangler after GitHub CI passed.
 4. Owner reviews the site on the new custom domain. The requested account/domain migration is complete; remaining features are tracked separately.
 
@@ -102,7 +108,7 @@ See [the audit](docs/audit.md), [asset inventory](docs/assets.md), [asset proven
 
 Source: https://github.com/redwood-egarcea/rc-general-contracting. The owner approved public visibility. `main` requires a pull request and a successful `quality` check; administrator bypass, force pushes and deletion are disabled.
 
-The live host is `https://rcgcinc.ca`. Production Turnstile widgets, Worker secrets and Cloudflare Web Analytics belong to the business account. The Worker Custom Domains and canonical redirect are configured; the existing email DNS records were preserved. Cloudflare's dashboard reports that Email Sending requires a Workers Paid plan. A sending provider and verified sender still need to be configured.
+The live host is `https://rcgcinc.ca`. Production Turnstile widgets, Worker secrets and Cloudflare Web Analytics belong to the business account. The Worker Custom Domains and canonical redirect are configured; existing email DNS records are preserved. The email integration uses the free verified-destination path through the existing Email Routing domain.
 
 The post-build script removes credential files copied by the adapter. Use `node scripts/preview-test.mjs` for a local preview with synthetic credentials. Keep real values in Worker secrets only. Workers Builds integration and secret mirroring remain pending; GitHub CI currently checks changes but does not publish them to Cloudflare.
 

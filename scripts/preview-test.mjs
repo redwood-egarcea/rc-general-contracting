@@ -8,6 +8,8 @@ config.main = resolve('dist/server', config.main);
 config.assets.directory = resolve('dist/server', config.assets.directory);
 config.vars.APP_ENV = 'development';
 config.vars.ALLOWED_HOSTNAMES = 'localhost,127.0.0.1';
+// Browser tests must use the local email simulator, never a real mailbox.
+for (const binding of config.send_email ?? []) binding.remote = false;
 // The viewport matrix reloads pages far faster than a visitor. Enforcement is
 // tested separately with the production guard and explicit limiter responses.
 for (const limiter of config.ratelimits ?? []) {

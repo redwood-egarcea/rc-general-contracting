@@ -330,6 +330,56 @@ test('API rejects missing tokens, honeypots and unexpected content types', async
   expect(type.status()).toBe(415);
 });
 
+test('a verified submission is accepted by the local email binding', async ({
+  request,
+}) => {
+  const response = await request.post('/api/submit', {
+    headers: { Origin: 'http://localhost:8797' },
+    data: {
+      name: 'Local test visitor',
+      email: 'visitor@example.test',
+      message: 'Synthetic local enquiry. No real email should be sent.',
+      website: '',
+      token: 'XXXX.DUMMY.TOKEN.XXXX',
+    },
+  });
+  expect(response.status()).toBe(200);
+  expect(response.headers()['cache-control']).toBe('no-store');
+  expect(await response.json()).toEqual({
+    ok: true,
+    message:
+      'Your enquiry has been sent. Thank you for telling us about your project.',
+  });
+});
+
+test('successful form delivery confirms inline and clears the enquiry', async ({
+  page,
+}) => {
+  await page.goto('/contact/');
+  await page
+    .getByLabel('Your name', { exact: true })
+    .fill('Local test visitor');
+  await page
+    .getByLabel('Your email address', { exact: true })
+    .fill('visitor@example.test');
+  await page
+    .getByLabel('About your project', { exact: true })
+    .fill('Synthetic form delivery test. No real email should be sent.');
+  await page.locator('[data-form-widget]').scrollIntoViewIfNeeded();
+  await expect(page.locator('[data-contact-form] [role=status]')).toContainText(
+    'Verification complete',
+    { timeout: 30_000 },
+  );
+  await page.getByRole('button', { name: 'Send enquiry', exact: true }).click();
+  await expect(page.locator('[data-contact-form] [role=status]')).toContainText(
+    'Your enquiry has been sent',
+  );
+  await expect(page.getByLabel('Your name', { exact: true })).toHaveValue('');
+  await expect(
+    page.getByLabel('About your project', { exact: true }),
+  ).toHaveValue('');
+});
+
 test('keyboard navigation reaches the skip link and form labels are exposed', async ({
   page,
 }) => {

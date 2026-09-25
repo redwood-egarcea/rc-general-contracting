@@ -5,10 +5,6 @@ import messages from '../content/messages.json';
 
 <section aria-labelledby="form-heading">
   <h2 id="form-heading">{site.contact.formHeading}</h2>
-  <p id="delivery-notice" class="form-hint">
-    {site.contact.deliveryNotice}{' '}
-    <a href="#direct-heading">{site.contact.deliveryAlternative}</a>.
-  </p>
   <p id="required-hint" class="form-hint">
     {site.contact.requiredHint}
   </p>
@@ -16,7 +12,7 @@ import messages from '../content/messages.json';
     data-contact-form
     action="/api/submit"
     method="post"
-    aria-describedby="delivery-notice required-hint"
+    aria-describedby="required-hint"
   >
     <fieldset data-form-fields disabled>
       <div class="field">
