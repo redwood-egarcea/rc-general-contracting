@@ -1,8 +1,8 @@
 # RC General Contracting Inc website
 
-Astro 7 with strict TypeScript, plain CSS, static pages and Cloudflare Workers API routes. The owner approved the audit, URL map and **Rooms in focus** design direction. Home, services, contact and 404 pages are implemented. Copy was approved by the owner’s “Commit and deploy” instruction. The site is live at [rc-general-contracting.egarcea.workers.dev](https://rc-general-contracting.egarcea.workers.dev). Deployment evidence and remaining work are recorded in [docs/quality.md](docs/quality.md).
+Astro 7 with strict TypeScript, plain CSS, static pages and Cloudflare Workers API routes. The owner approved the audit, URL map and **Rooms in focus** design direction. Home, services, contact and 404 pages are implemented. Copy was approved by the owner’s “Commit and deploy” instruction. The site is live at [rcgcinc.ca](https://rcgcinc.ca). Deployment evidence and remaining work are recorded in [docs/quality.md](docs/quality.md).
 
-The approved host is a `workers.dev` address. No domain purchase or Pages deployment is planned. Email sending awaits the owner's provider selection and verified sender. The contact page displays this limitation and links to direct contact options. Until delivery is configured, valid submissions return a clear 503 failure and preserve the visitor's text. Both email and phone reveal were verified on the live site with production Turnstile. No real email has been sent.
+The production site runs in the business Cloudflare account on Worker Custom Domains. HTTP and `www.rcgcinc.ca` redirect to `https://rcgcinc.ca`, preserving paths and query strings. The earlier workers.dev preview remains in its original account. Email sending awaits the owner's provider selection and verified sender. The contact page displays this limitation and links to direct contact options. Until delivery is configured, valid submissions return a clear 503 failure and preserve the visitor's text. Both email and phone reveal were verified on the new live domain with production Turnstile. No real email has been sent.
 
 ## Local setup
 
@@ -54,7 +54,7 @@ Write an Impeccable surface brief within the approved system. Create reusable co
 
 ## Configuration and secrets
 
-Root `wrangler.jsonc` holds public keys, public hostname, analytics token, hostname allowlist, asset routing and rate-limit bindings. Astro reads only explicitly allowed `PUBLIC_*` settings. Non-local builds reject absent or dummy Turnstile site keys. Static `_redirects` and robots rules are generated at build time; the build adds CSP hashes for its inline metadata scripts. The Cloudflare adapter emits its deployment configuration under `dist/server/`, pointing to `dist/client/` assets. Use Wrangler from the repository root so it follows this generated configuration.
+Root `wrangler.jsonc` pins the business account, custom domains, public Turnstile keys, canonical hostname, hostname allowlist, asset routing and rate-limit bindings. Cloudflare Web Analytics uses automatic snippet installation for this zone; `PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN` is deliberately empty to avoid injecting a second beacon. Astro reads only explicitly allowed `PUBLIC_*` settings. Non-local builds reject absent or dummy Turnstile site keys. Static `_redirects` and robots rules are generated at build time; the build adds CSP hashes for its inline metadata scripts. The Cloudflare adapter emits its deployment configuration under `dist/server/`, pointing to `dist/client/` assets. Use Wrangler from the repository root so it follows this generated configuration.
 
 Required secret names currently declared in Wrangler:
 
@@ -84,7 +84,7 @@ The API limits are 20 requests/minute/IP overall and 3 submissions/minute/IP, pe
 1. Complete delivery-provider setup, implement sending, and verify a real enquiry end to end.
 2. Complete the remaining Phase 6 checks documented in [docs/quality.md](docs/quality.md), including the actual screen-reader walkthrough and successful email-submission coverage.
 3. Connect Workers Builds and configure production/preview settings and secrets. The current deployment was published with Wrangler after GitHub CI passed.
-4. Owner reviews the hosted site. A later custom-domain cutover would require a separate explicit instruction.
+4. Owner reviews the site on the new custom domain. The requested account/domain migration is complete; remaining features are tracked separately.
 
 The owner explicitly requested deployment after the delivery and screen-reader limitations were disclosed. That release authorization does not mark the complete original brief as finished.
 
@@ -100,6 +100,16 @@ See [the audit](docs/audit.md), [asset inventory](docs/assets.md), [asset proven
 
 Source: https://github.com/redwood-egarcea/rc-general-contracting. The owner approved public visibility. `main` requires a pull request and a successful `quality` check; administrator bypass, force pushes and deletion are disabled.
 
-The live host is `https://rc-general-contracting.egarcea.workers.dev`. Production Turnstile widgets, Worker secrets and Cloudflare Web Analytics are configured for that hostname. Cloudflare Email Sending setup remains unavailable on the current account plan and a verified sender domain is still needed. No sender address is guessed, no mail is sent, and no domain DNS is changed.
+The live host is `https://rcgcinc.ca`. Production Turnstile widgets, Worker secrets and Cloudflare Web Analytics belong to the business account. The Worker Custom Domains and canonical redirect are configured; the existing email DNS records were preserved. Cloudflare's dashboard reports that Email Sending requires a Workers Paid plan. A sending provider and verified sender still need to be configured.
 
 The post-build script removes credential files copied by the adapter. Use `node scripts/preview-test.mjs` for a local preview with synthetic credentials. Keep real values in Worker secrets only. Workers Builds integration and secret mirroring remain pending; GitHub CI currently checks changes but does not publish them to Cloudflare.
+
+For production updates, use the `rcgcinc` Wrangler profile and run from the repository root after the PR and required checks pass:
+
+```sh
+npm run build
+node scripts/check-contact-secrets.mjs
+npx wrangler deploy --profile rcgcinc
+```
+
+The profile is local to this workstation. On another machine, authorize that account with a new profile before deploying; credentials are not in Git. See [the domain migration record](docs/domain-migration.md) for the target account, redirect rule, analytics mode and live checks.
