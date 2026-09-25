@@ -10,14 +10,14 @@
     "not_found_handling": "404-page",
     "run_worker_first": ["/api/*"],
   },
-  "workers_dev": true,
+  "workers_dev": false,
   "preview_urls": true,
   "vars": {
-    "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAFBdKrk5TNnPisl_",
-    "PUBLIC_TURNSTILE_REVEAL_SITE_KEY": "0x4AAAAAAFBdLze8UKWemjLj",
-    "PUBLIC_SITE_URL": "https://rc-general-contracting.egarcea.workers.dev",
-    "PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN": "f7e13a85f18240d3973c255e3edcc04d",
-    "ALLOWED_HOSTNAMES": "rc-general-contracting.egarcea.workers.dev",
+    "PUBLIC_TURNSTILE_SITE_KEY": "0x4AAAAAAFDX12xO2TaB_Hju",
+    "PUBLIC_TURNSTILE_REVEAL_SITE_KEY": "0x4AAAAAAFDX2Mapjzr8dkH9",
+    "PUBLIC_SITE_URL": "https://rcgcinc.ca",
+    "PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN": "",
+    "ALLOWED_HOSTNAMES": "rcgcinc.ca",
     "APP_ENV": "production",
   },
   "secrets": {
@@ -44,4 +44,15 @@
   "observability": {
     "enabled": true,
   },
+  "account_id": "45b0c3cae64272b13031b86ed701e2f7",
+  "routes": [
+    {
+      "pattern": "rcgcinc.ca",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "www.rcgcinc.ca",
+      "custom_domain": true,
+    },
+  ],
 }

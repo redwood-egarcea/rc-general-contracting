@@ -8,6 +8,10 @@ config.main = resolve('dist/server', config.main);
 config.assets.directory = resolve('dist/server', config.assets.directory);
 config.vars.APP_ENV = 'development';
 config.vars.ALLOWED_HOSTNAMES = 'localhost,127.0.0.1';
+// Production domains otherwise change Wrangler's simulated request hostname.
+delete config.account_id;
+delete config.routes;
+delete config.route;
 delete config.configPath;
 delete config.userConfigPath;
 await mkdir('.wrangler/test', { recursive: true });
