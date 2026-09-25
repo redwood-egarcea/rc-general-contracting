@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 import { mkdir, readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import urlMap from '../docs/url-map.json' with { type: 'json' };
@@ -9,6 +9,194 @@ const pages = [
   { path: '/contact/', name: 'contact', status: 200 },
   { path: '/missing-page/', name: '404', status: 404 },
 ];
+
+// Deterministic widget lifecycle coverage supplements the real dummy-key checks.
+async function stubRevealWidget(page: Page, firstOutcome = 'pass') {
+  await page.route(
+    'https://challenges.cloudflare.com/turnstile/v0/api.js*',
+    (route) =>
+      route.fulfill({
+        contentType: 'application/javascript',
+        body: `
+        const widgets = new Map();
+        let nextId = 0;
+        let revealAttempt = 0;
+        window.turnstile = {
+          render(container, options) {
+            const id = String(++nextId);
+            widgets.set(id, options);
+            container.dataset.appearance = options.appearance || 'always';
+            return id;
+          },
+          execute(id) {
+            const options = widgets.get(id);
+            const attempt = ++revealAttempt;
+            const outcome = attempt === 1 ? ${JSON.stringify(firstOutcome)} : 'pass';
+            if (outcome === 'stalled') return;
+            setTimeout(() => {
+              if (outcome === 'pass') {
+                options.callback('test-token-' + attempt);
+                options.callback('test-token-' + attempt);
+                options['expired-callback']();
+              } else {
+                options[outcome + '-callback']();
+                // A late callback from a failed widget must never reveal details.
+                options.callback('stale-token');
+              }
+            }, 30);
+          },
+          remove(id) { widgets.delete(id); },
+          reset() {}
+        };
+      `,
+      }),
+  );
+}
+
+const syntheticDetails = {
+  ok: true,
+  email: 'contact@example.test',
+  phone: '+1 202 555 0100',
+};
+
+test('initial verification reveals both details without a click or focus change', async ({
+  page,
+}) => {
+  // This uses Cloudflare's real pass widget and the server's siteverify path.
+  let requests = 0;
+  page.on('request', (request) => {
+    if (new URL(request.url()).pathname === '/api/contact') requests++;
+  });
+  await page.goto('/contact/');
+  const skip = page.getByRole('link', { name: 'Skip to content' });
+  await skip.focus();
+  const section = page.locator('[data-contact-reveal]');
+  await expect(section.locator('[data-reveal-retry]')).toBeHidden();
+  await expect(
+    section.getByRole('link', { name: syntheticDetails.email }),
+  ).toHaveAttribute('href', 'mailto:contact@example.test', { timeout: 30_000 });
+  await expect(
+    section.getByRole('link', { name: syntheticDetails.phone }),
+  ).toHaveAttribute('href', 'tel:+12025550100');
+  await expect(section.locator('[data-reveal-retry]')).toBeHidden();
+  await expect(section.locator('[data-reveal-widget]')).toBeHidden();
+  await expect(skip).toBeFocused();
+  expect(requests).toBe(1);
+});
+
+for (const outcome of [
+  'error',
+  'expired',
+  'timeout',
+  'unsupported',
+  'stalled',
+]) {
+  test(`passive ${outcome} offers a keyboard retry and consumes one fresh token`, async ({
+    page,
+  }) => {
+    await stubRevealWidget(page, outcome);
+    const tokens: string[] = [];
+    await page.route('**/api/contact', (route) => {
+      tokens.push(route.request().postDataJSON().token);
+      return route.fulfill({ json: syntheticDetails });
+    });
+    if (outcome === 'stalled') await page.clock.install();
+    await page.goto('/contact/');
+    const section = page.locator('[data-contact-reveal]');
+    const retry = section.getByRole('button', {
+      name: 'Verify with Cloudflare Turnstile',
+    });
+    if (outcome === 'stalled') {
+      await expect(section.locator('[data-reveal-widget]')).toHaveAttribute(
+        'data-appearance',
+        'interaction-only',
+      );
+      await page.clock.fastForward(31_000);
+    }
+    await expect(retry).toBeVisible();
+    await expect(section.locator('[data-contact-details]')).toBeHidden();
+    expect(tokens).toEqual([]);
+    await retry.focus();
+    await retry.press('Enter');
+    const email = section.getByRole('link', { name: syntheticDetails.email });
+    await expect(email).toBeVisible();
+    await expect(
+      section.getByRole('link', { name: syntheticDetails.phone }),
+    ).toBeVisible();
+    await expect(retry).toBeHidden();
+    await expect(email).toBeFocused();
+    await expect(section.locator('[data-reveal-widget]')).toHaveAttribute(
+      'data-appearance',
+      'always',
+    );
+    expect(tokens).toEqual(['test-token-2']);
+  });
+}
+
+test('server rejection exposes no contacts and retry uses a new token', async ({
+  page,
+}) => {
+  await stubRevealWidget(page);
+  const tokens: string[] = [];
+  await page.route('**/api/contact', (route) => {
+    tokens.push(route.request().postDataJSON().token);
+    return route.fulfill(
+      tokens.length === 1
+        ? {
+            status: 400,
+            json: {
+              ok: false,
+              message:
+                'Verification expired or was already used. Please verify again and retry.',
+            },
+          }
+        : { json: syntheticDetails },
+    );
+  });
+  await page.goto('/contact/');
+  const section = page.locator('[data-contact-reveal]');
+  await expect(section.locator('[data-status]')).toContainText(
+    'Verification expired',
+  );
+  await expect(section.locator('[data-contact-details]')).toBeHidden();
+  await section
+    .getByRole('button', { name: 'Verify with Cloudflare Turnstile' })
+    .click();
+  await expect(
+    section.getByRole('link', { name: syntheticDetails.email }),
+  ).toBeVisible();
+  expect(tokens).toEqual(['test-token-1', 'test-token-2']);
+});
+
+test('a blocked widget script offers retry without exposing contact details', async ({
+  page,
+}) => {
+  await page.route(
+    'https://challenges.cloudflare.com/turnstile/v0/api.js*',
+    (route) => route.abort(),
+  );
+  await page.goto('/');
+  const section = page.locator('[data-contact-reveal]');
+  await expect(section.locator('[data-reveal-retry]')).toBeVisible();
+  await expect(section.locator('[data-status]')).toContainText(
+    'Verification could not connect',
+  );
+  await expect(section.locator('[data-contact-details]')).toBeHidden();
+});
+
+test('a contact API network failure preserves the manual retry', async ({
+  page,
+}) => {
+  await stubRevealWidget(page);
+  await page.route('**/api/contact', (route) => route.abort());
+  await page.goto('/');
+  const section = page.locator('[data-contact-reveal]');
+  await expect(section.locator('[data-reveal-retry]')).toBeVisible();
+  await expect(section.locator('[data-status]')).toContainText(
+    'We could not load our contact details',
+  );
+  await expect(section.locator('[data-contact-details]')).toBeHidden();
+});
 
 test('every URL resolves with its expected status', async ({ request }) => {
   for (const entry of urlMap) {
@@ -101,6 +289,18 @@ test('contact reveal verifies a dummy token and returns one synthetic detail wit
       kind === 'email' ? '+1 202 555 0100' : 'contact@example.test',
     );
   }
+});
+
+test('one verified request returns both synthetic contacts with no-store', async ({
+  request,
+}) => {
+  const response = await request.post('/api/contact', {
+    headers: { Origin: 'http://localhost:8797' },
+    data: { token: 'XXXX.DUMMY.TOKEN.XXXX' },
+  });
+  expect(response.status()).toBe(200);
+  expect(response.headers()['cache-control']).toBe('no-store');
+  expect(await response.json()).toEqual(syntheticDetails);
 });
 
 test('API rejects missing tokens, honeypots and unexpected content types', async ({

@@ -8,6 +8,11 @@ config.main = resolve('dist/server', config.main);
 config.assets.directory = resolve('dist/server', config.assets.directory);
 config.vars.APP_ENV = 'development';
 config.vars.ALLOWED_HOSTNAMES = 'localhost,127.0.0.1';
+// The viewport matrix reloads pages far faster than a visitor. Enforcement is
+// tested separately with the production guard and explicit limiter responses.
+for (const limiter of config.ratelimits ?? []) {
+  if (limiter.name === 'API_RATE_LIMITER') limiter.simple.limit = 1000;
+}
 // Production domains otherwise change Wrangler's simulated request hostname.
 delete config.account_id;
 delete config.routes;

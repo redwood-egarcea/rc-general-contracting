@@ -51,3 +51,7 @@ Humanizer file-mode review of the changed strings in `src/content/site.json` ret
 | Contact | Description points to the protected email/phone links and removes the invitation to send through the unavailable form. | Email delivery still needs provider setup; no promise of delivery added. |
 
 Page headings, service descriptions, testimonials, image alternatives, error messages, and legal/copyright wording remain as previously approved.
+
+## Automatic contact reveal, 2026-09-25
+
+The owner requested verification on initial load and a retry button only after failure. Humanizer file-mode review covered the changed direct-contact introduction and retry label in `src/content/site.json`, plus the success and connection-error strings in `src/content/messages.json`. The final copy describes the automatic check, names the retry action, and confirms that both details are available. The separate “Show email” and “Show phone” labels are replaced as requested. No business facts, legal text or source archive changed; no unresolved `TODO(fact):` was introduced.

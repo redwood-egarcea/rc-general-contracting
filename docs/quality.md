@@ -131,3 +131,16 @@ Lighthouse 13.5.0 mobile defaults, production build served locally before releas
 These are lab measurements. Delivery and the full screen-reader gate remain open; the original and earlier-preview domains still need SEO migration treatment. No full-brief completion or ranking improvement is claimed.
 
 Live logo release: PR #5 passed required CI (run 36144104473) and deployed from `4ed694b4e916ca99f8aac46730640ec47ecaf7fb`, Worker version `89dc051b-e0fb-4c4a-b554-7de318ab1e71`. URL/security checks and the published logo/metadata assets passed. Live mobile Lighthouse: home 99/100/100/100, services 100/100/100/100, contact 99/100/100/100. The contact run required one retry after a headless-browser protocol failure; only the completed report is counted. A final 623px browser check identified inherited right alignment in the mobile hero action; a scoped full-width rule addresses it without changing desktop composition.
+
+## Automatic contact reveal, 2026-09-25
+
+The home and contact pages now begin a passive check on load. One verified API request returns both direct-contact links. Failure, expiry, unsupported browsers, blocked scripts, stalled widgets and network errors expose a manual retry; a fresh widget is created for every retry. Automatic completion does not move focus.
+
+Validation before release:
+
+- Astro check: 32 files, zero errors, warnings or hints. Lint, formatting, production build, contact-value scan and Wrangler dry run passed.
+- Playwright: 36 passed; one optional screenshot-only case skipped. The real Cloudflare dummy pass widget revealed both contacts automatically through the server. Deterministic cases covered all failure paths above, keyboard retries, duplicate/stale callbacks, one token per request, and server rejection. Existing form, request guard, token validation, rate-limit, no-JavaScript and URL checks passed.
+- Layout matrix: home, services, contact and 404 in both themes at 360, 768, 1024, 1440 and 1920px; no overflow or console errors. The mobile fallback was also inspected in the in-app browser, whose verification request failed and correctly exposed the retry control.
+- Impeccable detector: exit 0, no findings. The scoped visual/Taste check retained the existing typography and colour system, stacked contact links, 48px link targets, visible focus and plain error recovery. Humanizer copy review is recorded in `docs/copy-review.md`.
+
+Local evidence: `docs/evidence/passive-contact/` (ignored). This change does not configure email delivery or close the outstanding manual screen-reader review.

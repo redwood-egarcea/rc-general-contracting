@@ -20,9 +20,9 @@
   "sending": "Sending your enquiry…",
   "verifying": "Verifying…",
   "verified": "Verification complete. You can send your enquiry.",
-  "revealed": "Your requested contact detail is ready.",
+  "revealed": "Our email and phone number are ready to use.",
   "network": "We could not connect. Check your connection and try again. Your text is still here.",
-  "revealNetwork": "We could not connect. Check your connection, then select Show email or Show phone again.",
+  "revealNetwork": "We could not load our contact details. Check your connection, then try verification again.",
   "loading": "Loading verification…",
   "retry": "Retry verification",
   "ready": "Verification is ready. Complete it before sending your enquiry."
