@@ -74,7 +74,7 @@ The owner's preservation requirements override Taste's generic advice to shorten
 
 Initial local checks passed: Astro check (32 files, no errors/warnings/hints), lint, formatting, build, contact-value scan and all 27 Playwright checks. Screenshots were refreshed for all four routes in light/dark themes at 360, 768, 1024, 1440 and 1920px under `docs/screenshots/new/`. They show no horizontal overflow, missing image alternatives, broken images or undersized navigation/button targets.
 
-Final detector, production build, CI, Lighthouse and deployment evidence will be recorded below after completion. A successful automated accessibility score does not establish full WCAG conformance. Field Core Web Vitals, Search Console indexing, a real screen-reader review and actual email delivery remain outside the verified results.
+Detector, production build, CI, Lighthouse and live-check evidence is recorded below. A successful automated accessibility score does not establish full WCAG conformance. Field Core Web Vitals, Search Console indexing, a real screen-reader review and actual email delivery remain outside the verified results.
 
 Questions skipped: the logo application and review fixes were already authorized. The open items above need account access or delivery setup; no speculative business details were requested merely to complete this review.
 
@@ -99,3 +99,23 @@ Lighthouse 13.5.0 mobile defaults against the production build served locally:
 | Contact | 100 | 100 | 100 | 100 |
 
 These are lab measurements before publication, not field Core Web Vitals. Cloudflare's automatic analytics injection is present on the deployed host rather than the local preview. The contact report notes that back/forward cache restoration is prevented; it did not reduce these category scores. Production credentials were never exposed by the checks. Both temporary preview processes were stopped.
+
+### Live release verification
+
+PR #5 passed required [GitHub CI](https://github.com/redwood-egarcea/rc-general-contracting/actions/runs/36144104473) and deployed from main `4ed694b4e916ca99f8aac46730640ec47ecaf7fb`. Initial logo release Worker version: `89dc051b-e0fb-4c4a-b554-7de318ab1e71`.
+
+The live URL map, real 404, security headers, API rejection/no-store checks, robots/sitemap and canonical redirects passed. Logo metadata and PNG dimensions were verified from the published assets: 512px business logo, 96px favicon and 180px touch icon. All three updated titles/descriptions and the form's associated delivery notice are present.
+
+Lighthouse 13.5.0 mobile defaults on rcgcinc.ca:
+
+| Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| Home | 99 | 100 | 100 | 100 | 1.8 s | 0 |
+| Services | 100 | 100 | 100 | 100 | 1.7 s | 0 |
+| Contact | 99 | 100 | 100 | 100 | 1.8 s | 0.001 |
+
+The first contact measurement lost its headless browser session; a fresh retry completed and produced the figures above. No failed run was counted as a pass. These lab scores do not measure real-user INP or search ranking.
+
+The live browser exposed one intermediate-width layout issue at 623px: the homepage action block retained desktop right alignment after its parent became a single column. A mobile-only full-width rule corrects that inherited sizing. The original five-width screenshot matrix did not expose the issue; the focused follow-up explicitly checks 623px as well as 360px. The desktop layout and content are unchanged.
+
+The independent reviewer scored this single fix resolved: at 623px the content container, action block and button are each 575px wide; at 360px each is 312px. Both use a 24px left edge with no horizontal overflow. The temporary viewport was reset and preview stopped. Evidence is local in `docs/evidence/logo-review/hero-width-*`.

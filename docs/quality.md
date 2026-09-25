@@ -129,3 +129,5 @@ Lighthouse 13.5.0 mobile defaults, production build served locally before releas
 | Contact | 100 | 100 | 100 | 100 |
 
 These are lab measurements. Delivery and the full screen-reader gate remain open; the original and earlier-preview domains still need SEO migration treatment. No full-brief completion or ranking improvement is claimed.
+
+Live logo release: PR #5 passed required CI (run 36144104473) and deployed from `4ed694b4e916ca99f8aac46730640ec47ecaf7fb`, Worker version `89dc051b-e0fb-4c4a-b554-7de318ab1e71`. URL/security checks and the published logo/metadata assets passed. Live mobile Lighthouse: home 99/100/100/100, services 100/100/100/100, contact 99/100/100/100. The contact run required one retry after a headless-browser protocol failure; only the completed report is counted. A final 623px browser check identified inherited right alignment in the mobile hero action; a scoped full-width rule addresses it without changing desktop composition.

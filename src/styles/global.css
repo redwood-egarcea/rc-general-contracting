@@ -753,6 +753,7 @@ button:disabled {
   .hero-action {
     margin-top: 24px;
     max-width: none;
+    width: 100%;
   }
   .hero-action p {
     font-size: 1.125rem;
