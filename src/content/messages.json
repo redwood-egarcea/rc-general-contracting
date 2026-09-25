@@ -25,5 +25,11 @@
   "revealNetwork": "We could not load our contact details. Check your connection, then try verification again.",
   "loading": "Loading verification…",
   "retry": "Retry verification",
-  "ready": "Verification is ready. Complete it before sending your enquiry."
+  "ready": "Verification is ready. Complete it before sending your enquiry.",
+  "notification": {
+    "subject": "New website enquiry",
+    "name": "Name",
+    "email": "Email",
+    "message": "About the project"
+  }
 }

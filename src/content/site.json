@@ -76,9 +76,7 @@
     "notice": "This form uses Cloudflare Turnstile to help prevent spam. JavaScript is required.",
     "fallbackHeading": "Another way to get in touch",
     "fallback": "You can also contact us on Facebook or Instagram.",
-    "noscript": "The protected form and contact details need JavaScript. Use the social links below to get in touch without it.",
-    "deliveryNotice": "This form cannot send messages yet.",
-    "deliveryAlternative": "Use our direct contact options"
+    "noscript": "The protected form and contact details need JavaScript. Use the social links below to get in touch without it."
   },
   "notFound": {
     "title": "Page not found | RC General Contracting Inc",

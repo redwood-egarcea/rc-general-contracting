@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { guardRequest, readJson, errorResponse } from '../src/lib/http';
 import { verifyTurnstile } from '../src/lib/turnstile';
 import { validateSubmission } from '../src/lib/submission';
+import { deliverSubmission } from '../src/lib/email';
 
 const host = 'contractor.example';
 const request = (
@@ -43,6 +44,108 @@ const status = async (task: () => Promise<unknown>) => {
     return errorResponse(error).status;
   }
 };
+
+test('email notifications use the configured inbox and escape visitor content', async () => {
+  let sent: unknown;
+  const settings = {
+    EMAIL: {
+      send: async (message: unknown) => {
+        sent = message;
+        return { messageId: 'local-notification' };
+      },
+    },
+    EMAIL_FROM: 'website@example.test',
+    FORM_DESTINATION: 'delivery@example.test',
+  };
+  await deliverSubmission(settings, {
+    name: 'Renée <Visitor>',
+    email: 'visitor@example.test',
+    message: 'Kitchen & entry\n<script>alert("example")</script>',
+  });
+  expect(sent).toMatchObject({
+    to: settings.FORM_DESTINATION,
+    from: { email: settings.EMAIL_FROM, name: 'RC General Contracting Inc' },
+    replyTo: { email: 'visitor@example.test', name: 'Renée <Visitor>' },
+    subject: 'New website enquiry',
+  });
+  const body = sent as EmailMessageBuilder;
+  expect(body.text).toContain('Kitchen & entry\n<script>');
+  expect(body.html).toContain('Renée &lt;Visitor&gt;');
+  expect(body.html).toContain('Kitchen &amp; entry<br>&lt;script&gt;');
+  expect(body.html).not.toContain('<script>');
+  expect(body).not.toHaveProperty('cc');
+  expect(body).not.toHaveProperty('bcc');
+});
+
+test('email delivery waits for provider acceptance and rejects failures', async () => {
+  let accept!: (value: EmailSendResult) => void;
+  let completed = false;
+  const settings = {
+    EMAIL: {
+      send: () =>
+        new Promise<EmailSendResult>((resolve) => {
+          accept = resolve;
+        }),
+    },
+    EMAIL_FROM: 'website@example.test',
+    FORM_DESTINATION: 'delivery@example.test',
+  };
+  const submission = {
+    name: 'Visitor',
+    email: 'visitor@example.test',
+    message: 'Test enquiry',
+  };
+  const pending = deliverSubmission(settings, submission).then(() => {
+    completed = true;
+  });
+  await Promise.resolve();
+  expect(completed).toBe(false);
+  accept({ messageId: 'accepted-locally' });
+  await pending;
+  expect(completed).toBe(true);
+  for (const send of [
+    async () => {
+      throw new Error('Private provider detail: delivery@example.test');
+    },
+    async () => ({ messageId: '' }),
+  ]) {
+    const result = await status(() =>
+      deliverSubmission({ ...settings, EMAIL: { send } }, submission),
+    );
+    expect(result).toBe(503);
+  }
+});
+
+test('missing or invalid email configuration cannot produce a success', async () => {
+  let calls = 0;
+  const settings = {
+    EMAIL: {
+      send: async () => {
+        calls++;
+        return { messageId: 'unused' };
+      },
+    },
+    EMAIL_FROM: 'website@example.test',
+    FORM_DESTINATION: 'delivery@example.test',
+  };
+  const submission = {
+    name: 'Visitor',
+    email: 'visitor@example.test',
+    message: 'Test enquiry',
+  };
+  for (const change of [
+    { EMAIL_FROM: '' },
+    { FORM_DESTINATION: '' },
+    { EMAIL_FROM: 'sender@example.test\r\nBcc: other@example.test' },
+  ]) {
+    expect(
+      await status(() =>
+        deliverSubmission({ ...settings, ...change }, submission),
+      ),
+    ).toBe(503);
+  }
+  expect(calls).toBe(0);
+});
 
 test('siteverify sends the secret, token and connecting IP, and enforces action', async () => {
   for (const action of ['contact', 'reveal'] as const) {

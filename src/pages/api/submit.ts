@@ -6,8 +6,8 @@ import {
   readJson,
   jsonResponse,
   errorResponse,
-  RequestError,
 } from '../../lib/http';
+import { deliverSubmission } from '../../lib/email';
 import { validateSubmission } from '../../lib/submission';
 import { verifyTurnstile } from '../../lib/turnstile';
 
@@ -19,9 +19,8 @@ export const ALL: APIRoute = async ({ request }) => {
     const submission = validateSubmission(await readJson(request));
     if (!submission.ok) return jsonResponse(submission, 400);
     await verifyTurnstile(request, env, submission.data.token, 'contact');
-    // TODO(setup): Connect the owner's selected, verified email provider before release.
-    // A verified request must not receive a success response before delivery is accepted.
-    throw new RequestError(503, messages.deliveryFailed);
+    await deliverSubmission(env, submission.data);
+    return jsonResponse({ ok: true, message: messages.delivered });
   } catch (error) {
     return errorResponse(error);
   }
