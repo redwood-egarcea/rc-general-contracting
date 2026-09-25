@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Sitemap: https://rc-general-contracting.egarcea.workers.dev/sitemap-index.xml
+Sitemap: https://rcgcinc.ca/sitemap-index.xml
