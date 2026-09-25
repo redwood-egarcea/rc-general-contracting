@@ -95,3 +95,21 @@ Lighthouse 13.5.0, mobile defaults, live HTTPS host and production configuration
 The interactive contact check was initially free of console messages; a later Managed Turnstile iframe emitted two opaque errors and two warnings (`%c%d ... NaN`) from `challenges.cloudflare.com`. Both contact reveals completed. The separate contact Lighthouse run recorded no console errors. A universal zero-console-error gate is therefore not claimed.
 
 Remaining work: configure a sending provider and verified sender, implement and test successful delivery with a real end-to-end enquiry, complete the actual screen-reader walkthrough, investigate the intermittent third-party console output, and connect Workers Builds with production/preview secrets. The current form visibly states that sending is unavailable and offers direct contact alternatives; it cannot deliver an enquiry. GitHub CI is connected, but Cloudflare deployment was performed through Wrangler and is not automatic.
+
+## Business account deployment, 2026-09-25
+
+Production is now https://rcgcinc.ca in the requested business account. PR #3 passed required CI and merged before deployment. Main source: `e9cb3261b2f64d05c77beb07a422a40810b8c2c7`; Worker version: `ca2af7eb-9fc9-4793-b8fc-2ce4c996e670`. CI run: https://github.com/redwood-egarcea/rc-general-contracting/actions/runs/36140922930 .
+
+| Page | Performance | Accessibility | Best Practices | SEO | LCP | CLS |
+| --- | ---: | ---: | ---: | ---: | --- | ---: |
+| Home | 99 | 100 | 100 | 100 | 1.9 s | 0 |
+| Services | 99 | 100 | 100 | 100 | 1.8 s | 0 |
+| Contact | 100 | 100 | 100 | 100 | 1.5 s | 0.004 |
+
+Lighthouse 13.5.0, mobile defaults, new live HTTPS host. Reports: `docs/evidence/rcgcinc-lighthouse/` (local only). All requested categories meet 95.
+
+Build, Astro check, lint, formatting, secret-absence scan, deployment dry run and Impeccable detection passed. The first local suite exposed Wrangler's custom-domain hostname substitution; removing production routes from the local preview restored the intended localhost requests. The rerun passed all 26 functional/security/browser tests, with the optional screenshot-only test skipped. Site layout and copy did not change.
+
+Live URL statuses, path redirects, apex HTTP/www canonical redirects with query preservation, canonical metadata, robots, sitemap, 404 and CSP passed. The www DNS result had reached authoritative/public resolvers and the normal browser; a local Node negative cache required the authoritative address for its separate HTTP check. Certificate validation was retained. Production APIs rejected missing/dummy tokens, unsupported content types and honeypot data; no-store headers were present. Contact values were absent from fetched HTML/JS/CSS and all build files. The new account's analytics beacon loaded once in the real browser.
+
+Both email and phone reveal succeeded through the new production Turnstile widgets and moved focus to their links. No browser warnings/errors were recorded during that contact check. Email sending, its success-path/end-to-end tests, an actual screen-reader walkthrough and Workers Builds integration remain incomplete. The account/domain deployment does not mark those remaining features as finished.
