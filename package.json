@@ -24,7 +24,7 @@
     "@fontsource/barlow-condensed": "^5.3.0",
     "@fontsource/source-sans-3": "^5.3.0",
     "astro": "^7.3.4",
-    "wrangler": "^4.137.0"
+    "wrangler": "^4.143.1"
   },
   "allowScripts": {
     "esbuild": true
